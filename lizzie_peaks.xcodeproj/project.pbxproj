@@ -16,6 +16,8 @@
 		E92CF0EE2203D7EE00DF3ADA /* lizzie_peaksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0ED2203D7EE00DF3ADA /* lizzie_peaksTests.swift */; };
 		E92CF0F92203D7EE00DF3ADA /* lizzie_peaksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */; };
 		E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */; };
+		E92CF1112204091700DF3ADA /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10F2204091700DF3ADA /* DataStore.xcdatamodeld */; };
+		E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF11622040AF300DF3ADA /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lizzie_peaksUITests.swift; sourceTree = "<group>"; };
 		E92CF0FA2203D7EE00DF3ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddConceptViewController.swift; sourceTree = "<group>"; };
+		E92CF1102204091700DF3ADA /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
+		E92CF11622040AF300DF3ADA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 		E92CF0CA2203D7ED00DF3ADA = {
 			isa = PBXGroup;
 			children = (
+				E92CF10F2204091700DF3ADA /* DataStore.xcdatamodeld */,
 				E92CF0D52203D7ED00DF3ADA /* lizzie_peaks */,
 				E92CF0EC2203D7EE00DF3ADA /* lizzie_peaksTests */,
 				E92CF0F72203D7EE00DF3ADA /* lizzie_peaksUITests */,
@@ -102,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */,
+				E92CF11622040AF300DF3ADA /* DataManager.swift */,
 				E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */,
 				E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */,
 				E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */,
@@ -263,7 +269,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E92CF0DB2203D7ED00DF3ADA /* SecondViewController.swift in Sources */,
+				E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */,
 				E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */,
+				E92CF1112204091700DF3ADA /* DataStore.xcdatamodeld in Sources */,
 				E92CF0D72203D7ED00DF3ADA /* AppDelegate.swift in Sources */,
 				E92CF0D92203D7ED00DF3ADA /* FirstViewController.swift in Sources */,
 			);
@@ -594,6 +602,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E92CF10F2204091700DF3ADA /* DataStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E92CF1102204091700DF3ADA /* DataStore.xcdatamodel */,
+			);
+			currentVersion = E92CF1102204091700DF3ADA /* DataStore.xcdatamodel */;
+			path = DataStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E92CF0CB2203D7ED00DF3ADA /* Project object */;
 }

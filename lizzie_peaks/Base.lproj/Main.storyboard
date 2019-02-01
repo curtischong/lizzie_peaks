@@ -188,6 +188,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zK-1D-LBO">
                                         <rect key="frame" x="0.0" y="602" width="335" height="30"/>
                                         <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="submitButtonPressed:" destination="rTG-GW-sdi" eventType="touchUpInside" id="7X9-Xq-oU9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

@@ -23,11 +23,16 @@ class AddConceptViewController: UIViewController {
     private var timeSpentLearningRealVal = 0
     private var percentLearnedRealVal = 0
     
-    let timeSpentLearningMax = Float(300)
+    var timeFinishLearning : Int!
+    let timeSpentLearningMax = Float(300.0)
     let percentLearnedMax = Float(100.0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        timeSpentLearningSlider.setValue(0.0, animated: true)
+        percentLearnedSlider.setValue(0.0, animated: true)
+        timeFinishLearning = Int(round(1000*Date().timeIntervalSince1970)/1000)
+        
         mainConceptTextField.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
         mainConceptTextField.layer.cornerRadius = 5
         
@@ -100,6 +105,24 @@ class AddConceptViewController: UIViewController {
     }
     
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+        let concept = mainConceptTextField.text
+        let newLearnings = newConceptsTextView.text
+        let oldSkills = skillsUsedTextView.text
+        let percentNew = Int(percentLearnedRealVal)
+        let timeLearned = timeFinishLearning
+        let timeSpentLearning = Int(timeSpentLearningRealVal)
+
+        
+        let dataManager = DataManager()
+        dataManager.insertSkill(concept : concept as! String,
+                                newLearnings : newLearnings as! String,
+                                oldSkills : oldSkills as! String,
+                                percentNew : percentNew,
+                                timeLearned : timeLearned as! Int,
+                                timeSpentLearning : timeLearned as! Int)
         dismiss(animated: true, completion: nil)
     }
     
