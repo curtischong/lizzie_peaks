@@ -28,30 +28,56 @@ class AddConceptViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainConceptTextField.layer.cornerRadius = 20
-        skillsUsedTextView.layer.cornerRadius = 20
-        newConceptsTextView.layer.cornerRadius = 20
+        mainConceptTextField.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
+        mainConceptTextField.layer.cornerRadius = 5
         
-        newConceptsTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
-        newConceptsTextView.layer.borderWidth = 1.0
-        newConceptsTextView.layer.cornerRadius = 5
+        skillsUsedTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
+        skillsUsedTextView.layer.borderWidth = 1.0
+        skillsUsedTextView.layer.cornerRadius = 5
         
-        newConceptsTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
+        newConceptsTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
         newConceptsTextView.layer.borderWidth = 1.0
         newConceptsTextView.layer.cornerRadius = 5
         // Do any additional setup after loading the view.
+        
+        // keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        //init toolbar
+        let toolbar:UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
+        //create left side empty space so that done button set on right side
+        let flexSpace = UIBarButtonItem(barButtonSystemItem:    .flexibleSpace, target: nil, action: nil)
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
+        toolbar.setItems([flexSpace, doneBtn], animated: false)
+        toolbar.sizeToFit()
+        //setting toolbar as inputAccessoryView
+        self.mainConceptTextField.inputAccessoryView = toolbar
+        self.skillsUsedTextView.inputAccessoryView = toolbar
+        self.newConceptsTextView.inputAccessoryView = toolbar
+    }
+
+    @objc func doneButtonAction() {
+        //skillsUsedTextView.resignFirstResponder()
+        self.view.endEditing(true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if(skillsUsedTextView.isFirstResponder || newConceptsTextView.isFirstResponder){
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        }
     }
-    */
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
     @IBAction func timeSpentLearningSliderMoved(_ sender: UISlider) {
         let sliderPos = timeSpentLearningSlider.value
         let sliderVal = round(sliderPos * timeSpentLearningMax) / timeSpentLearningMax
