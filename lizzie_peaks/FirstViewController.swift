@@ -16,5 +16,9 @@ class FirstViewController: UIViewController {
     }
 
 
+    @IBAction func addConceptBtn(_ sender: UIButton) {
+        performSegue(withIdentifier: "addConceptSegue", sender: self)
+    }
+    
 }
 

@@ -15,6 +15,7 @@
 		E92CF0E32203D7EE00DF3ADA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E92CF0E12203D7EE00DF3ADA /* LaunchScreen.storyboard */; };
 		E92CF0EE2203D7EE00DF3ADA /* lizzie_peaksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0ED2203D7EE00DF3ADA /* lizzie_peaksTests.swift */; };
 		E92CF0F92203D7EE00DF3ADA /* lizzie_peaksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */; };
+		E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		E92CF0F42203D7EE00DF3ADA /* lizzie_peaksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lizzie_peaksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lizzie_peaksUITests.swift; sourceTree = "<group>"; };
 		E92CF0FA2203D7EE00DF3ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddConceptViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		E92CF0D52203D7ED00DF3ADA /* lizzie_peaks */ = {
 			isa = PBXGroup;
 			children = (
+				E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */,
 				E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */,
 				E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */,
 				E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E92CF0DB2203D7ED00DF3ADA /* SecondViewController.swift in Sources */,
+				E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */,
 				E92CF0D72203D7ED00DF3ADA /* AppDelegate.swift in Sources */,
 				E92CF0D92203D7ED00DF3ADA /* FirstViewController.swift in Sources */,
 			);
