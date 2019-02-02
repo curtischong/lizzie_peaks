@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/curtis/Desktop/dev/lizzie_peaks/lizzie_peaks/SettingsManager.swift">
+   </FileRef>
+   <FileRef
       location = "group:lizzie_peaks.xcodeproj">
    </FileRef>
    <FileRef

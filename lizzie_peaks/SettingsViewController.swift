@@ -11,15 +11,16 @@ import UIKit
 class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
 
     @IBOutlet weak var defaultReviewPicker: UIPickerView!
-    var pickerData: [String] = [String]()
+    var defaultReviewData: [String] = [String]()
     let dataManager = DataManager()
+    let settingsManager = SettingsManager()
     var defaultReviewCurve : Int!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         defaultReviewPicker.delegate = self
         defaultReviewPicker.dataSource = self
-        pickerData = ["Simple", "Moderate", "ML"]
+        defaultReviewData = ["Simple", "Moderate", "ML"]
         defaultReviewCurve = 0
     }
     
@@ -30,15 +31,15 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int)-> Int {
-    return pickerData.count
+    return defaultReviewData.count
     }
     
     private func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String{
-        return pickerData[row]
+        return defaultReviewData[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent  component: Int) {
-        let yearValueSelected = pickerData[row] as String
+        let yearValueSelected = defaultReviewData[row] as String
         print("selected: \(yearValueSelected)")
     }
     

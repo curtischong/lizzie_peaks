@@ -18,7 +18,7 @@ class DataManager{
         entity = NSEntityDescription.entity(forEntityName: "Skill", in: context)
     }
     
-    func insertSkill(concept : String, newLearnings : String, oldSkills : String, percentNew : Int, timeLearned : Int, timeSpentLearning : Int) {
+    func insertSkill(concept : String, newLearnings : String, oldSkills : String, percentNew : Int, timeLearned : Date, timeSpentLearning : Int) {
             let curSkill = NSManagedObject(entity: entity!, insertInto: context)
             curSkill.setValue(concept, forKey: "concept")
             curSkill.setValue(newLearnings, forKey: "newLearnings")

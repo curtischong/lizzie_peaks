@@ -9,11 +9,14 @@
 import Foundation
 
 class ReviewManager{
+    let notificationManager = NotificationManager()
     init(){
         
     }
     
-    func createReview(concept : String, timeLearned : Int, timeSpentLearning : Int){
-        
+    func createReview(concept : String, timeLearned : Date, timeSpentLearning : Int){
+        let reviewDate = timeLearned.addingTimeInterval(TimeInterval(20.0))
+        notificationManager.setNotification(title : concept, body : String(timeSpentLearning), reviewDate : reviewDate)
     }
 }
+

@@ -23,7 +23,7 @@ class AddConceptViewController: UIViewController {
     private var timeSpentLearningRealVal = 0
     private var percentLearnedRealVal = 0
     
-    var timeFinishLearning : Int!
+    var timeFinishLearning = Date()
     let timeSpentLearningMax = Float(60.0)
     let percentLearnedMax = Float(20.0)
 
@@ -32,7 +32,7 @@ class AddConceptViewController: UIViewController {
         
         timeSpentLearningSlider.setValue(0.0, animated: true)
         percentLearnedSlider.setValue(0.0, animated: true)
-        timeFinishLearning = Int(round(1000*Date().timeIntervalSince1970)/1000)
+        //timeFinishLearning = Int(round(1000*Date().timeIntervalSince1970)/1000)
         
         mainConceptTextField.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
         mainConceptTextField.layer.cornerRadius = 5
@@ -125,8 +125,8 @@ class AddConceptViewController: UIViewController {
                                 newLearnings : newLearnings as! String,
                                 oldSkills : oldSkills as! String,
                                 percentNew : percentNew,
-                                timeLearned : timeLearned as! Int,
-                                timeSpentLearning : timeLearned as! Int)
+                                timeLearned : timeLearned as! Date,
+                                timeSpentLearning : timeSpentLearning as! Int)
         dismiss(animated: true, completion: nil)
     }
     

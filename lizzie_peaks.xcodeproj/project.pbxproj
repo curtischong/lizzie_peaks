@@ -18,13 +18,16 @@
 		E92CF0EE2203D7EE00DF3ADA /* lizzie_peaksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0ED2203D7EE00DF3ADA /* lizzie_peaksTests.swift */; };
 		E92CF0F92203D7EE00DF3ADA /* lizzie_peaksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */; };
 		E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */; };
-		E92CF1112204091700DF3ADA /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10F2204091700DF3ADA /* DataStore.xcdatamodeld */; };
 		E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF11622040AF300DF3ADA /* DataManager.swift */; };
 		E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */; };
 		E9F5265222055FA0004F66F3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265122055FA0004F66F3 /* SettingsViewController.swift */; };
 		E9F5265422056900004F66F3 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265322056900004F66F3 /* ReviewViewController.swift */; };
 		E9F5265622056C89004F66F3 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265522056C89004F66F3 /* HttpManager.swift */; };
 		E9F5265822056DEA004F66F3 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265722056DEA004F66F3 /* ReviewManager.swift */; };
+		E9F5265C2205808E004F66F3 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265B2205808E004F66F3 /* SettingsManager.swift */; };
+		E9F5265E2205F458004F66F3 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265D2205F458004F66F3 /* NotificationManager.swift */; };
+		E9F526602205F4E7004F66F3 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265F2205F4E7004F66F3 /* PermissionsManager.swift */; };
+		E9F526652205FEEF004F66F3 /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9F526632205FEEE004F66F3 /* DataStore.xcdatamodeld */; };
 		EF9ABBAED86A8F047107BACC /* Pods_lizzie_peaksTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4377DCC8FD07FB879CD2484E /* Pods_lizzie_peaksTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,13 +73,16 @@
 		E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lizzie_peaksUITests.swift; sourceTree = "<group>"; };
 		E92CF0FA2203D7EE00DF3ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddConceptViewController.swift; sourceTree = "<group>"; };
-		E92CF1102204091700DF3ADA /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		E92CF11622040AF300DF3ADA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillTableViewCell.swift; sourceTree = "<group>"; };
 		E9F5265122055FA0004F66F3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9F5265322056900004F66F3 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		E9F5265522056C89004F66F3 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		E9F5265722056DEA004F66F3 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
+		E9F5265B2205808E004F66F3 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = /Users/curtis/Desktop/dev/lizzie_peaks/lizzie_peaks/SettingsManager.swift; sourceTree = "<absolute>"; };
+		E9F5265D2205F458004F66F3 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		E9F5265F2205F4E7004F66F3 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
+		E9F526642205FEEE004F66F3 /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +126,7 @@
 		E92CF0CA2203D7ED00DF3ADA = {
 			isa = PBXGroup;
 			children = (
-				E92CF10F2204091700DF3ADA /* DataStore.xcdatamodeld */,
+				E9F526632205FEEE004F66F3 /* DataStore.xcdatamodeld */,
 				E92CF0D52203D7ED00DF3ADA /* lizzie_peaks */,
 				E92CF0EC2203D7EE00DF3ADA /* lizzie_peaksTests */,
 				E92CF0F72203D7EE00DF3ADA /* lizzie_peaksUITests */,
@@ -143,20 +149,23 @@
 		E92CF0D52203D7ED00DF3ADA /* lizzie_peaks */ = {
 			isa = PBXGroup;
 			children = (
-				E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */,
 				E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */,
+				E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */,
+				E9F5265322056900004F66F3 /* ReviewViewController.swift */,
+				E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */,
+				E9F5265122055FA0004F66F3 /* SettingsViewController.swift */,
+				E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */,
 				E92CF11622040AF300DF3ADA /* DataManager.swift */,
 				E9F5265522056C89004F66F3 /* HttpManager.swift */,
-				E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */,
-				E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */,
-				E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */,
-				E92CF0DC2203D7ED00DF3ADA /* Main.storyboard */,
+				E9F5265D2205F458004F66F3 /* NotificationManager.swift */,
+				E9F5265F2205F4E7004F66F3 /* PermissionsManager.swift */,
+				E9F5265B2205808E004F66F3 /* SettingsManager.swift */,
 				E9F5265722056DEA004F66F3 /* ReviewManager.swift */,
-				E9F5265322056900004F66F3 /* ReviewViewController.swift */,
-				E9F5265122055FA0004F66F3 /* SettingsViewController.swift */,
-				E92CF0DF2203D7EE00DF3ADA /* Assets.xcassets */,
+				E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */,
 				E92CF0E12203D7EE00DF3ADA /* LaunchScreen.storyboard */,
 				E92CF0E42203D7EE00DF3ADA /* Info.plist */,
+				E92CF0DC2203D7ED00DF3ADA /* Main.storyboard */,
+				E92CF0DF2203D7EE00DF3ADA /* Assets.xcassets */,
 			);
 			path = lizzie_peaks;
 			sourceTree = "<group>";
@@ -424,11 +433,14 @@
 				E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */,
 				E9F5265822056DEA004F66F3 /* ReviewManager.swift in Sources */,
 				E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */,
-				E92CF1112204091700DF3ADA /* DataStore.xcdatamodeld in Sources */,
+				E9F5265E2205F458004F66F3 /* NotificationManager.swift in Sources */,
+				E9F526602205F4E7004F66F3 /* PermissionsManager.swift in Sources */,
 				E92CF0D72203D7ED00DF3ADA /* AppDelegate.swift in Sources */,
+				E9F5265C2205808E004F66F3 /* SettingsManager.swift in Sources */,
 				E92CF0D92203D7ED00DF3ADA /* FirstViewController.swift in Sources */,
 				E9F5265222055FA0004F66F3 /* SettingsViewController.swift in Sources */,
 				E9F5265422056900004F66F3 /* ReviewViewController.swift in Sources */,
+				E9F526652205FEEF004F66F3 /* DataStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,12 +777,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E92CF10F2204091700DF3ADA /* DataStore.xcdatamodeld */ = {
+		E9F526632205FEEE004F66F3 /* DataStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E92CF1102204091700DF3ADA /* DataStore.xcdatamodel */,
+				E9F526642205FEEE004F66F3 /* DataStore.xcdatamodel */,
 			);
-			currentVersion = E92CF1102204091700DF3ADA /* DataStore.xcdatamodel */;
+			currentVersion = E9F526642205FEEE004F66F3 /* DataStore.xcdatamodel */;
 			path = DataStore.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

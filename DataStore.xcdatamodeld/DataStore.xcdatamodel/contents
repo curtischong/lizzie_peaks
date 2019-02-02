@@ -13,13 +13,13 @@
         <attribute name="concept" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="newLearnings" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="oldSkills" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="percentNew" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="timeLearned" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="timeSpentLearning" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="percentNew" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="timeLearned" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timeSpentLearning" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Skill" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="Review" positionX="-63" positionY="27" width="128" height="105"/>
         <element name="ReviewResult" positionX="-54" positionY="45" width="128" height="60"/>
+        <element name="Skill" positionX="-36" positionY="72" width="128" height="135"/>
     </elements>
 </model>

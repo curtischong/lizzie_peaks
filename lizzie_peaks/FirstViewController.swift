@@ -39,6 +39,8 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
         tableView.tableFooterView = UIView()
         tableView.separatorColor = UIColor.white
     
+        let permissionsManager = PermissionsManager()
+        permissionsManager.requestPermissions()
         //self.tableView.reloadData()
     }
 
@@ -56,7 +58,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
         if allSkills.count > indexPath.row{
             let cellData = allSkills[indexPath.row]
             
-            let newDate = Date(timeIntervalSince1970: (cellData.value(forKey: "timeLearned") as! Double))
+            let newDate = cellData.value(forKey: "timeLearned") as! Date
             
             cell.mainConceptLabel.text = (cellData.value(forKey: "concept") as! String)
             cell.dateLearnedLabel.text = self.displayDateFormatter.string(from: newDate)
