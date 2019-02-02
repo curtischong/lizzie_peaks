@@ -12,14 +12,16 @@ import UIKit
 
 class DataManager{
     let context : NSManagedObjectContext!
-    let entity :  NSEntityDescription!
+    let skillEntity :  NSEntityDescription!
+    let reviewEntity :  NSEntityDescription!
     init(){
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        entity = NSEntityDescription.entity(forEntityName: "Skill", in: context)
+        skillEntity = NSEntityDescription.entity(forEntityName: "Skill", in: context)
+        reviewEntity = NSEntityDescription.entity(forEntityName: "Reviews", in: context)
     }
     
     func insertSkill(skill : SkillObj) -> Bool{
-            let curSkill = NSManagedObject(entity: entity!, insertInto: context)
+            let curSkill = NSManagedObject(entity: skillEntity!, insertInto: context)
             curSkill.setValue(skill.concept, forKey: "concept")
             curSkill.setValue(skill.newLearnings, forKey: "newLearnings")
             curSkill.setValue(skill.oldSkills, forKey: "oldSkills")
@@ -37,7 +39,7 @@ class DataManager{
     }
     
     func insertReview(review : ReviewObj) -> Bool{
-        let curSkill = NSManagedObject(entity: entity!, insertInto: context)
+        let curSkill = NSManagedObject(entity: reviewEntity!, insertInto: context)
         curSkill.setValue(review.concept, forKey: "concept")
         curSkill.setValue(review.lastTimeReviewed, forKey: "lastTimeReviewed")
         curSkill.setValue(review.newLearnings, forKey: "newLearnings")

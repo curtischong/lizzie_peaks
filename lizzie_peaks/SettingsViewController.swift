@@ -10,11 +10,16 @@ import UIKit
 
 class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
 
+    @IBOutlet weak var briefReviewSwitch: UISwitch!
     @IBOutlet weak var defaultReviewPicker: UIPickerView!
+    
+    
     var defaultReviewData: [String] = [String]()
     let dataManager = DataManager()
     let settingsManager = SettingsManager()
     var defaultReviewCurve : Int!
+    var briefReviews = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,11 +27,23 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
         defaultReviewPicker.dataSource = self
         defaultReviewData = ["Simple", "Moderate", "ML"]
         defaultReviewCurve = 0
+        briefReviews = settingsManager.briefReviews
+        briefReviewSwitch.setOn(briefReviews, animated: true)
     }
+    
+    
+
+    @IBAction func briefReviewSwitchMoved(_ sender: UISwitch) {
+        briefReviews = !briefReviews
+        settingsManager.briefReviews = briefReviews
+        settingsManager.saveSettings()
+    }
+    
+
     
     // Number of columns of data
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
-    return 1
+        return 1
     }
     
     // The number of rows of data
@@ -39,8 +56,11 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent  component: Int) {
-        let yearValueSelected = defaultReviewData[row] as String
-        print("selected: \(yearValueSelected)")
+        let reviewTypeSelected = defaultReviewData[row] as String
+        print("selected: \(reviewTypeSelected)")
+        
+        settingsManager.defaultReview = reviewTypeSelected
+        settingsManager.saveSettings()
     }
     
 
