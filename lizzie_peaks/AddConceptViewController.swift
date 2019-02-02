@@ -131,7 +131,7 @@ class AddConceptViewController: UIViewController {
         let insertedSkill = dataManager.insertSkill(skill: curSkill)
         // We want to make sure that the skill was saved properly before scheduling a review
         if(insertedSkill){
-            reviewManager.createReview(concept : concept, timeLearned: timeLearned, timeSpentLearning: timeSpentLearning)
+            reviewManager.createReview(skill : curSkill)
         }
         dismiss(animated: true, completion: nil)
     }

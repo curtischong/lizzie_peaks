@@ -5,6 +5,8 @@
         <attribute name="lastTimeReviewed" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="newLearnings" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reviewDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="scheduledDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="scheduledDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timeLearned" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="timesReviewed" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
@@ -17,7 +19,7 @@
         <attribute name="timeSpentLearning" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Review" positionX="-63" positionY="27" width="128" height="135"/>
+        <element name="Review" positionX="-63" positionY="27" width="128" height="165"/>
         <element name="Skill" positionX="-36" positionY="72" width="128" height="135"/>
     </elements>
 </model>

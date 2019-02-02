@@ -43,6 +43,8 @@ class DataManager{
         curSkill.setValue(review.newLearnings, forKey: "newLearnings")
         curSkill.setValue(review.timesReviewed, forKey: "timesReviewed")
         curSkill.setValue(review.reviewDuration, forKey: "reviewDuration")
+        curSkill.setValue(review.scheduledDate, forKey: "scheduledReview")
+        curSkill.setValue(review.scheduledDuration, forKey: "scheduledReview")
         curSkill.setValue(review.timeLearned, forKey: "timeLearned")
         do {
             try context.save()

@@ -13,6 +13,7 @@ class SettingsManager{
     init(){
         defaultReview = "Simple"
         defaults = UserDefaults.standard
+        self.getSavedSettings()
     }
     
     func setSettings(sentDefaultReview : String){
