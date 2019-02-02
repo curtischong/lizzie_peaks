@@ -26,6 +26,7 @@ class AddConceptViewController: UIViewController {
     var timeFinishLearning = Date()
     let timeSpentLearningMax = Float(60.0)
     let percentLearnedMax = Float(20.0)
+    let reviewManager = ReviewManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,21 +113,25 @@ class AddConceptViewController: UIViewController {
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
     }
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        let concept = mainConceptTextField.text
-        let newLearnings = newConceptsTextView.text
-        let oldSkills = skillsUsedTextView.text
+        let concept = mainConceptTextField.text as! String
+        let newLearnings = newConceptsTextView.text as! String
+        let oldSkills = skillsUsedTextView.text as! String
         let percentNew = Int(percentLearnedRealVal)
         let timeLearned = timeFinishLearning
         let timeSpentLearning = Int(timeSpentLearningRealVal)
 
         
         let dataManager = DataManager()
-        dataManager.insertSkill(concept : concept as! String,
-                                newLearnings : newLearnings as! String,
-                                oldSkills : oldSkills as! String,
+        let insertedSkill = dataManager.insertSkill(concept : concept,
+                                newLearnings : newLearnings,
+                                oldSkills : oldSkills,
                                 percentNew : percentNew,
-                                timeLearned : timeLearned as! Date,
-                                timeSpentLearning : timeSpentLearning as! Int)
+                                timeLearned : timeLearned,
+                                timeSpentLearning : timeSpentLearning)
+        // We want to make sure that the skill was saved properly before scheduling a review
+        if(insertedSkill){
+            reviewManager.createReview(concept : concept, timeLearned: timeLearned, timeSpentLearning: timeSpentLearning)
+        }
         dismiss(animated: true, completion: nil)
     }
     

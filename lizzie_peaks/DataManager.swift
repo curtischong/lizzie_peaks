@@ -18,7 +18,7 @@ class DataManager{
         entity = NSEntityDescription.entity(forEntityName: "Skill", in: context)
     }
     
-    func insertSkill(concept : String, newLearnings : String, oldSkills : String, percentNew : Int, timeLearned : Date, timeSpentLearning : Int) {
+    func insertSkill(concept : String, newLearnings : String, oldSkills : String, percentNew : Int, timeLearned : Date, timeSpentLearning : Int) -> Bool{
             let curSkill = NSManagedObject(entity: entity!, insertInto: context)
             curSkill.setValue(concept, forKey: "concept")
             curSkill.setValue(newLearnings, forKey: "newLearnings")
@@ -29,8 +29,10 @@ class DataManager{
         do {
             try context.save()
             NSLog("Successfully saved the current Skill")
+            return true
         } catch let error{
             NSLog("Couldn't save: the current Skill with  error: \(error)")
+            return false
         }
     }
     func getAllSkills() -> [NSManagedObject]{
