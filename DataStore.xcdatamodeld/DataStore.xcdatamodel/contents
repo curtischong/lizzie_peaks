@@ -4,6 +4,10 @@
         <attribute name="concept" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastTimeReviewed" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="numTimesReviewed" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="reviewDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="ReviewResult" representedClassName="ReviewResult" syncable="YES" codeGenerationType="class">
+        <attribute name="timeReviewed" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Skill" representedClassName="Skill" syncable="YES" codeGenerationType="class">
         <attribute name="concept" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,6 +19,7 @@
     </entity>
     <elements>
         <element name="Skill" positionX="-63" positionY="-18" width="128" height="135"/>
-        <element name="Review" positionX="-63" positionY="27" width="128" height="90"/>
+        <element name="Review" positionX="-63" positionY="27" width="128" height="105"/>
+        <element name="ReviewResult" positionX="-54" positionY="45" width="128" height="60"/>
     </elements>
 </model>
