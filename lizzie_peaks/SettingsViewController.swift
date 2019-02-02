@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var briefReviewSwitch: UISwitch!
     @IBOutlet weak var defaultReviewPicker: UIPickerView!
     
-    
+    var learningsDelegate : learningsProtocol?
     var defaultReviewData: [String] = [String]()
     let dataManager = DataManager()
     let settingsManager = SettingsManager()
@@ -71,5 +71,6 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     
     @IBAction func purgeDatabaseBtn(_ sender: UIButton) {
         dataManager.dropAllRows()
+        learningsDelegate?.reloadLearningsTable()
     }
 }

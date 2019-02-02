@@ -8,9 +8,14 @@
 
 import UIKit
 import CoreData
-class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
 
-    @IBOutlet var tableView: UITableView!
+protocol learningsProtocol {
+    func reloadLearningsTable()
+}
+
+class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, learningsProtocol{
+
+    @IBOutlet var skillsTable: UITableView!
     @IBOutlet weak var addNewSkillBtn: UIButton!
     
     
@@ -31,22 +36,21 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayDateFormatter.dateFormat = "MMM d, h:mm a"
-        // Do any additional setup after loading the view, typically from a nib.
-        tableView.delegate = self
-        tableView.dataSource = self
         addNewSkillBtn.layer.zPosition = 1;
-        tableView.tableFooterView = UIView()
-        tableView.separatorColor = UIColor.white
+        displayDateFormatter.dateFormat = "MMM d, h:mm a"
+
+        skillsTable.delegate = self
+        skillsTable.dataSource = self
+        skillsTable.tableFooterView = UIView()
+        skillsTable.separatorColor = UIColor.white
     
         let permissionsManager = PermissionsManager()
         permissionsManager.requestPermissions()
-        //self.tableView.reloadData()
     }
 
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        allSkills = dataManager.getAllSkills()
+        allSkills = dataManager.getAllEntities(entityName: "Skill")
         leaningsCntLabel.text = String(allSkills.count)
         return allSkills.count
     }
@@ -54,7 +58,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:SkillTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! SkillTableViewCell
+        let cell:SkillTableViewCell = self.skillsTable.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! SkillTableViewCell
         if allSkills.count > indexPath.row{
             let cellData = allSkills[indexPath.row]
             
@@ -80,6 +84,23 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     
     @IBAction func addConceptBtn(_ sender: UIButton) {
         performSegue(withIdentifier: "addConceptSegue", sender: self)
+    }
+    
+    func reloadLearningsTable(){
+        self.skillsTable.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let pop = segue.destination as? AddConceptViewController {
+            pop.learningsDelegate = self
+        }
+        if let pop = segue.destination as? SettingsViewController {
+            pop.learningsDelegate = self
+        }
+    }
+    
+    func testPrint(){
+        print("asdsad")
     }
 }
 

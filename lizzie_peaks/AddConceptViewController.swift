@@ -28,6 +28,7 @@ class AddConceptViewController: UIViewController {
     let percentLearnedMax = Float(20.0)
     let dataManager = DataManager()
     let reviewManager = ReviewManager()
+    var learningsDelegate : learningsProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +134,7 @@ class AddConceptViewController: UIViewController {
         if(insertedSkill){
             reviewManager.createReview(skill : curSkill)
         }
+        learningsDelegate?.reloadLearningsTable()
         dismiss(animated: true, completion: nil)
     }
     

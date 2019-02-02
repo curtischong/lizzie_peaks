@@ -37,6 +37,6 @@ class NotificationManager{
                 return
             }
         })
-        print("notification set!")
+        print("notification set for Date: \(reviewDate)")
     }
 }

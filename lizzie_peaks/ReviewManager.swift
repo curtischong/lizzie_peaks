@@ -35,7 +35,7 @@ class ReviewManager{
     func scheduleNewReview(review : ReviewObj){
         if(settingsManager.defaultReview == "Simple"){
             if(settingsManager.briefReviews){
-                review.scheduledDate = review.timeLearned.addingTimeInterval(TimeInterval(20.0))
+                review.scheduledDate = review.timeLearned.addingTimeInterval(TimeInterval(30.0))
                 review.scheduledDuration = 60
             }else if(review.timesReviewed == 0){
                 review.scheduledDate = review.timeLearned.addingTimeInterval(TimeInterval(60.0 * 60.0 * 24.0))

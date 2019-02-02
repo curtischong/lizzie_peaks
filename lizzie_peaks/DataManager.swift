@@ -58,8 +58,8 @@ class DataManager{
         }
     }
     
-    func getAllSkills() -> [NSManagedObject]{
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Skill")
+    func getAllEntities(entityName : String) -> [NSManagedObject]{
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         
         do{
             let result = try context.fetch(request)
@@ -70,7 +70,7 @@ class DataManager{
         }
     }
     
-    func dropAllRows(){
+    func dropSkillRows(){
         // remove MarkEvent rows
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Skill")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
@@ -82,5 +82,24 @@ class DataManager{
         }catch let error{
             NSLog("Couldn't Delete Skill rows with error: \(error)")
         }
+    }
+    
+    func dropReviewRows(){
+        // remove MarkEvent rows
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Review")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        
+        do{
+            try context.execute(deleteRequest)
+            try context.save()
+            NSLog("Deleted Review rows")
+        }catch let error{
+            NSLog("Couldn't Delete Review rows with error: \(error)")
+        }
+    }
+    
+    func dropAllRows(){
+        dropSkillRows()
+        dropReviewRows()
     }
 }
