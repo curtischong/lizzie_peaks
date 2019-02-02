@@ -24,8 +24,8 @@ class AddConceptViewController: UIViewController {
     private var percentLearnedRealVal = 0
     
     var timeFinishLearning : Int!
-    let timeSpentLearningMax = Float(300.0)
-    let percentLearnedMax = Float(100.0)
+    let timeSpentLearningMax = Float(60.0)
+    let percentLearnedMax = Float(20.0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +87,7 @@ class AddConceptViewController: UIViewController {
     @IBAction func timeSpentLearningSliderMoved(_ sender: UISlider) {
         let sliderPos = timeSpentLearningSlider.value
         let sliderVal = round(sliderPos * timeSpentLearningMax) / timeSpentLearningMax
-        timeSpentLearningRealVal = Int(round(sliderPos * timeSpentLearningMax))
+        timeSpentLearningRealVal = Int(round(sliderPos * timeSpentLearningMax)) * 5
         sender.setValue(sliderVal, animated: true)
         if(timeSpentLearningLabel.text != String(timeSpentLearningRealVal) + " min"){
             timeSpentLearningLabel.text = String(timeSpentLearningRealVal) + " min"
@@ -97,7 +97,7 @@ class AddConceptViewController: UIViewController {
     @IBAction func percentLearnedSliderMoved(_ sender: UISlider) {
         let sliderPos = percentLearnedSlider.value
         let sliderVal = round(sliderPos * percentLearnedMax) / percentLearnedMax
-        percentLearnedRealVal = Int(round(sliderPos * percentLearnedMax))
+        percentLearnedRealVal = Int(round(sliderPos * percentLearnedMax)) * 5
         sender.setValue(sliderVal, animated: true)
         if(percentLearnedLabel.text != String(percentLearnedRealVal) + "%"){
             percentLearnedLabel.text = String(percentLearnedRealVal) + "%"

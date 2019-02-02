@@ -33,7 +33,15 @@ class DataManager{
             NSLog("Couldn't save: the current EventMark with  error: \(error)")
         }
     }
-    func getAllSkills(){
+    func getAllSkills() -> [NSManagedObject]{
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Skill")
         
+        do{
+            let result = try context.fetch(request)
+            return result as! [NSManagedObject]
+        } catch let error{
+            NSLog("Couldn't load MarkEventPhone rows with error: \(error)")
+            return []
+        }
     }
 }

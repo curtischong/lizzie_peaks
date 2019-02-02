@@ -18,6 +18,7 @@
 		E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */; };
 		E92CF1112204091700DF3ADA /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10F2204091700DF3ADA /* DataStore.xcdatamodeld */; };
 		E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF11622040AF300DF3ADA /* DataManager.swift */; };
+		E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddConceptViewController.swift; sourceTree = "<group>"; };
 		E92CF1102204091700DF3ADA /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		E92CF11622040AF300DF3ADA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		E92CF0D52203D7ED00DF3ADA /* lizzie_peaks */ = {
 			isa = PBXGroup;
 			children = (
+				E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */,
 				E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */,
 				E92CF11622040AF300DF3ADA /* DataManager.swift */,
 				E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */,
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E92CF0DB2203D7ED00DF3ADA /* SecondViewController.swift in Sources */,
+				E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */,
 				E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */,
 				E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */,
 				E92CF1112204091700DF3ADA /* DataStore.xcdatamodeld in Sources */,
