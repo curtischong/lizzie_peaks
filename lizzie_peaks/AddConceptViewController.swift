@@ -29,6 +29,7 @@ class AddConceptViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         timeSpentLearningSlider.setValue(0.0, animated: true)
         percentLearnedSlider.setValue(0.0, animated: true)
         timeFinishLearning = Int(round(1000*Date().timeIntervalSince1970)/1000)
