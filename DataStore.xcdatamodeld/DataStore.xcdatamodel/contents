@@ -2,12 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Review" representedClassName="Review" syncable="YES" codeGenerationType="class">
         <attribute name="concept" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastTimeReviewed" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="numTimesReviewed" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastTimeReviewed" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="newLearnings" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reviewDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-    </entity>
-    <entity name="ReviewResult" representedClassName="ReviewResult" syncable="YES" codeGenerationType="class">
-        <attribute name="timeReviewed" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="timeLearned" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timesReviewed" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Skill" representedClassName="Skill" syncable="YES" codeGenerationType="class">
         <attribute name="concept" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,8 +17,7 @@
         <attribute name="timeSpentLearning" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Review" positionX="-63" positionY="27" width="128" height="105"/>
-        <element name="ReviewResult" positionX="-54" positionY="45" width="128" height="60"/>
+        <element name="Review" positionX="-63" positionY="27" width="128" height="135"/>
         <element name="Skill" positionX="-36" positionY="72" width="128" height="135"/>
     </elements>
 </model>

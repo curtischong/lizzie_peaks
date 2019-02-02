@@ -26,6 +26,7 @@ class AddConceptViewController: UIViewController {
     var timeFinishLearning = Date()
     let timeSpentLearningMax = Float(60.0)
     let percentLearnedMax = Float(20.0)
+    let dataManager = DataManager()
     let reviewManager = ReviewManager()
 
     override func viewDidLoad() {
@@ -120,14 +121,14 @@ class AddConceptViewController: UIViewController {
         let timeLearned = timeFinishLearning
         let timeSpentLearning = Int(timeSpentLearningRealVal)
 
-        
-        let dataManager = DataManager()
-        let insertedSkill = dataManager.insertSkill(concept : concept,
+        let curSkill = SkillObj(concept : concept,
                                 newLearnings : newLearnings,
                                 oldSkills : oldSkills,
                                 percentNew : percentNew,
                                 timeLearned : timeLearned,
                                 timeSpentLearning : timeSpentLearning)
+
+        let insertedSkill = dataManager.insertSkill(skill: curSkill)
         // We want to make sure that the skill was saved properly before scheduling a review
         if(insertedSkill){
             reviewManager.createReview(concept : concept, timeLearned: timeLearned, timeSpentLearning: timeSpentLearning)

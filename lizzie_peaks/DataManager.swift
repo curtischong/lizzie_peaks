@@ -18,14 +18,14 @@ class DataManager{
         entity = NSEntityDescription.entity(forEntityName: "Skill", in: context)
     }
     
-    func insertSkill(concept : String, newLearnings : String, oldSkills : String, percentNew : Int, timeLearned : Date, timeSpentLearning : Int) -> Bool{
+    func insertSkill(skill : SkillObj) -> Bool{
             let curSkill = NSManagedObject(entity: entity!, insertInto: context)
-            curSkill.setValue(concept, forKey: "concept")
-            curSkill.setValue(newLearnings, forKey: "newLearnings")
-            curSkill.setValue(oldSkills, forKey: "oldSkills")
-            curSkill.setValue(percentNew, forKey: "percentNew")
-            curSkill.setValue(timeLearned, forKey: "timeLearned")
-            curSkill.setValue(timeSpentLearning, forKey: "timeSpentLearning")
+            curSkill.setValue(skill.concept, forKey: "concept")
+            curSkill.setValue(skill.newLearnings, forKey: "newLearnings")
+            curSkill.setValue(skill.oldSkills, forKey: "oldSkills")
+            curSkill.setValue(skill.percentNew, forKey: "percentNew")
+            curSkill.setValue(skill.timeLearned, forKey: "timeLearned")
+            curSkill.setValue(skill.timeSpentLearning, forKey: "timeSpentLearning")
         do {
             try context.save()
             NSLog("Successfully saved the current Skill")
@@ -35,6 +35,25 @@ class DataManager{
             return false
         }
     }
+    
+    func insertReview(review : ReviewObj) -> Bool{
+        let curSkill = NSManagedObject(entity: entity!, insertInto: context)
+        curSkill.setValue(review.concept, forKey: "concept")
+        curSkill.setValue(review.lastTimeReviewed, forKey: "lastTimeReviewed")
+        curSkill.setValue(review.newLearnings, forKey: "newLearnings")
+        curSkill.setValue(review.timesReviewed, forKey: "timesReviewed")
+        curSkill.setValue(review.reviewDuration, forKey: "reviewDuration")
+        curSkill.setValue(review.timeLearned, forKey: "timeLearned")
+        do {
+            try context.save()
+            NSLog("Successfully saved the current Skill")
+            return true
+        } catch let error{
+            NSLog("Couldn't save: the current Skill with  error: \(error)")
+            return false
+        }
+    }
+    
     func getAllSkills() -> [NSManagedObject]{
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Skill")
         
