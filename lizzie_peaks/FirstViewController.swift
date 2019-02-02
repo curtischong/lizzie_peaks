@@ -16,8 +16,8 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var skillTableView: UITableView!
     
+    @IBOutlet weak var leaningsCntLabel: UILabel!
     // These strings will be the data for the table view cells
-    let animals: [String] = ["Horse", "Cow", "Camel", "Sheep", "Goat"]
     
     // These are the colors of the square views in our table view cells.
     // In a real project you might use UIImages.
@@ -39,25 +39,29 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
         tableView.tableFooterView = UIView()
         tableView.separatorColor = UIColor.white
     
-        allSkills = dataManager.getAllSkills()
+        //self.tableView.reloadData()
     }
 
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.animals.count
+        allSkills = dataManager.getAllSkills()
+        leaningsCntLabel.text = String(allSkills.count)
+        return allSkills.count
     }
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:SkillTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! SkillTableViewCell
-        let cellData = allSkills[indexPath.row]
-        
-        let newDate = Date(timeIntervalSince1970: (cellData.value(forKey: "timeLearned") as! Double))
-        
-        cell.mainConceptLabel.text = (cellData.value(forKey: "concept") as! String)
-        cell.dateLearnedLabel.text = self.displayDateFormatter.string(from: newDate)
-        // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
+        if allSkills.count > indexPath.row{
+            let cellData = allSkills[indexPath.row]
+            
+            let newDate = Date(timeIntervalSince1970: (cellData.value(forKey: "timeLearned") as! Double))
+            
+            cell.mainConceptLabel.text = (cellData.value(forKey: "concept") as! String)
+            cell.dateLearnedLabel.text = self.displayDateFormatter.string(from: newDate)
+            // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
+        }
         
         return cell
     }
@@ -67,12 +71,11 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
         print("You tapped cell number \(indexPath.row).")
     }
     
-    
-    
-    
-    
 
-
+    @IBAction func settingsBtn(_ sender: UIButton) {
+        performSegue(withIdentifier: "settingsSegue", sender: self)
+    }
+    
     @IBAction func addConceptBtn(_ sender: UIButton) {
         performSegue(withIdentifier: "addConceptSegue", sender: self)
     }

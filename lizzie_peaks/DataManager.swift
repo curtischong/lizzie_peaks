@@ -30,7 +30,7 @@ class DataManager{
             try context.save()
             NSLog("Successfully saved the current Skill")
         } catch let error{
-            NSLog("Couldn't save: the current EventMark with  error: \(error)")
+            NSLog("Couldn't save: the current Skill with  error: \(error)")
         }
     }
     func getAllSkills() -> [NSManagedObject]{
@@ -40,8 +40,22 @@ class DataManager{
             let result = try context.fetch(request)
             return result as! [NSManagedObject]
         } catch let error{
-            NSLog("Couldn't load MarkEventPhone rows with error: \(error)")
+            NSLog("Couldn't load Skill rows with error: \(error)")
             return []
+        }
+    }
+    
+    func dropAllRows(){
+        // remove MarkEvent rows
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Skill")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        
+        do{
+            try context.execute(deleteRequest)
+            try context.save()
+            NSLog("Deleted Skill rows")
+        }catch let error{
+            NSLog("Couldn't Delete Skill rows with error: \(error)")
         }
     }
 }

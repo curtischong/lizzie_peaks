@@ -105,8 +105,11 @@ class AddConceptViewController: UIViewController {
         }
     }
     
+    var onDoneBlock : ((Bool) -> Void)?
+    
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+        //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
     }
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         let concept = mainConceptTextField.text

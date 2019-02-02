@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0049326217ABCCAB0E1EFEEE /* Pods_lizzie_peaks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D918EA4FAAD103116A7622 /* Pods_lizzie_peaks.framework */; };
+		AA45CEB451C35CE8474CCB36 /* Pods_lizzie_peaksUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10518D7D4D862F4F762A2F1F /* Pods_lizzie_peaksUITests.framework */; };
 		E92CF0D72203D7ED00DF3ADA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */; };
 		E92CF0D92203D7ED00DF3ADA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */; };
 		E92CF0DB2203D7ED00DF3ADA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */; };
@@ -19,6 +21,10 @@
 		E92CF1112204091700DF3ADA /* DataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10F2204091700DF3ADA /* DataStore.xcdatamodeld */; };
 		E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF11622040AF300DF3ADA /* DataManager.swift */; };
 		E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */; };
+		E9F5265222055FA0004F66F3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265122055FA0004F66F3 /* SettingsViewController.swift */; };
+		E9F5265422056900004F66F3 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265322056900004F66F3 /* ReviewViewController.swift */; };
+		E9F5265622056C89004F66F3 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265522056C89004F66F3 /* HttpManager.swift */; };
+		EF9ABBAED86A8F047107BACC /* Pods_lizzie_peaksTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4377DCC8FD07FB879CD2484E /* Pods_lizzie_peaksTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +45,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06924175DCB868D01E86A826 /* Pods-lizzie_peaksUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lizzie_peaksUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-lizzie_peaksUITests/Pods-lizzie_peaksUITests.release.xcconfig"; sourceTree = "<group>"; };
+		10518D7D4D862F4F762A2F1F /* Pods_lizzie_peaksUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lizzie_peaksUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3473C136A66F3817338192E7 /* Pods-lizzie_peaksTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lizzie_peaksTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lizzie_peaksTests/Pods-lizzie_peaksTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4377DCC8FD07FB879CD2484E /* Pods_lizzie_peaksTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lizzie_peaksTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52146154CAB31BC07EA67162 /* Pods-lizzie_peaks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lizzie_peaks.release.xcconfig"; path = "Pods/Target Support Files/Pods-lizzie_peaks/Pods-lizzie_peaks.release.xcconfig"; sourceTree = "<group>"; };
+		6F66AF5276302E571CCFB6E0 /* Pods-lizzie_peaksUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lizzie_peaksUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lizzie_peaksUITests/Pods-lizzie_peaksUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7960943A574D80A448089E40 /* Pods-lizzie_peaks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lizzie_peaks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lizzie_peaks/Pods-lizzie_peaks.debug.xcconfig"; sourceTree = "<group>"; };
+		C3D918EA4FAAD103116A7622 /* Pods_lizzie_peaks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lizzie_peaks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C78D22A7456D35D1FB49029F /* Pods-lizzie_peaksTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lizzie_peaksTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-lizzie_peaksTests/Pods-lizzie_peaksTests.release.xcconfig"; sourceTree = "<group>"; };
 		E92CF0D32203D7ED00DF3ADA /* lizzie_peaks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lizzie_peaks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +72,9 @@
 		E92CF1102204091700DF3ADA /* DataStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStore.xcdatamodel; sourceTree = "<group>"; };
 		E92CF11622040AF300DF3ADA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillTableViewCell.swift; sourceTree = "<group>"; };
+		E9F5265122055FA0004F66F3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E9F5265322056900004F66F3 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		E9F5265522056C89004F66F3 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0049326217ABCCAB0E1EFEEE /* Pods_lizzie_peaks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9ABBAED86A8F047107BACC /* Pods_lizzie_peaksTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,12 +98,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA45CEB451C35CE8474CCB36 /* Pods_lizzie_peaksUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C42660802135B2317EDA9E4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3D918EA4FAAD103116A7622 /* Pods_lizzie_peaks.framework */,
+				4377DCC8FD07FB879CD2484E /* Pods_lizzie_peaksTests.framework */,
+				10518D7D4D862F4F762A2F1F /* Pods_lizzie_peaksUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E92CF0CA2203D7ED00DF3ADA = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +123,8 @@
 				E92CF0EC2203D7EE00DF3ADA /* lizzie_peaksTests */,
 				E92CF0F72203D7EE00DF3ADA /* lizzie_peaksUITests */,
 				E92CF0D42203D7ED00DF3ADA /* Products */,
+				FA6EB92170793EA2C2D718DC /* Pods */,
+				C42660802135B2317EDA9E4E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,10 +144,13 @@
 				E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */,
 				E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */,
 				E92CF11622040AF300DF3ADA /* DataManager.swift */,
+				E9F5265522056C89004F66F3 /* HttpManager.swift */,
 				E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */,
 				E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */,
 				E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */,
 				E92CF0DC2203D7ED00DF3ADA /* Main.storyboard */,
+				E9F5265322056900004F66F3 /* ReviewViewController.swift */,
+				E9F5265122055FA0004F66F3 /* SettingsViewController.swift */,
 				E92CF0DF2203D7EE00DF3ADA /* Assets.xcassets */,
 				E92CF0E12203D7EE00DF3ADA /* LaunchScreen.storyboard */,
 				E92CF0E42203D7EE00DF3ADA /* Info.plist */,
@@ -140,6 +176,19 @@
 			path = lizzie_peaksUITests;
 			sourceTree = "<group>";
 		};
+		FA6EB92170793EA2C2D718DC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7960943A574D80A448089E40 /* Pods-lizzie_peaks.debug.xcconfig */,
+				52146154CAB31BC07EA67162 /* Pods-lizzie_peaks.release.xcconfig */,
+				3473C136A66F3817338192E7 /* Pods-lizzie_peaksTests.debug.xcconfig */,
+				C78D22A7456D35D1FB49029F /* Pods-lizzie_peaksTests.release.xcconfig */,
+				6F66AF5276302E571CCFB6E0 /* Pods-lizzie_peaksUITests.debug.xcconfig */,
+				06924175DCB868D01E86A826 /* Pods-lizzie_peaksUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +196,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E92CF0FD2203D7EE00DF3ADA /* Build configuration list for PBXNativeTarget "lizzie_peaks" */;
 			buildPhases = (
+				717425649B84804F8129F2A6 /* [CP] Check Pods Manifest.lock */,
 				E92CF0CF2203D7ED00DF3ADA /* Sources */,
 				E92CF0D02203D7ED00DF3ADA /* Frameworks */,
 				E92CF0D12203D7ED00DF3ADA /* Resources */,
+				08B64386A08FFC9C407185FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -164,6 +215,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E92CF1002203D7EE00DF3ADA /* Build configuration list for PBXNativeTarget "lizzie_peaksTests" */;
 			buildPhases = (
+				E3A02527F7AA032AA237AAA5 /* [CP] Check Pods Manifest.lock */,
 				E92CF0E52203D7EE00DF3ADA /* Sources */,
 				E92CF0E62203D7EE00DF3ADA /* Frameworks */,
 				E92CF0E72203D7EE00DF3ADA /* Resources */,
@@ -182,6 +234,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E92CF1032203D7EE00DF3ADA /* Build configuration list for PBXNativeTarget "lizzie_peaksUITests" */;
 			buildPhases = (
+				C3B4723FC3EC5B82325DEB94 /* [CP] Check Pods Manifest.lock */,
 				E92CF0F02203D7EE00DF3ADA /* Sources */,
 				E92CF0F12203D7EE00DF3ADA /* Frameworks */,
 				E92CF0F22203D7EE00DF3ADA /* Resources */,
@@ -266,18 +319,112 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		08B64386A08FFC9C407185FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-lizzie_peaks/Pods-lizzie_peaks-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lizzie_peaks/Pods-lizzie_peaks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		717425649B84804F8129F2A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lizzie_peaks-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3B4723FC3EC5B82325DEB94 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lizzie_peaksUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3A02527F7AA032AA237AAA5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lizzie_peaksTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E92CF0CF2203D7ED00DF3ADA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E92CF0DB2203D7ED00DF3ADA /* SecondViewController.swift in Sources */,
+				E9F5265622056C89004F66F3 /* HttpManager.swift in Sources */,
 				E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */,
 				E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */,
 				E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */,
 				E92CF1112204091700DF3ADA /* DataStore.xcdatamodeld in Sources */,
 				E92CF0D72203D7ED00DF3ADA /* AppDelegate.swift in Sources */,
 				E92CF0D92203D7ED00DF3ADA /* FirstViewController.swift in Sources */,
+				E9F5265222055FA0004F66F3 /* SettingsViewController.swift in Sources */,
+				E9F5265422056900004F66F3 /* ReviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +597,7 @@
 		};
 		E92CF0FE2203D7EE00DF3ADA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7960943A574D80A448089E40 /* Pods-lizzie_peaks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -468,6 +616,7 @@
 		};
 		E92CF0FF2203D7EE00DF3ADA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52146154CAB31BC07EA67162 /* Pods-lizzie_peaks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -486,6 +635,7 @@
 		};
 		E92CF1012203D7EE00DF3ADA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3473C136A66F3817338192E7 /* Pods-lizzie_peaksTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -507,6 +657,7 @@
 		};
 		E92CF1022203D7EE00DF3ADA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C78D22A7456D35D1FB49029F /* Pods-lizzie_peaksTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -528,6 +679,7 @@
 		};
 		E92CF1042203D7EE00DF3ADA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F66AF5276302E571CCFB6E0 /* Pods-lizzie_peaksUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -548,6 +700,7 @@
 		};
 		E92CF1052203D7EE00DF3ADA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06924175DCB868D01E86A826 /* Pods-lizzie_peaksUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
