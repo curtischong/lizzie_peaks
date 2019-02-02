@@ -24,6 +24,7 @@
 		E9F5265222055FA0004F66F3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265122055FA0004F66F3 /* SettingsViewController.swift */; };
 		E9F5265422056900004F66F3 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265322056900004F66F3 /* ReviewViewController.swift */; };
 		E9F5265622056C89004F66F3 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265522056C89004F66F3 /* HttpManager.swift */; };
+		E9F5265822056DEA004F66F3 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265722056DEA004F66F3 /* ReviewManager.swift */; };
 		EF9ABBAED86A8F047107BACC /* Pods_lizzie_peaksTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4377DCC8FD07FB879CD2484E /* Pods_lizzie_peaksTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		E9F5265122055FA0004F66F3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9F5265322056900004F66F3 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		E9F5265522056C89004F66F3 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
+		E9F5265722056DEA004F66F3 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */,
 				E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */,
 				E92CF0DC2203D7ED00DF3ADA /* Main.storyboard */,
+				E9F5265722056DEA004F66F3 /* ReviewManager.swift */,
 				E9F5265322056900004F66F3 /* ReviewViewController.swift */,
 				E9F5265122055FA0004F66F3 /* SettingsViewController.swift */,
 				E92CF0DF2203D7EE00DF3ADA /* Assets.xcassets */,
@@ -419,6 +422,7 @@
 				E9F5265622056C89004F66F3 /* HttpManager.swift in Sources */,
 				E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */,
 				E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */,
+				E9F5265822056DEA004F66F3 /* ReviewManager.swift in Sources */,
 				E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */,
 				E92CF1112204091700DF3ADA /* DataStore.xcdatamodeld in Sources */,
 				E92CF0D72203D7ED00DF3ADA /* AppDelegate.swift in Sources */,

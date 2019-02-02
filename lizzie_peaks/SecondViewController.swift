@@ -6,6 +6,8 @@
 //  Copyright © 2019 Curtis Chong. All rights reserved.
 //
 
+
+// I think people should prematurely review concepts
 import UIKit
 
 class SecondViewController: UIViewController {
