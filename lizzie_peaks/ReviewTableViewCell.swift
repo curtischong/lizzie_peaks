@@ -11,5 +11,6 @@ import UIKit
 class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var mainConceptLabel: UILabel!
     @IBOutlet weak var scheduledDateLabel: UILabel!
+    @IBOutlet weak var scheduledDurationLabel: UILabel!
     
 }

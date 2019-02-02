@@ -218,12 +218,20 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ScheduledDuration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2l-IM-mhB">
+                                                    <rect key="frame" x="218" y="29" width="147" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="mainConceptLabel" destination="ezx-c0-Hs6" id="z9w-iC-Pr6"/>
                                             <outlet property="scheduledDateLabel" destination="jIv-yb-y5A" id="sA5-l9-zel"/>
+                                            <outlet property="scheduledDurationLabel" destination="Q2l-IM-mhB" id="vta-9r-tTL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

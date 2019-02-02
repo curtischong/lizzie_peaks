@@ -44,10 +44,11 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if allReviews.count > indexPath.row{
             let cellData = allReviews[indexPath.row]
             
-            let newDate = cellData.value(forKey: "timeLearned") as! Date
+            let newDate = cellData.value(forKey: "scheduledDate") as! Date
             
             cell.mainConceptLabel.text = (cellData.value(forKey: "concept") as! String)
             cell.scheduledDateLabel.text = self.displayDateFormatter.string(from: newDate)
+            cell.scheduledDurationLabel.text = "\((cellData.value(forKey: "scheduledDuration") as! Int)/60) min"
             // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
         }
         
