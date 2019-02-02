@@ -29,6 +29,14 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
         defaultReviewCurve = 0
         briefReviews = settingsManager.briefReviews
         briefReviewSwitch.setOn(briefReviews, animated: true)
+        
+        if(settingsManager.defaultReview == "Simple"){
+            defaultReviewPicker.selectRow(0, inComponent: 0, animated: true)
+        }else if(settingsManager.defaultReview == "Moderate"){
+            defaultReviewPicker.selectRow(1, inComponent: 0, animated: true)
+        }else if(settingsManager.defaultReview == "ML"){
+            defaultReviewPicker.selectRow(2, inComponent: 0, animated: true)
+        }
     }
     
     
