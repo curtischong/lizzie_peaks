@@ -35,6 +35,7 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
 
     @IBAction func briefReviewSwitchMoved(_ sender: UISwitch) {
         briefReviews = !briefReviews
+        print("Brief reviews: \(briefReviews)")
         settingsManager.briefReviews = briefReviews
         settingsManager.saveSettings()
     }

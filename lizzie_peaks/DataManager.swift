@@ -17,7 +17,7 @@ class DataManager{
     init(){
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         skillEntity = NSEntityDescription.entity(forEntityName: "Skill", in: context)
-        reviewEntity = NSEntityDescription.entity(forEntityName: "Reviews", in: context)
+        reviewEntity = NSEntityDescription.entity(forEntityName: "Review", in: context)
     }
     
     func insertSkill(skill : SkillObj) -> Bool{
@@ -45,15 +45,15 @@ class DataManager{
         curSkill.setValue(review.newLearnings, forKey: "newLearnings")
         curSkill.setValue(review.timesReviewed, forKey: "timesReviewed")
         curSkill.setValue(review.reviewDuration, forKey: "reviewDuration")
-        curSkill.setValue(review.scheduledDate, forKey: "scheduledReview")
-        curSkill.setValue(review.scheduledDuration, forKey: "scheduledReview")
+        curSkill.setValue(review.scheduledDate, forKey: "scheduledDate")
+        curSkill.setValue(review.scheduledDuration, forKey: "scheduledDuration")
         curSkill.setValue(review.timeLearned, forKey: "timeLearned")
         do {
             try context.save()
-            NSLog("Successfully saved the current Skill")
+            NSLog("Successfully saved the current Review")
             return true
         } catch let error{
-            NSLog("Couldn't save: the current Skill with  error: \(error)")
+            NSLog("Couldn't save: the current Review with  error: \(error)")
             return false
         }
     }

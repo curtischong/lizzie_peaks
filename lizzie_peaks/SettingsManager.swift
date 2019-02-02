@@ -15,7 +15,7 @@ class SettingsManager{
         defaultReview = "Simple"
         defaults = UserDefaults.standard
         briefReviews = false
-        //self.getSavedSettings()
+        self.getSavedSettings()
     }
     
     func getSavedSettings(){
