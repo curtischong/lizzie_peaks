@@ -20,14 +20,30 @@ class DataManager{
         reviewEntity = NSEntityDescription.entity(forEntityName: "Review", in: context)
     }
     
+    func skillToNSManagedObject(curSkill : NSManagedObject, skill : SkillObj){
+        curSkill.setValue(skill.concept, forKey: "concept")
+        curSkill.setValue(skill.newLearnings, forKey: "newLearnings")
+        curSkill.setValue(skill.oldSkills, forKey: "oldSkills")
+        curSkill.setValue(skill.percentNew, forKey: "percentNew")
+        curSkill.setValue(skill.timeLearned, forKey: "timeLearned")
+        curSkill.setValue(skill.timeSpentLearning, forKey: "timeSpentLearning")
+    }
+    
+    func reviewToNSManagedObject(curReview : NSManagedObject, review : ReviewObj){
+        curReview.setValue(review.concept, forKey: "concept")
+        curReview.setValue(review.lastTimeReviewed, forKey: "lastTimeReviewed")
+        curReview.setValue(review.newLearnings, forKey: "newLearnings")
+        curReview.setValue(review.timesReviewed, forKey: "timesReviewed")
+        curReview.setValue(review.reviewDuration, forKey: "reviewDuration")
+        curReview.setValue(review.scheduledDate, forKey: "scheduledDate")
+        curReview.setValue(review.scheduledDuration, forKey: "scheduledDuration")
+        curReview.setValue(review.timeLearned, forKey: "timeLearned")
+    }
+    
+    
     func insertSkill(skill : SkillObj) -> Bool{
-            let curSkill = NSManagedObject(entity: skillEntity!, insertInto: context)
-            curSkill.setValue(skill.concept, forKey: "concept")
-            curSkill.setValue(skill.newLearnings, forKey: "newLearnings")
-            curSkill.setValue(skill.oldSkills, forKey: "oldSkills")
-            curSkill.setValue(skill.percentNew, forKey: "percentNew")
-            curSkill.setValue(skill.timeLearned, forKey: "timeLearned")
-            curSkill.setValue(skill.timeSpentLearning, forKey: "timeSpentLearning")
+        let curSkill = NSManagedObject(entity: skillEntity!, insertInto: context)
+        skillToNSManagedObject(curSkill : curSkill, skill : skill)
         do {
             try context.save()
             NSLog("Successfully saved the current Skill")
@@ -39,15 +55,8 @@ class DataManager{
     }
     
     func insertReview(review : ReviewObj) -> Bool{
-        let curSkill = NSManagedObject(entity: reviewEntity!, insertInto: context)
-        curSkill.setValue(review.concept, forKey: "concept")
-        curSkill.setValue(review.lastTimeReviewed, forKey: "lastTimeReviewed")
-        curSkill.setValue(review.newLearnings, forKey: "newLearnings")
-        curSkill.setValue(review.timesReviewed, forKey: "timesReviewed")
-        curSkill.setValue(review.reviewDuration, forKey: "reviewDuration")
-        curSkill.setValue(review.scheduledDate, forKey: "scheduledDate")
-        curSkill.setValue(review.scheduledDuration, forKey: "scheduledDuration")
-        curSkill.setValue(review.timeLearned, forKey: "timeLearned")
+        let curReview = NSManagedObject(entity: reviewEntity!, insertInto: context)
+        reviewToNSManagedObject(curReview : curReview, review : review)
         do {
             try context.save()
             NSLog("Successfully saved the current Review")
@@ -55,6 +64,28 @@ class DataManager{
         } catch let error{
             NSLog("Couldn't save: the current Review with  error: \(error)")
             return false
+        }
+    }
+    
+    func updateSkill(skill : SkillObj){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Skill")
+        
+        fetchRequest.predicate = NSPredicate(format: "timeLearned = %@",
+                                             argumentArray: [skill.timeLearned])
+        do {
+            let results = try context.fetch(fetchRequest) as? [NSManagedObject]
+            if results?.count != 0 {
+                skillToNSManagedObject(curSkill: results![0], skill : skill)
+            }
+        } catch {
+            print("Fetch past skills for update Failed: \(error)")
+        }
+        
+        do {
+            try context.save()
+        }
+        catch {
+            print("Saving past skills for update Failed: \(error)")
         }
     }
     
@@ -68,6 +99,21 @@ class DataManager{
             NSLog("Couldn't load Skill rows with error: \(error)")
             return []
         }
+    }
+    
+    func getAllSkills(entityName : String) -> [SkillObj]{
+        // TODO: find a way to batch convert these entites
+        let entities = getAllEntities(entityName : entityName)
+        var allEntities : [SkillObj] = []
+        for entity in entities{
+            allEntities.append(SkillObj(concept : entity.value(forKey: "concept") as! String,
+            newLearnings : entity.value(forKey: "newLearnings") as! String,
+            oldSkills : entity.value(forKey: "oldSkills") as! String,
+            percentNew : entity.value(forKey: "percentNew") as! Int,
+            timeLearned : entity.value(forKey: "timeLearned") as! Date,
+            timeSpentLearning : entity.value(forKey: "timeSpentLearning") as! Int))
+        }
+        return allEntities
     }
     
     func dropSkillRows(){

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 protocol learningsProtocol {
     func reloadLearningsTable()
@@ -31,7 +30,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     // Don't forget to enter this in IB also
     let cellReuseIdentifier = "skillCell"
     let dataManager = DataManager()
-    var allSkills : [NSManagedObject] = []
+    var allSkills : [SkillObj] = []
     let displayDateFormatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -50,7 +49,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
 
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        allSkills = dataManager.getAllEntities(entityName: "Skill")
+        allSkills = dataManager.getAllSkills(entityName: "Skill")
         leaningsCntLabel.text = String(allSkills.count)
         return allSkills.count
     }
@@ -62,9 +61,9 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
         if allSkills.count > indexPath.row{
             let cellData = allSkills[indexPath.row]
             
-            let newDate = cellData.value(forKey: "timeLearned") as! Date
+            let newDate = cellData.timeLearned
             
-            cell.mainConceptLabel.text = (cellData.value(forKey: "concept") as! String)
+            cell.mainConceptLabel.text = (cellData.concept)
             cell.dateLearnedLabel.text = self.displayDateFormatter.string(from: newDate)
             // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
         }
@@ -83,7 +82,23 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func addConceptBtn(_ sender: UIButton) {
-        performSegue(withIdentifier: "addConceptSegue", sender: self)
+        let concept = "New Concept"
+        let newLearnings = ""
+        let oldSkills = ""
+        let percentNew = 0
+        let timeLearned = Date()
+        let timeSpentLearning = 0
+        
+        let curSkill = SkillObj(concept : concept,
+                                newLearnings : newLearnings,
+                                oldSkills : oldSkills,
+                                percentNew : percentNew,
+                                timeLearned : timeLearned,
+                                timeSpentLearning : timeSpentLearning)
+        
+        dataManager.insertSkill(skill: curSkill)
+        
+        performSegue(withIdentifier: "addConceptSegue", sender: curSkill)
     }
     
     func reloadLearningsTable(){
@@ -91,16 +106,13 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let pop = segue.destination as? Concept {
+        if let pop = segue.destination as? ConceptViewController {
+            pop.skillData = sender as! SkillObj
             pop.learningsDelegate = self
         }
         if let pop = segue.destination as? SettingsViewController {
             pop.learningsDelegate = self
         }
-    }
-    
-    func testPrint(){
-        print("asdsad")
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Concept: UIViewController {
+class ConceptViewController: UIViewController {
 
     @IBOutlet weak var timeSpentLearningLabel: UILabel!
     @IBOutlet weak var percentLearnedLabel: UILabel!
@@ -18,24 +18,29 @@ class Concept: UIViewController {
     @IBOutlet weak var mainConceptTextField: UITextField!
     @IBOutlet weak var skillsUsedTextView: UITextView!
     @IBOutlet weak var newConceptsTextView: UITextView!
+    @IBOutlet weak var timeLearnedLabel: UILabel!
     
     private let generator = UIImpactFeedbackGenerator(style: .light)
     private var timeSpentLearningRealVal = 0
     private var percentLearnedRealVal = 0
     
-    var timeFinishLearning = Date()
+    var timeLearned : Date?
     let timeSpentLearningMax = Float(60.0)
     let percentLearnedMax = Float(20.0)
     let dataManager = DataManager()
     let reviewManager = ReviewManager()
     var learningsDelegate : learningsProtocol?
+    let displayDateFormatter = DateFormatter()
+    
+    var skillData : SkillObj!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        displayDateFormatter.dateFormat = "MMM d, h:mm a"
         
         timeSpentLearningSlider.setValue(0.0, animated: true)
         percentLearnedSlider.setValue(0.0, animated: true)
-        //timeFinishLearning = Int(round(1000*Date().timeIntervalSince1970)/1000)
+        //timeLearned = Int(round(1000*Date().timeIntervalSince1970)/1000)
         
         mainConceptTextField.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
         mainConceptTextField.layer.cornerRadius = 5
@@ -64,6 +69,14 @@ class Concept: UIViewController {
         self.mainConceptTextField.inputAccessoryView = toolbar
         self.skillsUsedTextView.inputAccessoryView = toolbar
         self.newConceptsTextView.inputAccessoryView = toolbar
+        
+        // Load skill Data
+        
+        
+        
+        
+        // Note: the timeLearned is set before the seque occurs
+        timeLearnedLabel.text = displayDateFormatter.string(from: skillData.timeLearned)
     }
 
     @objc func doneButtonAction() {
@@ -115,25 +128,24 @@ class Concept: UIViewController {
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
     }
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        let concept = mainConceptTextField.text as! String
+        /*let concept = mainConceptTextField.text as! String
         let newLearnings = newConceptsTextView.text as! String
         let oldSkills = skillsUsedTextView.text as! String
         let percentNew = Int(percentLearnedRealVal)
-        let timeLearned = timeFinishLearning
-        let timeSpentLearning = Int(timeSpentLearningRealVal)
+        let timeSpentLearning = Int(timeSpentLearningRealVal)*/
 
-        let curSkill = SkillObj(concept : concept,
+        /*let curSkill = SkillObj(concept : concept,
                                 newLearnings : newLearnings,
                                 oldSkills : oldSkills,
                                 percentNew : percentNew,
-                                timeLearned : timeLearned,
-                                timeSpentLearning : timeSpentLearning)
+                                timeLearned : timeLearned!,
+                                timeSpentLearning : timeSpentLearning)*/
 
-        let insertedSkill = dataManager.insertSkill(skill: curSkill)
+        dataManager.updateSkill(skill: skillData)
         // We want to make sure that the skill was saved properly before scheduling a review
-        if(insertedSkill){
-            reviewManager.createReview(skill : curSkill)
-        }
+
+        reviewManager.createReview(skill : skillData)
+
         learningsDelegate?.reloadLearningsTable()
         dismiss(animated: true, completion: nil)
     }
