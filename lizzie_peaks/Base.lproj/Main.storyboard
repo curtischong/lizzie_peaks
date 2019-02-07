@@ -319,14 +319,14 @@
             <objects>
                 <viewController id="rTG-GW-sdi" customClass="Concept" customModule="lizzie_peaks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yfa-Qv-Tp8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="867"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="FS8-BT-LAk">
-                                <rect key="frame" x="155" y="55" width="65.5" height="612"/>
+                                <rect key="frame" x="0.0" y="55" width="375" height="792"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="y8D-dU-YrY">
-                                        <rect key="frame" x="-135" y="0.0" width="335" height="732"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="y8D-dU-YrY">
+                                        <rect key="frame" x="20" y="8" width="335" height="732"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeU-PQ-kUF">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
@@ -471,7 +471,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nXm-T0-Tch"/>
                     </view>
-                    <size key="freeformSize" width="375" height="667"/>
+                    <size key="freeformSize" width="375" height="867"/>
                     <connections>
                         <outlet property="mainConceptTextField" destination="Zr5-lX-0wu" id="2AT-d8-Ife"/>
                         <outlet property="newConceptsTextView" destination="Ocv-C0-Q41" id="YQr-iQ-Bbl"/>
