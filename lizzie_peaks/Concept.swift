@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddConceptViewController: UIViewController {
+class Concept: UIViewController {
 
     @IBOutlet weak var timeSpentLearningLabel: UILabel!
     @IBOutlet weak var percentLearnedLabel: UILabel!

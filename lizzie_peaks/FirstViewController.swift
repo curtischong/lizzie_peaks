@@ -91,7 +91,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let pop = segue.destination as? AddConceptViewController {
+        if let pop = segue.destination as? Concept {
             pop.learningsDelegate = self
         }
         if let pop = segue.destination as? SettingsViewController {

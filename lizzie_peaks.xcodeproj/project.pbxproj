@@ -17,7 +17,7 @@
 		E92CF0E32203D7EE00DF3ADA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E92CF0E12203D7EE00DF3ADA /* LaunchScreen.storyboard */; };
 		E92CF0EE2203D7EE00DF3ADA /* lizzie_peaksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0ED2203D7EE00DF3ADA /* lizzie_peaksTests.swift */; };
 		E92CF0F92203D7EE00DF3ADA /* lizzie_peaksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */; };
-		E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */; };
+		E92CF10B2203DEF400DF3ADA /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10A2203DEF400DF3ADA /* Concept.swift */; };
 		E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF11622040AF300DF3ADA /* DataManager.swift */; };
 		E9D4B7A7220624ED00427AAD /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D4B7A6220624ED00427AAD /* ReviewTableViewCell.swift */; };
 		E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */; };
@@ -75,7 +75,7 @@
 		E92CF0F42203D7EE00DF3ADA /* lizzie_peaksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lizzie_peaksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lizzie_peaksUITests.swift; sourceTree = "<group>"; };
 		E92CF0FA2203D7EE00DF3ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddConceptViewController.swift; sourceTree = "<group>"; };
+		E92CF10A2203DEF400DF3ADA /* Concept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concept.swift; sourceTree = "<group>"; };
 		E92CF11622040AF300DF3ADA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E9D4B7A6220624ED00427AAD /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillTableViewCell.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		E92CF0D52203D7ED00DF3ADA /* lizzie_peaks */ = {
 			isa = PBXGroup;
 			children = (
-				E92CF10A2203DEF400DF3ADA /* AddConceptViewController.swift */,
+				E92CF10A2203DEF400DF3ADA /* Concept.swift */,
 				E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */,
 				E9F5265322056900004F66F3 /* ReviewViewController.swift */,
 				E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */,
@@ -442,7 +442,7 @@
 				E9F5266B220608A2004F66F3 /* SkillObj.swift in Sources */,
 				E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */,
 				E9F5265822056DEA004F66F3 /* ReviewManager.swift in Sources */,
-				E92CF10B2203DEF400DF3ADA /* AddConceptViewController.swift in Sources */,
+				E92CF10B2203DEF400DF3ADA /* Concept.swift in Sources */,
 				E9F5265E2205F458004F66F3 /* NotificationManager.swift in Sources */,
 				E9F526602205F4E7004F66F3 /* PermissionsManager.swift in Sources */,
 				E92CF0D72203D7ED00DF3ADA /* AppDelegate.swift in Sources */,
