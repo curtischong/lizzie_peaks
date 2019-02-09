@@ -50,6 +50,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         allSkills = dataManager.getAllSkills(entityName: "Skill")
+        allSkills = allSkills.reversed()
         leaningsCntLabel.text = String(allSkills.count)
         return allSkills.count
     }
@@ -97,7 +98,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pop = segue.destination as? ConceptViewController {
-            pop.skillData = sender as! SkillObj
+            pop.skillData = sender as? SkillObj
             pop.learningsDelegate = self
         }
         if let pop = segue.destination as? SettingsViewController {

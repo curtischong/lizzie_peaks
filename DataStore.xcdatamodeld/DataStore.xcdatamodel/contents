@@ -12,15 +12,16 @@
     </entity>
     <entity name="Skill" representedClassName="Skill" syncable="YES" codeGenerationType="class">
         <attribute name="concept" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hasReview" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="newLearnings" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="oldSkills" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentNew" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="scheduledReviewDurations" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="scheduledReviews" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="timeLearned" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="timeSpentLearning" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="Review" positionX="-36" positionY="117" width="128" height="165"/>
-        <element name="Skill" positionX="-36" positionY="72" width="128" height="150"/>
+        <element name="Skill" positionX="-36" positionY="72" width="128" height="165"/>
     </elements>
 </model>

@@ -21,13 +21,25 @@ class DataManager{
     }
     
     func skillToNSManagedObject(curSkill : NSManagedObject, skill : SkillObj){
-        curSkill.setValue(skill.concept, forKey: "concept")
-        curSkill.setValue(skill.newLearnings, forKey: "newLearnings")
-        curSkill.setValue(skill.oldSkills, forKey: "oldSkills")
-        curSkill.setValue(skill.percentNew, forKey: "percentNew")
-        curSkill.setValue(skill.timeLearned, forKey: "timeLearned")
-        curSkill.setValue(skill.timeSpentLearning, forKey: "timeSpentLearning")
-        curSkill.setValue(skill.hasReview, forKey: "hasReview")
+        do {
+            let scheduledReviews = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviews, requiringSecureCoding: false)
+            let scheduledReviewDurations = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviewDurations, requiringSecureCoding: false)
+            // let scheduledReviews = NSKeyedArchiver.archivedData(withRootObject: )
+            //let scheduledReviewDurations = NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviewDurations)
+            
+            curSkill.setValue(skill.concept, forKey: "concept")
+            curSkill.setValue(skill.newLearnings, forKey: "newLearnings")
+            curSkill.setValue(skill.oldSkills, forKey: "oldSkills")
+            curSkill.setValue(skill.percentNew, forKey: "percentNew")
+            curSkill.setValue(skill.timeLearned, forKey: "timeLearned")
+            curSkill.setValue(skill.timeSpentLearning, forKey: "timeSpentLearning")
+            curSkill.setValue(scheduledReviews, forKey: "scheduledReviews")
+            curSkill.setValue(scheduledReviewDurations, forKey: "scheduledReviewDurations")
+            
+            NSLog("Successfully converted skills to coredata entities")
+        } catch let error {
+            NSLog("Couldn't convert scheduled reviews to binary: \(error)")
+        }
     }
     
     func reviewToNSManagedObject(curReview : NSManagedObject, review : ReviewObj){
@@ -107,13 +119,28 @@ class DataManager{
         let entities = getAllEntities(entityName : entityName)
         var allEntities : [SkillObj] = []
         for entity in entities{
-            allEntities.append(SkillObj(concept : entity.value(forKey: "concept") as! String,
-            newLearnings : entity.value(forKey: "newLearnings") as! String,
-            oldSkills : entity.value(forKey: "oldSkills") as! String,
-            percentNew : entity.value(forKey: "percentNew") as! Int,
-            timeLearned : entity.value(forKey: "timeLearned") as! Date,
-            timeSpentLearning : entity.value(forKey: "timeSpentLearning") as! Int,
-            hasReview : entity.value(forKey: "hasReview") as! Bool))
+            
+            let reviewsNSData = entity.value(forKey: "scheduledReviews") as! NSData
+            let reviewDurationsNSData = entity.value(forKey: "scheduledReviewDurations") as! NSData
+            
+            let reviewsData = Data(referencing:reviewsNSData)
+            let reviewDurationsData = Data(referencing:reviewDurationsNSData)
+
+            do {
+                let scheduledReviews = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(reviewsData) as? Array<Date>
+                let scheduledReviewDurations = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(reviewDurationsData) as? Array<Int>
+                
+                allEntities.append(SkillObj(concept : entity.value(forKey: "concept") as! String,
+                newLearnings : entity.value(forKey: "newLearnings") as! String,
+                oldSkills : entity.value(forKey: "oldSkills") as! String,
+                percentNew : entity.value(forKey: "percentNew") as! Int,
+                timeLearned : entity.value(forKey: "timeLearned") as! Date,
+                timeSpentLearning : entity.value(forKey: "timeSpentLearning") as! Int,
+                scheduledReviews : scheduledReviews ?? [],
+                scheduledReviewDurations : scheduledReviewDurations ?? []))
+            }catch let error{
+                NSLog("couldn't load binary from coredata: \(error)")
+            }
         }
         return allEntities
     }
