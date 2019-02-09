@@ -15,6 +15,7 @@ class SkillObj{
     var percentNew : Int
     var timeLearned : Date
     var timeSpentLearning : Int
+    var hasReview = false
     
     init(concept : String, newLearnings : String, oldSkills : String, percentNew : Int, timeLearned : Date, timeSpentLearning : Int){
         self.concept = concept

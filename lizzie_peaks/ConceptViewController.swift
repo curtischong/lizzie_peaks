@@ -16,8 +16,8 @@ class ConceptViewController: UIViewController {
     @IBOutlet weak var percentLearnedSlider: UISlider!
     
     @IBOutlet weak var mainConceptTextField: UITextField!
-    @IBOutlet weak var skillsUsedTextView: UITextView!
-    @IBOutlet weak var newConceptsTextView: UITextView!
+    @IBOutlet weak var oldSkillsTextView: UITextView!
+    @IBOutlet weak var newLearningsTextView: UITextView!
     @IBOutlet weak var timeLearnedLabel: UILabel!
     
     private let generator = UIImpactFeedbackGenerator(style: .light)
@@ -34,6 +34,7 @@ class ConceptViewController: UIViewController {
     
     var skillData : SkillObj!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         displayDateFormatter.dateFormat = "MMM d, h:mm a"
@@ -45,13 +46,13 @@ class ConceptViewController: UIViewController {
         mainConceptTextField.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
         mainConceptTextField.layer.cornerRadius = 5
         
-        skillsUsedTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
-        skillsUsedTextView.layer.borderWidth = 1.0
-        skillsUsedTextView.layer.cornerRadius = 5
+        oldSkillsTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
+        oldSkillsTextView.layer.borderWidth = 1.0
+        oldSkillsTextView.layer.cornerRadius = 5
         
-        newConceptsTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
-        newConceptsTextView.layer.borderWidth = 1.0
-        newConceptsTextView.layer.cornerRadius = 5
+        newLearningsTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
+        newLearningsTextView.layer.borderWidth = 1.0
+        newLearningsTextView.layer.cornerRadius = 5
         // Do any additional setup after loading the view.
         
         // keyboard
@@ -67,9 +68,13 @@ class ConceptViewController: UIViewController {
         toolbar.sizeToFit()
         //setting toolbar as inputAccessoryView
         self.mainConceptTextField.inputAccessoryView = toolbar
-        self.skillsUsedTextView.inputAccessoryView = toolbar
-        self.newConceptsTextView.inputAccessoryView = toolbar
+        self.oldSkillsTextView.inputAccessoryView = toolbar
+        self.newLearningsTextView.inputAccessoryView = toolbar
         
+        
+        //slider finished sliding
+        timeSpentLearningSlider.addTarget(self, action: #selector(self.saveTimeSpent), for: .touchUpInside)
+        percentLearnedSlider.addTarget(self, action: #selector(self.savePercentLearned), for: .touchUpInside)
         // Load skill Data
         
         
@@ -79,13 +84,26 @@ class ConceptViewController: UIViewController {
         timeLearnedLabel.text = displayDateFormatter.string(from: skillData.timeLearned)
     }
 
+    @objc func saveTimeSpent(sender: UISlider) {
+        NSLog("saved timeSpent!")
+        skillData.timeSpentLearning = timeSpentLearningRealVal
+        dataManager.updateSkill(skill: skillData)
+    }
+    
+    @objc func savePercentLearned(sender: UISlider) {
+        
+        NSLog("saved percentLearned!")
+        skillData.percentNew = percentLearnedRealVal
+        dataManager.updateSkill(skill: skillData)
+    }
+    
     @objc func doneButtonAction() {
         //skillsUsedTextView.resignFirstResponder()
         self.view.endEditing(true)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if(skillsUsedTextView.isFirstResponder || newConceptsTextView.isFirstResponder){
+        if(oldSkillsTextView.isFirstResponder || newLearningsTextView.isFirstResponder){
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 if self.view.frame.origin.y == 0 {
                     self.view.frame.origin.y -= keyboardSize.height
@@ -97,6 +115,21 @@ class ConceptViewController: UIViewController {
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
+        }
+        if(mainConceptTextField.isFirstResponder){
+            NSLog("saved mainConcept!")
+            skillData.concept = mainConceptTextField.text!
+            dataManager.updateSkill(skill: skillData)
+            
+        }else if(oldSkillsTextView.isFirstResponder){
+            NSLog("saved oldSkills!")
+            skillData.oldSkills = oldSkillsTextView.text!
+            dataManager.updateSkill(skill: skillData)
+            
+        }else if(newLearningsTextView.isFirstResponder){
+            NSLog("saved newLearnings!")
+            skillData.newLearnings = newLearningsTextView.text!
+            dataManager.updateSkill(skill: skillData)
         }
     }
     
@@ -124,6 +157,7 @@ class ConceptViewController: UIViewController {
     var onDoneBlock : ((Bool) -> Void)?
     
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
+        learningsDelegate?.reloadLearningsTable()
         dismiss(animated: true, completion: nil)
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
     }
