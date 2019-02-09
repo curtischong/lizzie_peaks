@@ -27,6 +27,7 @@ class DataManager{
         curSkill.setValue(skill.percentNew, forKey: "percentNew")
         curSkill.setValue(skill.timeLearned, forKey: "timeLearned")
         curSkill.setValue(skill.timeSpentLearning, forKey: "timeSpentLearning")
+        curSkill.setValue(skill.hasReview, forKey: "hasReview")
     }
     
     func reviewToNSManagedObject(curReview : NSManagedObject, review : ReviewObj){
@@ -111,7 +112,8 @@ class DataManager{
             oldSkills : entity.value(forKey: "oldSkills") as! String,
             percentNew : entity.value(forKey: "percentNew") as! Int,
             timeLearned : entity.value(forKey: "timeLearned") as! Date,
-            timeSpentLearning : entity.value(forKey: "timeSpentLearning") as! Int))
+            timeSpentLearning : entity.value(forKey: "timeSpentLearning") as! Int,
+            hasReview : entity.value(forKey: "hasReview") as! Bool))
         }
         return allEntities
     }

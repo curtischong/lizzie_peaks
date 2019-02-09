@@ -82,19 +82,9 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func addConceptBtn(_ sender: UIButton) {
-        let concept = "New Concept"
-        let newLearnings = ""
-        let oldSkills = ""
-        let percentNew = 0
         let timeLearned = Date()
-        let timeSpentLearning = 0
         
-        let curSkill = SkillObj(concept : concept,
-                                newLearnings : newLearnings,
-                                oldSkills : oldSkills,
-                                percentNew : percentNew,
-                                timeLearned : timeLearned,
-                                timeSpentLearning : timeSpentLearning)
+        let curSkill = SkillObj(timeLearned : timeLearned)
         
         dataManager.insertSkill(skill: curSkill)
         
