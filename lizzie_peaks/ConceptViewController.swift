@@ -11,9 +11,9 @@ import UIKit
 class ConceptViewController: UIViewController {
 
     @IBOutlet weak var timeSpentLearningLabel: UILabel!
-    @IBOutlet weak var percentLearnedLabel: UILabel!
+    @IBOutlet weak var percentNewLabel: UILabel!
     @IBOutlet weak var timeSpentLearningSlider: UISlider!
-    @IBOutlet weak var percentLearnedSlider: UISlider!
+    @IBOutlet weak var percentNewSlider: UISlider!
     
     @IBOutlet weak var mainConceptTextField: UITextField!
     @IBOutlet weak var oldSkillsTextView: UITextView!
@@ -22,11 +22,11 @@ class ConceptViewController: UIViewController {
     
     private let generator = UIImpactFeedbackGenerator(style: .light)
     private var timeSpentLearningRealVal = 0
-    private var percentLearnedRealVal = 0
+    private var percentNewRealVal = 0
     
     var timeLearned : Date?
     let timeSpentLearningMax = Float(60.0)
-    let percentLearnedMax = Float(20.0)
+    let percentNewMax = Float(20.0)
     let dataManager = DataManager()
     let reviewManager = ReviewManager()
     var learningsDelegate : learningsProtocol?
@@ -40,7 +40,7 @@ class ConceptViewController: UIViewController {
         displayDateFormatter.dateFormat = "MMM d, h:mm a"
         
         timeSpentLearningSlider.setValue(0.0, animated: true)
-        percentLearnedSlider.setValue(0.0, animated: true)
+        percentNewSlider.setValue(0.0, animated: true)
         //timeLearned = Int(round(1000*Date().timeIntervalSince1970)/1000)
         
         mainConceptTextField.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
@@ -74,14 +74,29 @@ class ConceptViewController: UIViewController {
         
         //slider finished sliding
         timeSpentLearningSlider.addTarget(self, action: #selector(self.saveTimeSpent), for: .touchUpInside)
-        percentLearnedSlider.addTarget(self, action: #selector(self.savePercentLearned), for: .touchUpInside)
+        percentNewSlider.addTarget(self, action: #selector(self.savePercentNew), for: .touchUpInside)
         // Load skill Data
         
+        mainConceptTextField.text = skillData.concept
+        oldSkillsTextView.text = skillData.oldSkills
+        newLearningsTextView.text = skillData.newLearnings
         
+        timeSpentLearningRealVal = skillData.timeSpentLearning
+        let timeSpentLearningSliderVal = Float(timeSpentLearningRealVal) / (5 * timeSpentLearningMax)
+        timeSpentLearningSlider.setValue(timeSpentLearningSliderVal, animated: true)
+        timeSpentLearningLabel.text = String(timeSpentLearningRealVal) + " min"
         
+        percentNewRealVal = skillData.percentNew
+        let percentNewSliderVal = Float(percentNewRealVal) / (5 * percentNewMax)
+        percentNewSlider.setValue(percentNewSliderVal, animated: true)
+        percentNewLabel.text = String(percentNewRealVal) + "%"
         
         // Note: the timeLearned is set before the seque occurs
         timeLearnedLabel.text = displayDateFormatter.string(from: skillData.timeLearned)
+        
+        for item in skillData.scheduledReviewDurations{
+            print("\(item)")
+        }
     }
 
     @objc func saveTimeSpent(sender: UISlider) {
@@ -90,10 +105,10 @@ class ConceptViewController: UIViewController {
         dataManager.updateSkill(skill: skillData)
     }
     
-    @objc func savePercentLearned(sender: UISlider) {
+    @objc func savePercentNew(sender: UISlider) {
         
-        NSLog("saved percentLearned!")
-        skillData.percentNew = percentLearnedRealVal
+        NSLog("saved percentNew!")
+        skillData.percentNew = percentNewRealVal
         dataManager.updateSkill(skill: skillData)
     }
     
@@ -143,13 +158,13 @@ class ConceptViewController: UIViewController {
             generator.impactOccurred()
         }
     }
-    @IBAction func percentLearnedSliderMoved(_ sender: UISlider) {
-        let sliderPos = percentLearnedSlider.value
-        let sliderVal = round(sliderPos * percentLearnedMax) / percentLearnedMax
-        percentLearnedRealVal = Int(round(sliderPos * percentLearnedMax)) * 5
+    @IBAction func percentNewSliderMoved(_ sender: UISlider) {
+        let sliderPos = percentNewSlider.value
+        let sliderVal = round(sliderPos * percentNewMax) / percentNewMax
+        percentNewRealVal = Int(round(sliderPos * percentNewMax)) * 5
         sender.setValue(sliderVal, animated: true)
-        if(percentLearnedLabel.text != String(percentLearnedRealVal) + "%"){
-            percentLearnedLabel.text = String(percentLearnedRealVal) + "%"
+        if(percentNewLabel.text != String(percentNewRealVal) + "%"){
+            percentNewLabel.text = String(percentNewRealVal) + "%"
             generator.impactOccurred()
         }
     }
@@ -158,6 +173,9 @@ class ConceptViewController: UIViewController {
     
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
         learningsDelegate?.reloadLearningsTable()
+        if(skillData.scheduledReviews.count == 0){
+            reviewManager.createReview(skill : skillData)
+        }
         dismiss(animated: true, completion: nil)
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
     }

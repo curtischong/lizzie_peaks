@@ -102,7 +102,7 @@
                                 <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="0.75686274509999996" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="skillCell" rowHeight="70" id="1vO-sO-mRZ" customClass="SkillTableViewCell" customModule="lizzie_peaks" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="skillCell" rowHeight="70" id="1vO-sO-mRZ" customClass="SkillTableViewCell" customModule="lizzie_peaks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="363" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1vO-sO-mRZ" id="BXN-uU-ycl">
@@ -167,7 +167,7 @@
                         <outlet property="leaningsCntLabel" destination="rtk-6h-bKi" id="gEe-SM-TUx"/>
                         <outlet property="skillTableView" destination="zEr-Pg-C3d" id="zUa-TG-HOx"/>
                         <outlet property="skillsTable" destination="zEr-Pg-C3d" id="3Cz-ix-2Rc"/>
-                        <segue destination="rTG-GW-sdi" kind="show" identifier="addConceptSegue" id="5H0-BS-Mi1"/>
+                        <segue destination="rTG-GW-sdi" kind="show" identifier="conceptSegue" id="5H0-BS-Mi1"/>
                         <segue destination="eOY-dn-lot" kind="show" identifier="settingsSegue" id="wEv-ym-UFi"/>
                     </connections>
                 </viewController>
@@ -197,7 +197,7 @@
                                 <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="0.75686274509999996" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewCell" rowHeight="70" id="m5i-sy-wTl" customClass="ReviewTableViewCell" customModule="lizzie_peaks" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewCell" rowHeight="70" id="m5i-sy-wTl" customClass="ReviewTableViewCell" customModule="lizzie_peaks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="359" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m5i-sy-wTl" id="pDW-Tu-8aL">
@@ -395,7 +395,7 @@
                                         <rect key="frame" x="18" y="264" width="339" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
-                                            <action selector="percentLearnedSliderMoved:" destination="rTG-GW-sdi" eventType="valueChanged" id="22E-yX-QGt"/>
+                                            <action selector="percentNewSliderMoved:" destination="rTG-GW-sdi" eventType="valueChanged" id="22E-yX-QGt"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some old skills you built upon?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW6-Zl-dOG">
@@ -405,12 +405,10 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="i7g-ko-u5a">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="i7g-ko-u5a">
                                         <rect key="frame" x="16" y="348" width="335" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="HBV-ck-Gv5"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -421,12 +419,10 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ocv-C0-Q41">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ocv-C0-Q41">
                                         <rect key="frame" x="20" y="498" width="335" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="r5C-4l-35h"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -456,8 +452,8 @@
                         <outlet property="mainConceptTextField" destination="Zr5-lX-0wu" id="2AT-d8-Ife"/>
                         <outlet property="newLearningsTextView" destination="Ocv-C0-Q41" id="YQr-iQ-Bbl"/>
                         <outlet property="oldSkillsTextView" destination="i7g-ko-u5a" id="F6e-XR-iLo"/>
-                        <outlet property="percentLearnedLabel" destination="xSs-ea-EAt" id="d7M-pa-Kho"/>
-                        <outlet property="percentLearnedSlider" destination="zG9-LW-eIe" id="ht7-fz-mGk"/>
+                        <outlet property="percentNewLabel" destination="xSs-ea-EAt" id="d7M-pa-Kho"/>
+                        <outlet property="percentNewSlider" destination="zG9-LW-eIe" id="ht7-fz-mGk"/>
                         <outlet property="timeLearnedLabel" destination="qXE-cZ-YbN" id="Tkc-fW-Vo7"/>
                         <outlet property="timeSpentLearningLabel" destination="vfB-4K-FSZ" id="h3Y-DJ-sjt"/>
                         <outlet property="timeSpentLearningSlider" destination="X0B-jy-C2f" id="0Q8-9F-lBf"/>

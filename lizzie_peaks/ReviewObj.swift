@@ -6,6 +6,7 @@
 //  Copyright © 2019 Curtis Chong. All rights reserved.
 //
 
+//TODO: change the constructor for this
 import Foundation
 
 class ReviewObj{

@@ -54,16 +54,14 @@ class DataManager{
     }
     
     
-    func insertSkill(skill : SkillObj) -> Bool{
+    func insertSkill(skill : SkillObj){
         let curSkill = NSManagedObject(entity: skillEntity!, insertInto: context)
         skillToNSManagedObject(curSkill : curSkill, skill : skill)
         do {
             try context.save()
             NSLog("Successfully saved the current Skill")
-            return true
         } catch let error{
             NSLog("Couldn't save: the current Skill with  error: \(error)")
-            return false
         }
     }
     

@@ -74,6 +74,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "conceptSegue", sender: allSkills[indexPath.row])
         print("You tapped cell number \(indexPath.row).")
     }
     
@@ -89,7 +90,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
         
         dataManager.insertSkill(skill: curSkill)
         
-        performSegue(withIdentifier: "addConceptSegue", sender: curSkill)
+        performSegue(withIdentifier: "conceptSegue", sender: curSkill)
     }
     
     func reloadLearningsTable(){

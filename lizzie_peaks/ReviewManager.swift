@@ -28,11 +28,11 @@ class ReviewManager{
                                   scheduledDate : skill.timeLearned,
                                   scheduledDuration: -1,
                                   timeLearned : skill.timeLearned)
-        self.scheduleNewReview(review : curReview)
+        self.scheduleNewReview(review : curReview, skill : skill)
     }
     
     //TODO: consider refactoring this section into calculateSinpleReview(), calculateMLReview etc.
-    func scheduleNewReview(review : ReviewObj){
+    func scheduleNewReview(review : ReviewObj, skill : SkillObj){
         if(settingsManager.defaultReview == "Simple"){
             if(settingsManager.briefReviews){
                 review.scheduledDate = review.timeLearned.addingTimeInterval(TimeInterval(60.0))
@@ -47,6 +47,11 @@ class ReviewManager{
                 review.scheduledDate = review.timeLearned.addingTimeInterval(TimeInterval(60.0 * 60.0 * 24.0 * 30.0))
                 review.scheduledDuration = 60 * 3
             }
+            
+            skill.scheduledReviews.append(review.scheduledDate)
+            skill.scheduledReviewDurations.append(review.scheduledDuration)
+            dataManager.updateSkill(skill: skill)
+            
             let reviewTitle = "Get reviewing on \(review.concept) Curtis!"
             let reviewBody = "Spend only \(review.scheduledDuration/60) minutes to bring you back to 100%"
             notificationManager.setNotification(title : reviewTitle, body : reviewBody, reviewDate : review.scheduledDate)
