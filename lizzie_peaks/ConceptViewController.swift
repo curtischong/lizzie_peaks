@@ -172,10 +172,14 @@ class ConceptViewController: UIViewController {
     var onDoneBlock : ((Bool) -> Void)?
     
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
-        learningsDelegate?.reloadLearningsTable()
         if(skillData.scheduledReviews.count == 0){
+            NSLog("has no reviews!")
             reviewManager.createReview(skill : skillData)
+        }else{
+            NSLog("has \(skillData.scheduledReviews.count) reviews!")
         }
+        // Note: you want to reload the table last so all Skills are updated
+        learningsDelegate?.reloadLearningsTable()
         dismiss(animated: true, completion: nil)
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
     }

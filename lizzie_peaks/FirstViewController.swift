@@ -5,7 +5,7 @@
 //  Created by Curtis Chong on 2019-01-31.
 //  Copyright © 2019 Curtis Chong. All rights reserved.
 //
-
+//TODO: if there are partially filled out skills, lizzie will send a notification telling you to finish them ever 2 hours
 import UIKit
 
 protocol learningsProtocol {
