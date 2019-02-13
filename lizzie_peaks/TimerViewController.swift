@@ -22,6 +22,8 @@ class TimerViewController: UIViewController {
     var isTimerRunning = false
     var timePassed = 0
     var timeReviewed = Date()
+    let dataManager = DataManager()
+    var conceptViewControllerRef : UIViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,13 +81,23 @@ class TimerViewController: UIViewController {
         timer.invalidate()
         skillData.reviews.append(timeReviewed)
         skillData.reviewDurations.append(timePassed)
-        performSegue(withIdentifier: "reviewSegue", sender: skillData)
+        dataManager.updateSkill(skill: skillData)
+        
+        let reviewData = ReviewObj(
+            concept : skillData.concept,
+            dateReviewed : timeReviewed,
+            newLearnings : "",
+            reviewDuration : timePassed)
+        dataManager.insertReview(review : reviewData)
+        
+        performSegue(withIdentifier: "reviewSegue", sender: reviewData)
 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pop = segue.destination as? ReviewViewController {
-            pop.skillData = sender as? SkillObj
+            pop.reviewData = sender as? ReviewObj
+            pop.conceptViewControllerRef = self.conceptViewControllerRef
         }
     }
     

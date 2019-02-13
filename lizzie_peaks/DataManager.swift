@@ -98,6 +98,28 @@ class DataManager{
         }
     }
     
+    func updateReview(review : ReviewObj){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Review")
+        
+        fetchRequest.predicate = NSPredicate(format: "dateReviewed = %@",
+                                             argumentArray: [review.dateReviewed])
+        do {
+            let results = try context.fetch(fetchRequest) as? [NSManagedObject]
+            if results?.count != 0 {
+                reviewToNSManagedObject(curReview: results![0], review : review)
+            }
+        } catch {
+            print("Fetch past reviews for update Failed: \(error)")
+        }
+        
+        do {
+            try context.save()
+        }
+        catch {
+            print("Saving past reviews for update Failed: \(error)")
+        }
+    }
+    
     func getAllEntities(entityName : String) -> [NSManagedObject]{
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         

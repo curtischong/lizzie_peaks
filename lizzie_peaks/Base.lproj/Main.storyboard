@@ -297,9 +297,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCX-lU-YfN">
                                 <rect key="frame" x="160" y="300" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Submit"/>
+                                <state key="normal" title="Done"/>
                                 <connections>
-                                    <action selector="submitReview:" destination="lge-Ak-LIh" eventType="touchUpInside" id="Xc1-Xj-XpR"/>
+                                    <action selector="done:" destination="lge-Ak-LIh" eventType="touchUpInside" id="Xc1-Xj-XpR"/>
                                 </connections>
                             </button>
                         </subviews>

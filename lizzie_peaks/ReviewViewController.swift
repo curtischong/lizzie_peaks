@@ -13,26 +13,39 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var mainConceptLabel: UILabel!
     @IBOutlet weak var newLearningsTextView: UITextView!
     
-    var skillData : SkillObj!
+    var reviewData : ReviewObj!
     let dataManager = DataManager()
+    var conceptViewControllerRef : UIViewController!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainConceptLabel.text = skillData.concept
+        mainConceptLabel.text = reviewData.concept
         
         
         newLearningsTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
         newLearningsTextView.layer.borderWidth = 1.0
         newLearningsTextView.layer.cornerRadius = 5
         newLearningsTextView.isScrollEnabled = false
+        
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
+        //create left side empty space so that done button set on right side
+        let flexSpace = UIBarButtonItem(barButtonSystemItem:    .flexibleSpace, target: nil, action: nil)
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
+        toolbar.setItems([flexSpace, doneBtn], animated: false)
+        toolbar.sizeToFit()
+        //setting toolbar as inputAccessoryView
+        self.newLearningsTextView.inputAccessoryView = toolbar
     }
-    @IBAction func submitReview(_ sender: UIButton) {
-        let curReviewIdx = skillData.reviews.count - 1
-        let curReview = ReviewObj(
-            concept : skillData.concept,
-            dateReviewed : skillData.reviews[curReviewIdx],
-            newLearnings : newLearningsTextView.text,
-            reviewDuration : skillData.reviewDurations[curReviewIdx])
-        dataManager.insertReview(review : curReview)
+    
+    @objc func doneButtonAction() {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func done(_ sender: UIButton) {
+        // TODO: pass a reference to the concept view controller
+       self.conceptViewControllerRef.dismiss(animated: true, completion: nil)
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -41,8 +54,8 @@ class ReviewViewController: UIViewController {
         }
         if(newLearningsTextView.isFirstResponder){
             NSLog("saved newLearnings!")
-            skillData.concept = newLearningsTextView.text!
-            //dataManager.updateReview(skill: skillData)
+            reviewData.concept = newLearningsTextView.text!
+            dataManager.updateReview(review: reviewData)
             
         }
     }

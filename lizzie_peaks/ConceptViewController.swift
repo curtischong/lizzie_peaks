@@ -196,6 +196,7 @@ class ConceptViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pop = segue.destination as? TimerViewController {
+            pop.conceptViewControllerRef = self
             pop.skillData = sender as? SkillObj
         }
     }
