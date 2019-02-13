@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ConceptViewController: UIViewController {
+//TODO: show to date of the last review at the top and make it a button that brings you directly to the reviewViewController
+
+class ConceptViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var timeSpentLearningLabel: UILabel!
     @IBOutlet weak var percentNewLabel: UILabel!
@@ -19,6 +21,7 @@ class ConceptViewController: UIViewController {
     @IBOutlet weak var oldSkillsTextView: UITextView!
     @IBOutlet weak var newLearningsTextView: UITextView!
     @IBOutlet weak var timeLearnedLabel: UILabel!
+    @IBOutlet weak var reviewsTableView: UITableView!
     
     @IBOutlet weak var scroller: UIScrollView!
     private let generator = UIImpactFeedbackGenerator(style: .light)
@@ -33,9 +36,10 @@ class ConceptViewController: UIViewController {
     var learningsDelegate : learningsProtocol?
     let displayDateFormatter = DateFormatter()
     var toolbar : UIToolbar!
+    let cellReuseIdentifier = "reviewCell"
     
     var skillData : SkillObj!
-
+    var allReviews : [ReviewObj] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,5 +203,45 @@ class ConceptViewController: UIViewController {
             pop.conceptViewControllerRef = self
             pop.skillData = sender as? SkillObj
         }
+        if let pop = segue.destination as? ReviewViewController {
+            pop.reviewData = sender as? ReviewObj
+            pop.conceptViewControllerRef = self
+        }
+    }
+    
+    func reloadReviewTable(){
+        self.reviewsTableView.reloadData()
+    }
+    
+    
+    
+    // number of rows in table view
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        allReviews = dataManager.getAllReviews(timeLearned : skillData.timeLearned)
+        allReviews = allReviews.reversed() // TODO: refactor this reverse in the coredata command
+        return allReviews.count
+    }
+    
+    // create a cell for each table view row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell:ReviewTableViewCell = reviewsTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ReviewTableViewCell
+        if allReviews.count > indexPath.row{
+            let cellData = allReviews[indexPath.row]
+            
+            let newDate = cellData.dateReviewed
+            
+            cell.dateReviewedLabel.text = self.displayDateFormatter.string(from: newDate)
+            cell.reviewDurationLabel.text = String(cellData.reviewDuration)
+            // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
+        }
+        
+        return cell
+    }
+    
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "reviewSegue", sender: allReviews[indexPath.row])
+        print("You tapped cell number \(indexPath.row).")
     }
 }

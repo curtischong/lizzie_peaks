@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Note: We identify mathing reviews based on the timeLearned attribute
 class SkillObj{
     var concept : String = ""
     var newLearnings : String = ""

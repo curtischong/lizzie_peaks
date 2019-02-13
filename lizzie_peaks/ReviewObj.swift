@@ -14,15 +14,18 @@ class ReviewObj{
     var dateReviewed : Date
     var newLearnings : String
     var reviewDuration : Int
+    var timeLearned : Date
     
     init(concept : String,
          dateReviewed : Date,
          newLearnings : String,
-         reviewDuration : Int){
+         reviewDuration : Int,
+         timeLearned : Date){
         
         self.concept = concept
         self.dateReviewed = dateReviewed
         self.newLearnings = newLearnings
         self.reviewDuration = reviewDuration
+        self.timeLearned = timeLearned
     }
 }

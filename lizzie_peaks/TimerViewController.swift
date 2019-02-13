@@ -24,6 +24,7 @@ class TimerViewController: UIViewController {
     var timeReviewed = Date()
     let dataManager = DataManager()
     var conceptViewControllerRef : UIViewController!
+    private let generator = UIImpactFeedbackGenerator(style: .light)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class TimerViewController: UIViewController {
 
     }
     @IBAction func toggleTimer(_ sender: Any) {
+        generator.impactOccurred()
         if(!pressedStart){
             pressedStart = true
             isTimerRunning = true
@@ -57,18 +59,7 @@ class TimerViewController: UIViewController {
     }
     
     func runTimer(){
-        timer = Timer.scheduledTimer(timeInterval: 1.0,
-                                     target: self,
-                                     selector: #selector(updateTimer(timer:)),
-                                     userInfo: [],
-                                     repeats: true)
-    }
-    
-    func timeString(time:TimeInterval) -> String {
-        let hours = Int(time) / 3600
-        let minutes = Int(time) / 60 % 60
-        let seconds = Int(time) % 60
-        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer(timer:)), userInfo: [], repeats: true)
     }
     
     // Timer expects @objc selector
@@ -78,6 +69,7 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func endTimer(_ sender: UIButton) {
+        generator.impactOccurred()
         timer.invalidate()
         skillData.reviews.append(timeReviewed)
         skillData.reviewDurations.append(timePassed)
@@ -87,11 +79,19 @@ class TimerViewController: UIViewController {
             concept : skillData.concept,
             dateReviewed : timeReviewed,
             newLearnings : "",
-            reviewDuration : timePassed)
+            reviewDuration : timePassed,
+            timeLearned : skillData.timeLearned)
         dataManager.insertReview(review : reviewData)
         
         performSegue(withIdentifier: "reviewSegue", sender: reviewData)
 
+    }
+    
+    func timeString(time:TimeInterval) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -5,7 +5,7 @@
 //  Created by Curtis Chong on 2019-02-02.
 //  Copyright © 2019 Curtis Chong. All rights reserved.
 //
-
+// TODO: show the duration of the review and when the review took place at the top of the view controller
 import UIKit
 
 class ReviewViewController: UIViewController {
@@ -54,7 +54,7 @@ class ReviewViewController: UIViewController {
         }
         if(newLearningsTextView.isFirstResponder){
             NSLog("saved newLearnings!")
-            reviewData.concept = newLearningsTextView.text!
+            reviewData.newLearnings = newLearningsTextView.text!
             dataManager.updateReview(review: reviewData)
             
         }

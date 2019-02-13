@@ -49,8 +49,8 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
 
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        allSkills = dataManager.getAllSkills(entityName: "Skill")
-        allSkills = allSkills.reversed()
+        allSkills = dataManager.getAllSkills()
+        allSkills = allSkills.reversed() // TODO: refactor this reverse in the coredata command
         leaningsCntLabel.text = String(allSkills.count)
         return allSkills.count
     }

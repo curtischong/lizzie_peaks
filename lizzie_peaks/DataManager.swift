@@ -51,6 +51,7 @@ class DataManager{
         curReview.setValue(review.dateReviewed, forKey: "dateReviewed")
         curReview.setValue(review.newLearnings, forKey: "newLearnings")
         curReview.setValue(review.reviewDuration, forKey: "reviewDuration")
+        curReview.setValue(review.timeLearned, forKey: "timeLearned")
     }
     
     
@@ -120,8 +121,12 @@ class DataManager{
         }
     }
     
-    func getAllEntities(entityName : String) -> [NSManagedObject]{
+    func getAllEntities(entityName : String, predicate : NSPredicate?) -> [NSManagedObject]{
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        
+        if predicate != nil{
+            request.predicate = predicate
+        }
         
         do{
             let result = try context.fetch(request)
@@ -132,9 +137,9 @@ class DataManager{
         }
     }
     
-    func getAllSkills(entityName : String) -> [SkillObj]{
+    func getAllSkills() -> [SkillObj]{
         // TODO: find a way to batch convert these entites
-        let entities = getAllEntities(entityName : entityName)
+        let entities = getAllEntities(entityName : "Skill", predicate: nil)
         var allEntities : [SkillObj] = []
         for entity in entities{
             
@@ -167,6 +172,20 @@ class DataManager{
             }catch let error{
                 NSLog("couldn't load binary from coredata: \(error)")
             }
+        }
+        return allEntities
+    }
+    
+    func getAllReviews(timeLearned : Date) -> [ReviewObj]{
+        let reviewPredicate = NSPredicate(format: "timeLearned = %@", argumentArray: [timeLearned])
+        let entities = getAllEntities(entityName : "Review", predicate: reviewPredicate)
+        var allEntities : [ReviewObj] = []
+        for entity in entities{
+            allEntities.append(ReviewObj(concept : entity.value(forKey: "concept") as! String,
+                                        dateReviewed : entity.value(forKey: "dateReviewed") as! Date,
+                                        newLearnings : entity.value(forKey: "newLearnings") as! String,
+                                        reviewDuration : entity.value(forKey: "reviewDuration") as! Int,
+                                        timeLearned : entity.value(forKey: "reviewDuration") as! Date))
         }
         return allEntities
     }

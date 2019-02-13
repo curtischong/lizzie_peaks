@@ -19,8 +19,9 @@
 		E92CF0F92203D7EE00DF3ADA /* lizzie_peaksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */; };
 		E92CF10B2203DEF400DF3ADA /* ConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10A2203DEF400DF3ADA /* ConceptViewController.swift */; };
 		E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF11622040AF300DF3ADA /* DataManager.swift */; };
+		E9BFFEA52213E2F50030BCF9 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BFFEA42213E2F50030BCF9 /* ReviewTableViewCell.swift */; };
 		E9CC4A292213AF6800BFDB90 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC4A282213AF6800BFDB90 /* TimerViewController.swift */; };
-		E9D4B7A7220624ED00427AAD /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D4B7A6220624ED00427AAD /* ReviewTableViewCell.swift */; };
+		E9D4B7A7220624ED00427AAD /* ScheduledReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D4B7A6220624ED00427AAD /* ScheduledReviewTableViewCell.swift */; };
 		E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */; };
 		E9F5265222055FA0004F66F3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265122055FA0004F66F3 /* SettingsViewController.swift */; };
 		E9F5265422056900004F66F3 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265322056900004F66F3 /* ReviewViewController.swift */; };
@@ -78,8 +79,9 @@
 		E92CF0FA2203D7EE00DF3ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E92CF10A2203DEF400DF3ADA /* ConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptViewController.swift; sourceTree = "<group>"; };
 		E92CF11622040AF300DF3ADA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		E9BFFEA42213E2F50030BCF9 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		E9CC4A282213AF6800BFDB90 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerViewController.swift; path = /Users/curtis/Desktop/dev/lizzie_peaks/lizzie_peaks/TimerViewController.swift; sourceTree = "<absolute>"; };
-		E9D4B7A6220624ED00427AAD /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		E9D4B7A6220624ED00427AAD /* ScheduledReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledReviewTableViewCell.swift; sourceTree = "<group>"; };
 		E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillTableViewCell.swift; sourceTree = "<group>"; };
 		E9F5265122055FA0004F66F3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9F5265322056900004F66F3 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +165,8 @@
 				E9CC4A282213AF6800BFDB90 /* TimerViewController.swift */,
 				E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */,
 				E9F5265122055FA0004F66F3 /* SettingsViewController.swift */,
-				E9D4B7A6220624ED00427AAD /* ReviewTableViewCell.swift */,
+				E9D4B7A6220624ED00427AAD /* ScheduledReviewTableViewCell.swift */,
+				E9BFFEA42213E2F50030BCF9 /* ReviewTableViewCell.swift */,
 				E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */,
 				E92CF11622040AF300DF3ADA /* DataManager.swift */,
 				E9F5265522056C89004F66F3 /* HttpManager.swift */,
@@ -454,9 +457,10 @@
 				E92CF0D92203D7ED00DF3ADA /* FirstViewController.swift in Sources */,
 				E9F5265222055FA0004F66F3 /* SettingsViewController.swift in Sources */,
 				E9F5265422056900004F66F3 /* ReviewViewController.swift in Sources */,
-				E9D4B7A7220624ED00427AAD /* ReviewTableViewCell.swift in Sources */,
+				E9D4B7A7220624ED00427AAD /* ScheduledReviewTableViewCell.swift in Sources */,
 				E9F5266922060883004F66F3 /* ReviewObj.swift in Sources */,
 				E9F526652205FEEF004F66F3 /* DataStore.xcdatamodeld in Sources */,
+				E9BFFEA52213E2F50030BCF9 /* ReviewTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
