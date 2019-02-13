@@ -181,7 +181,7 @@ class ConceptViewController: UIViewController {
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
         if(skillData.scheduledReviews.count == 0){
             NSLog("has no reviews!")
-            reviewManager.createReview(skill : skillData)
+            reviewManager.scheduleReview(skill : skillData)
         }else{
             NSLog("has \(skillData.scheduledReviews.count) reviews!")
         }

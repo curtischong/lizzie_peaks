@@ -11,30 +11,18 @@ import Foundation
 
 class ReviewObj{
     var concept : String
-    var lastTimeReviewed : Date
+    var dateReviewed : Date
     var newLearnings : String
-    var timesReviewed : Int
     var reviewDuration : Int
-    var scheduledDate : Date
-    var scheduledDuration : Int
-    var timeLearned : Date
     
     init(concept : String,
-         lastTimeReviewed : Date,
-         timesReviewed : Int,
+         dateReviewed : Date,
          newLearnings : String,
-         reviewDuration : Int,
-         scheduledDate : Date,
-         scheduledDuration : Int,
-         timeLearned : Date){
+         reviewDuration : Int){
         
         self.concept = concept
-        self.lastTimeReviewed = lastTimeReviewed
+        self.dateReviewed = dateReviewed
         self.newLearnings = newLearnings
-        self.timesReviewed = timesReviewed
         self.reviewDuration = reviewDuration
-        self.scheduledDate = scheduledDate
-        self.scheduledDuration = scheduledDuration
-        self.timeLearned = timeLearned
     }
 }

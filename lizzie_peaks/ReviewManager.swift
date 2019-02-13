@@ -18,44 +18,47 @@ class ReviewManager{
         
     }
     
-    func createReview(skill : SkillObj){
-
-        let curReview = ReviewObj(concept : skill.concept,
-                                  lastTimeReviewed : skill.timeLearned,
-                                  timesReviewed : 0,
+    func scheduleReview(skill : SkillObj){
+        /*let curReview = ReviewObj(concept : skill.concept,
+                                  dateReviewed : "",
                                   newLearnings : skill.newLearnings,
-                                  reviewDuration : skill.timeSpentLearning,
-                                  scheduledDate : skill.timeLearned,
-                                  scheduledDuration: -1,
-                                  timeLearned : skill.timeLearned)
-        self.scheduleNewReview(review : curReview, skill : skill)
+                                  reviewDuration : skill.timeSpentLearning)*/
+        self.scheduleNewReview(skill : skill)
     }
     
     //TODO: consider refactoring this section into calculateSinpleReview(), calculateMLReview etc.
-    func scheduleNewReview(review : ReviewObj, skill : SkillObj){
+    //TODO: instead of adding a constant time, batch these notifications to the morning
+    func scheduleNewReview(skill : SkillObj){
+        let timesReviewed = skill.reviews.count
+        var scheduledReview = Date()
+        var scheduledReviewDuration = -1
         if(settingsManager.defaultReview == "Simple"){
             if(settingsManager.briefReviews){
-                review.scheduledDate = review.timeLearned.addingTimeInterval(TimeInterval(60.0))
-                review.scheduledDuration = 120
-            }else if(review.timesReviewed == 0){
-                review.scheduledDate = review.timeLearned.addingTimeInterval(TimeInterval(60.0 * 60.0 * 24.0))
-                review.scheduledDuration = 60 * 10
-            }else if(review.timesReviewed == 1){
-                review.scheduledDate = review.timeLearned.addingTimeInterval(TimeInterval(60.0 * 60.0 * 24.0 * 7.0))
-                review.scheduledDuration = 60 * 5
-            }else if(review.timesReviewed == 2){
-                review.scheduledDate = review.timeLearned.addingTimeInterval(TimeInterval(60.0 * 60.0 * 24.0 * 30.0))
-                review.scheduledDuration = 60 * 3
+                scheduledReview = skill.timeLearned.addingTimeInterval(TimeInterval(60.0))
+                scheduledReviewDuration = 120
+            }else if(timesReviewed == 0){
+                scheduledReview = skill.timeLearned.addingTimeInterval(TimeInterval(60.0 * 60.0 * 24.0))
+                scheduledReviewDuration = 60 * 10
+            }else if(timesReviewed == 1){
+                scheduledReview = skill.timeLearned.addingTimeInterval(TimeInterval(60.0 * 60.0 * 24.0 * 7.0))
+                scheduledReviewDuration = 60 * 5
+            }else if(timesReviewed == 2){
+                scheduledReview = skill.timeLearned.addingTimeInterval(TimeInterval(60.0 * 60.0 * 24.0 * 30.0))
+                scheduledReviewDuration = 60 * 3
+            }else{
+                scheduledReview = skill.timeLearned.addingTimeInterval(TimeInterval(60.0 * 60.0 * 24.0 * 30.0 * 9999))
+                scheduledReviewDuration = 60 * 3 * 9999
             }
             
-            skill.scheduledReviews.append(review.scheduledDate)
-            skill.scheduledReviewDurations.append(review.scheduledDuration)
+            skill.scheduledReviews.append(scheduledReview)
+            skill.scheduledReviewDurations.append(scheduledReviewDuration)
+            
             dataManager.updateSkill(skill: skill)
             
-            let reviewTitle = "Get reviewing on \(review.concept) Curtis!"
-            let reviewBody = "Spend only \(review.scheduledDuration/60) minutes to bring you back to 100%"
-            notificationManager.setNotification(title : reviewTitle, body : reviewBody, reviewDate : review.scheduledDate)
-            dataManager.insertReview(review : review)
+            let reviewTitle = "Get reviewing on \(skill.concept) Curtis!"
+            let reviewBody = "Spend only \(scheduledReviewDuration/60) minutes to bring you back to 100%"
+            notificationManager.setNotification(title : reviewTitle, body : reviewBody, reviewDate : scheduledReview)
+            //dataManager.insertReview(review : review)
         }
     }
 }

@@ -551,12 +551,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2R-v9-val">
-                                <rect key="frame" x="112" y="359" width="34" height="30"/>
+                                <rect key="frame" x="16" y="359" width="166" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="toggleTimer:" destination="gR3-dB-6r0" eventType="touchUpInside" id="ynf-TQ-svl"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hm9-WI-VUL">
-                                <rect key="frame" x="248" y="359" width="30" height="30"/>
+                                <rect key="frame" x="302" y="359" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="End"/>
                             </button>
@@ -567,6 +570,7 @@
                     <connections>
                         <outlet property="curTime" destination="hfn-7g-BFi" id="ATE-O8-r9k"/>
                         <outlet property="recommendedDuration" destination="8pY-Ra-s08" id="nuT-cL-YBA"/>
+                        <outlet property="startBtn" destination="k2R-v9-val" id="DUC-6Y-RQq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1Q-nL-BAK" userLabel="First Responder" sceneMemberID="firstResponder"/>

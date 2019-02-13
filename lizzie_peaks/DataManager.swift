@@ -24,6 +24,8 @@ class DataManager{
         do {
             let scheduledReviews = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviews, requiringSecureCoding: false)
             let scheduledReviewDurations = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviewDurations, requiringSecureCoding: false)
+            let reviews = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviews, requiringSecureCoding: false)
+            let reviewDurations = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviewDurations, requiringSecureCoding: false)
             // let scheduledReviews = NSKeyedArchiver.archivedData(withRootObject: )
             //let scheduledReviewDurations = NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviewDurations)
             
@@ -35,6 +37,8 @@ class DataManager{
             curSkill.setValue(skill.timeSpentLearning, forKey: "timeSpentLearning")
             curSkill.setValue(scheduledReviews, forKey: "scheduledReviews")
             curSkill.setValue(scheduledReviewDurations, forKey: "scheduledReviewDurations")
+            curSkill.setValue(reviews, forKey: "reviews")
+            curSkill.setValue(reviewDurations, forKey: "reviewDurations")
             
             NSLog("Successfully converted skills to coredata entities")
         } catch let error {
@@ -44,13 +48,9 @@ class DataManager{
     
     func reviewToNSManagedObject(curReview : NSManagedObject, review : ReviewObj){
         curReview.setValue(review.concept, forKey: "concept")
-        curReview.setValue(review.lastTimeReviewed, forKey: "lastTimeReviewed")
+        curReview.setValue(review.dateReviewed, forKey: "dateReviewed")
         curReview.setValue(review.newLearnings, forKey: "newLearnings")
-        curReview.setValue(review.timesReviewed, forKey: "timesReviewed")
         curReview.setValue(review.reviewDuration, forKey: "reviewDuration")
-        curReview.setValue(review.scheduledDate, forKey: "scheduledDate")
-        curReview.setValue(review.scheduledDuration, forKey: "scheduledDuration")
-        curReview.setValue(review.timeLearned, forKey: "timeLearned")
     }
     
     
@@ -118,15 +118,21 @@ class DataManager{
         var allEntities : [SkillObj] = []
         for entity in entities{
             
-            let reviewsNSData = entity.value(forKey: "scheduledReviews") as! NSData
-            let reviewDurationsNSData = entity.value(forKey: "scheduledReviewDurations") as! NSData
+            let scheduledReviewsNSData = entity.value(forKey: "scheduledReviews") as! NSData
+            let scheduledReviewDurationsNSData = entity.value(forKey: "scheduledReviewDurations") as! NSData
+            let reviewsNSData = entity.value(forKey: "reviews") as! NSData
+            let reviewDurationsNSData = entity.value(forKey: "reviewDurations") as! NSData
             
+            let scheduledReviewsData = Data(referencing:scheduledReviewsNSData)
+            let scheduledReviewDurationsData = Data(referencing:scheduledReviewDurationsNSData)
             let reviewsData = Data(referencing:reviewsNSData)
             let reviewDurationsData = Data(referencing:reviewDurationsNSData)
 
             do {
-                let scheduledReviews = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(reviewsData) as? Array<Date>
-                let scheduledReviewDurations = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(reviewDurationsData) as? Array<Int>
+                let scheduledReviews = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(scheduledReviewsData) as? Array<Date>
+                let scheduledReviewDurations = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(scheduledReviewDurationsData) as? Array<Int>
+                let reviews = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(reviewsData) as? Array<Date>
+                let reviewDurations = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(reviewDurationsData) as? Array<Int>
                 
                 allEntities.append(SkillObj(concept : entity.value(forKey: "concept") as! String,
                 newLearnings : entity.value(forKey: "newLearnings") as! String,
@@ -135,7 +141,9 @@ class DataManager{
                 timeLearned : entity.value(forKey: "timeLearned") as! Date,
                 timeSpentLearning : entity.value(forKey: "timeSpentLearning") as! Int,
                 scheduledReviews : scheduledReviews ?? [],
-                scheduledReviewDurations : scheduledReviewDurations ?? []))
+                scheduledReviewDurations : scheduledReviewDurations ?? [],
+                reviews : reviews ?? [],
+                reviewDurations : reviewDurations ?? []))
             }catch let error{
                 NSLog("couldn't load binary from coredata: \(error)")
             }

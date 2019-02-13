@@ -17,6 +17,9 @@ class SkillObj{
     var timeSpentLearning : Int = 0
     var scheduledReviews : [Date] = []
     var scheduledReviewDurations : [Int] = []
+    var reviews : [Date] = []
+    var reviewDurations : [Int] = [] // would be useful when showing total time reviewed
+    //var timesReviewed : Int = 0
     
     
     init(concept : String,
@@ -26,7 +29,9 @@ class SkillObj{
          timeLearned : Date,
          timeSpentLearning : Int,
          scheduledReviews : [Date],
-         scheduledReviewDurations : [Int]){
+         scheduledReviewDurations : [Int],
+         reviews : [Date],
+         reviewDurations : [Int]){
         
         self.concept = concept
         self.newLearnings = newLearnings
@@ -36,6 +41,8 @@ class SkillObj{
         self.timeSpentLearning = timeSpentLearning
         self.scheduledReviews = scheduledReviews
         self.scheduledReviewDurations = scheduledReviewDurations
+        self.reviews = reviews
+        self.reviewDurations = reviewDurations
     }
     
     init(timeLearned : Date){
