@@ -185,7 +185,7 @@ class DataManager{
                                         dateReviewed : entity.value(forKey: "dateReviewed") as! Date,
                                         newLearnings : entity.value(forKey: "newLearnings") as! String,
                                         reviewDuration : entity.value(forKey: "reviewDuration") as! Int,
-                                        timeLearned : entity.value(forKey: "reviewDuration") as! Date))
+                                        timeLearned : entity.value(forKey: "timeLearned") as! Date))
         }
         return allEntities
     }

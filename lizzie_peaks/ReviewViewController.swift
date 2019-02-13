@@ -16,7 +16,7 @@ class ReviewViewController: UIViewController {
     var reviewData : ReviewObj!
     let dataManager = DataManager()
     var conceptViewControllerRef : UIViewController!
-    
+    var conceptDelegate : conceptProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +45,7 @@ class ReviewViewController: UIViewController {
     
     @IBAction func done(_ sender: UIButton) {
         // TODO: pass a reference to the concept view controller
+        conceptDelegate?.reloadReviewTable()
        self.conceptViewControllerRef.dismiss(animated: true, completion: nil)
     }
     

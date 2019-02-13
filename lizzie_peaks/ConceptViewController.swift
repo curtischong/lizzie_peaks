@@ -10,7 +10,11 @@ import UIKit
 
 //TODO: show to date of the last review at the top and make it a button that brings you directly to the reviewViewController
 
-class ConceptViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
+protocol conceptProtocol {
+    func reloadReviewTable()
+}
+
+class ConceptViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, conceptProtocol{
 
     @IBOutlet weak var timeSpentLearningLabel: UILabel!
     @IBOutlet weak var percentNewLabel: UILabel!
@@ -108,6 +112,14 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         for item in skillData.scheduledReviewDurations{
             print("\(item)")
         }
+        
+        reviewsTableView.delegate = self
+        reviewsTableView.dataSource = self
+        reviewsTableView.tableFooterView = UIView()
+        reviewsTableView.separatorColor = UIColor.white
+        
+        
+        reloadReviewTable()
     }
 
     @objc func saveTimeSpent(sender: UISlider) {
