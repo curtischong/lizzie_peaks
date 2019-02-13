@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:lizzie_peaks/TimerViewController.swift">
+      location = "group:/Users/curtis/Desktop/dev/lizzie_peaks/lizzie_peaks/TimerViewController.swift">
    </FileRef>
    <FileRef
       location = "group:/Users/curtis/Desktop/dev/lizzie_peaks/lizzie_peaks/ReviewObj.swift">

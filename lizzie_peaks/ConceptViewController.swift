@@ -190,4 +190,13 @@ class ConceptViewController: UIViewController {
         dismiss(animated: true, completion: nil)
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
     }
+    @IBAction func reviewNowBtn(_ sender: UIButton) {
+         performSegue(withIdentifier: "timerSegue", sender: skillData)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let pop = segue.destination as? TimerViewController {
+            pop.skillData = sender as? SkillObj
+        }
+    }
 }

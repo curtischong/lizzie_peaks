@@ -8,10 +8,15 @@
 import UIKit
 
 class TimerViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var recommendedDuration: UILabel!
+    
+    @IBOutlet weak var curTime: UILabel!
+    var skillData : SkillObj!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NSLog("test")
         // Do any additional setup after loading the view.
     }
     
