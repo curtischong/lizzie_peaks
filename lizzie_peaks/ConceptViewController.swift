@@ -29,7 +29,7 @@ class ConceptViewController: UIViewController {
     let timeSpentLearningMax = Float(60.0)
     let percentNewMax = Float(20.0)
     let dataManager = DataManager()
-    let reviewManager = ReviewManager()
+    let reviewManager = ReviewScheduleManager()
     var learningsDelegate : learningsProtocol?
     let displayDateFormatter = DateFormatter()
     var toolbar : UIToolbar!

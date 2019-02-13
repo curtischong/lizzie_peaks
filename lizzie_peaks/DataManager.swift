@@ -65,16 +65,14 @@ class DataManager{
         }
     }
     
-    func insertReview(review : ReviewObj) -> Bool{
+    func insertReview(review : ReviewObj){
         let curReview = NSManagedObject(entity: reviewEntity!, insertInto: context)
         reviewToNSManagedObject(curReview : curReview, review : review)
         do {
             try context.save()
             NSLog("Successfully saved the current Review")
-            return true
         } catch let error{
             NSLog("Couldn't save: the current Review with  error: \(error)")
-            return false
         }
     }
     

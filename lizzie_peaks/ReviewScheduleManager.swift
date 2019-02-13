@@ -10,7 +10,7 @@
 // This value is changed when scheduleNewReview is called
 import Foundation
 
-class ReviewManager{
+class ReviewScheduleManager{
     let notificationManager = NotificationManager()
     let dataManager = DataManager()
     let settingsManager = SettingsManager()
@@ -18,17 +18,9 @@ class ReviewManager{
         
     }
     
-    func scheduleReview(skill : SkillObj){
-        /*let curReview = ReviewObj(concept : skill.concept,
-                                  dateReviewed : "",
-                                  newLearnings : skill.newLearnings,
-                                  reviewDuration : skill.timeSpentLearning)*/
-        self.scheduleNewReview(skill : skill)
-    }
-    
     //TODO: consider refactoring this section into calculateSinpleReview(), calculateMLReview etc.
     //TODO: instead of adding a constant time, batch these notifications to the morning
-    func scheduleNewReview(skill : SkillObj){
+    func scheduleReview(skill : SkillObj){
         let timesReviewed = skill.reviews.count
         var scheduledReview = Date()
         var scheduledReviewDuration = -1

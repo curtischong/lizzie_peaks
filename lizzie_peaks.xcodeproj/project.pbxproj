@@ -25,7 +25,7 @@
 		E9F5265222055FA0004F66F3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265122055FA0004F66F3 /* SettingsViewController.swift */; };
 		E9F5265422056900004F66F3 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265322056900004F66F3 /* ReviewViewController.swift */; };
 		E9F5265622056C89004F66F3 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265522056C89004F66F3 /* HttpManager.swift */; };
-		E9F5265822056DEA004F66F3 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265722056DEA004F66F3 /* ReviewManager.swift */; };
+		E9F5265822056DEA004F66F3 /* ReviewScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265722056DEA004F66F3 /* ReviewScheduleManager.swift */; };
 		E9F5265C2205808E004F66F3 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265B2205808E004F66F3 /* SettingsManager.swift */; };
 		E9F5265E2205F458004F66F3 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265D2205F458004F66F3 /* NotificationManager.swift */; };
 		E9F526602205F4E7004F66F3 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5265F2205F4E7004F66F3 /* PermissionsManager.swift */; };
@@ -84,7 +84,7 @@
 		E9F5265122055FA0004F66F3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9F5265322056900004F66F3 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		E9F5265522056C89004F66F3 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
-		E9F5265722056DEA004F66F3 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
+		E9F5265722056DEA004F66F3 /* ReviewScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewScheduleManager.swift; sourceTree = "<group>"; };
 		E9F5265B2205808E004F66F3 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = /Users/curtis/Desktop/dev/lizzie_peaks/lizzie_peaks/SettingsManager.swift; sourceTree = "<absolute>"; };
 		E9F5265D2205F458004F66F3 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		E9F5265F2205F4E7004F66F3 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				E9F5265D2205F458004F66F3 /* NotificationManager.swift */,
 				E9F5265F2205F4E7004F66F3 /* PermissionsManager.swift */,
 				E9F5265B2205808E004F66F3 /* SettingsManager.swift */,
-				E9F5265722056DEA004F66F3 /* ReviewManager.swift */,
+				E9F5265722056DEA004F66F3 /* ReviewScheduleManager.swift */,
 				E9F5266822060882004F66F3 /* ReviewObj.swift */,
 				E9F5266A220608A2004F66F3 /* SkillObj.swift */,
 				E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */,
@@ -444,7 +444,7 @@
 				E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */,
 				E9F5266B220608A2004F66F3 /* SkillObj.swift in Sources */,
 				E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */,
-				E9F5265822056DEA004F66F3 /* ReviewManager.swift in Sources */,
+				E9F5265822056DEA004F66F3 /* ReviewScheduleManager.swift in Sources */,
 				E92CF10B2203DEF400DF3ADA /* ConceptViewController.swift in Sources */,
 				E9F5265E2205F458004F66F3 /* NotificationManager.swift in Sources */,
 				E9F526602205F4E7004F66F3 /* PermissionsManager.swift in Sources */,
