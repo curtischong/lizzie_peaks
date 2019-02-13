@@ -20,6 +20,7 @@ class ConceptViewController: UIViewController {
     @IBOutlet weak var newLearningsTextView: UITextView!
     @IBOutlet weak var timeLearnedLabel: UILabel!
     
+    @IBOutlet weak var scroller: UIScrollView!
     private let generator = UIImpactFeedbackGenerator(style: .light)
     private var timeSpentLearningRealVal = 0
     private var percentNewRealVal = 0
@@ -31,12 +32,14 @@ class ConceptViewController: UIViewController {
     let reviewManager = ReviewManager()
     var learningsDelegate : learningsProtocol?
     let displayDateFormatter = DateFormatter()
+    var toolbar : UIToolbar!
     
     var skillData : SkillObj!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scroller.contentSize = CGSize(width: scroller.contentSize.width, height: 2000)
         displayDateFormatter.dateFormat = "MMM d, h:mm a"
         
         timeSpentLearningSlider.setValue(0.0, animated: true)
@@ -49,10 +52,14 @@ class ConceptViewController: UIViewController {
         oldSkillsTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
         oldSkillsTextView.layer.borderWidth = 1.0
         oldSkillsTextView.layer.cornerRadius = 5
+        //oldSkillsTextView.frame.size.height = 100
+        oldSkillsTextView.isScrollEnabled = false
         
         newLearningsTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
         newLearningsTextView.layer.borderWidth = 1.0
         newLearningsTextView.layer.cornerRadius = 5
+        //newLearningsTextView.frame.size.height = 100
+        oldSkillsTextView.isScrollEnabled = false
         // Do any additional setup after loading the view.
         
         // keyboard
@@ -60,7 +67,7 @@ class ConceptViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         //init toolbar
-        let toolbar:UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
+        toolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
         //create left side empty space so that done button set on right side
         let flexSpace = UIBarButtonItem(barButtonSystemItem:    .flexibleSpace, target: nil, action: nil)
         let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
@@ -121,7 +128,7 @@ class ConceptViewController: UIViewController {
         if(oldSkillsTextView.isFirstResponder || newLearningsTextView.isFirstResponder){
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 if self.view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -= keyboardSize.height
+                    self.view.frame.origin.y -= (keyboardSize.height) // 30 is the height of the toolbar
                 }
             }
         }
@@ -183,27 +190,4 @@ class ConceptViewController: UIViewController {
         dismiss(animated: true, completion: nil)
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
     }
-    @IBAction func submitButtonPressed(_ sender: UIButton) {
-        /*let concept = mainConceptTextField.text as! String
-        let newLearnings = newConceptsTextView.text as! String
-        let oldSkills = skillsUsedTextView.text as! String
-        let percentNew = Int(percentLearnedRealVal)
-        let timeSpentLearning = Int(timeSpentLearningRealVal)*/
-
-        /*let curSkill = SkillObj(concept : concept,
-                                newLearnings : newLearnings,
-                                oldSkills : oldSkills,
-                                percentNew : percentNew,
-                                timeLearned : timeLearned!,
-                                timeSpentLearning : timeSpentLearning)*/
-
-        dataManager.updateSkill(skill: skillData)
-        // We want to make sure that the skill was saved properly before scheduling a review
-
-        reviewManager.createReview(skill : skillData)
-
-        learningsDelegate?.reloadLearningsTable()
-        dismiss(animated: true, completion: nil)
-    }
-    
 }
