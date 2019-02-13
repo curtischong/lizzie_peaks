@@ -42,7 +42,7 @@ class TimerViewController: UIViewController {
         if(!pressedStart){
             pressedStart = true
             isTimerRunning = true
-            startBtn.setTitle("Timing", for: .normal)
+            startBtn.setTitle("Pause Timer", for: .normal)
             runTimer()
             endBtn.isEnabled = true
         }else{
