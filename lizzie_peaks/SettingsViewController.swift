@@ -19,6 +19,7 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     let settingsManager = SettingsManager()
     var defaultReviewCurve : Int!
     var briefReviews = false
+    private let generator = UIImpactFeedbackGenerator(style: .light)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,10 +75,12 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     
 
     @IBAction func backSettingsBtn(_ sender: UIButton) {
+        generator.impactOccurred()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func purgeDatabaseBtn(_ sender: UIButton) {
+        generator.impactOccurred()
         dataManager.dropAllRows()
         learningsDelegate?.reloadLearningsTable()
     }

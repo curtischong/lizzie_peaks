@@ -25,6 +25,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     @IBOutlet weak var oldSkillsTextView: UITextView!
     @IBOutlet weak var newLearningsTextView: UITextView!
     @IBOutlet weak var timeLearnedLabel: UILabel!
+    
     @IBOutlet weak var reviewsTableView: UITableView!
     
     @IBOutlet weak var scroller: UIScrollView!
@@ -44,10 +45,11 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     
     var skillData : SkillObj!
     var allReviews : [ReviewObj] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scroller.contentSize = CGSize(width: scroller.contentSize.width, height: 2000)
+        scroller.contentSize = CGSize(width: scroller.contentSize.width, height: 2500)
         displayDateFormatter.dateFormat = "MMM d, h:mm a"
         
         timeSpentLearningSlider.setValue(0.0, animated: true)
@@ -117,9 +119,6 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         reviewsTableView.dataSource = self
         reviewsTableView.tableFooterView = UIView()
         reviewsTableView.separatorColor = UIColor.white
-        
-        
-        reloadReviewTable()
     }
 
     @objc func saveTimeSpent(sender: UISlider) {
@@ -195,6 +194,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     var onDoneBlock : ((Bool) -> Void)?
     
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
+        generator.impactOccurred()
         if(skillData.scheduledReviews.count == 0){
             NSLog("has no reviews!")
             reviewManager.scheduleReview(skill : skillData)
@@ -207,7 +207,8 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
     }
     @IBAction func reviewNowBtn(_ sender: UIButton) {
-         performSegue(withIdentifier: "timerSegue", sender: skillData)
+        generator.impactOccurred()
+        performSegue(withIdentifier: "timerSegue", sender: skillData)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -222,6 +223,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     }
     
     func reloadReviewTable(){
+        NSLog("review Table reloaded!")
         self.reviewsTableView.reloadData()
     }
     
@@ -231,13 +233,14 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         allReviews = dataManager.getAllReviews(timeLearned : skillData.timeLearned)
         allReviews = allReviews.reversed() // TODO: refactor this reverse in the coredata command
+        NSLog("Found \(allReviews.count) reviews")
         return allReviews.count
     }
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:ReviewTableViewCell = reviewsTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ReviewTableViewCell
+        let cell:ReviewTableViewCell = self.reviewsTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ReviewTableViewCell
         if allReviews.count > indexPath.row{
             let cellData = allReviews[indexPath.row]
             
@@ -247,12 +250,13 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             cell.reviewDurationLabel.text = String(cellData.reviewDuration)
             // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
         }
-        
+        NSLog("created cell")
         return cell
     }
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.generator.impactOccurred()
         performSegue(withIdentifier: "reviewSegue", sender: allReviews[indexPath.row])
         print("You tapped cell number \(indexPath.row).")
     }

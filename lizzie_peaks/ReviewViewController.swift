@@ -17,6 +17,7 @@ class ReviewViewController: UIViewController {
     let dataManager = DataManager()
     var conceptViewControllerRef : UIViewController!
     var conceptDelegate : conceptProtocol?
+    private let generator = UIImpactFeedbackGenerator(style: .light)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,11 @@ class ReviewViewController: UIViewController {
         newLearningsTextView.layer.borderWidth = 1.0
         newLearningsTextView.layer.cornerRadius = 5
         newLearningsTextView.isScrollEnabled = false
+        newLearningsTextView.text = reviewData.newLearnings
         
+        
+        //NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
         //create left side empty space so that done button set on right side
@@ -45,6 +50,7 @@ class ReviewViewController: UIViewController {
     
     @IBAction func done(_ sender: UIButton) {
         // TODO: pass a reference to the concept view controller
+        generator.impactOccurred()
         conceptDelegate?.reloadReviewTable()
        self.conceptViewControllerRef.dismiss(animated: true, completion: nil)
     }

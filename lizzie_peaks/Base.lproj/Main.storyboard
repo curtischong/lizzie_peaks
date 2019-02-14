@@ -165,8 +165,7 @@
                     <connections>
                         <outlet property="addNewSkillBtn" destination="QDt-HV-f4e" id="JxY-I4-4fG"/>
                         <outlet property="leaningsCntLabel" destination="rtk-6h-bKi" id="gEe-SM-TUx"/>
-                        <outlet property="skillTableView" destination="zEr-Pg-C3d" id="zUa-TG-HOx"/>
-                        <outlet property="skillsTableView" destination="zEr-Pg-C3d" id="3Cz-ix-2Rc"/>
+                        <outlet property="skillsTableView" destination="zEr-Pg-C3d" id="OOX-tT-L9F"/>
                         <segue destination="rTG-GW-sdi" kind="show" identifier="conceptSegue" id="5H0-BS-Mi1"/>
                         <segue destination="eOY-dn-lot" kind="show" identifier="settingsSegue" id="wEv-ym-UFi"/>
                     </connections>
@@ -264,11 +263,11 @@
             <objects>
                 <viewController id="rTG-GW-sdi" customClass="ConceptViewController" customModule="lizzie_peaks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yfa-Qv-Tp8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1367"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="2367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFW-we-kHp">
-                                <rect key="frame" x="0.0" y="52" width="375" height="1315"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bFW-we-kHp">
+                                <rect key="frame" x="0.0" y="52" width="375" height="2682"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGu-fW-sgX">
                                         <rect key="frame" x="16" y="8" width="124" height="30"/>
@@ -314,7 +313,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zJ2-JH-8UQ">
-                                        <rect key="frame" x="20" y="155" width="335" height="870"/>
+                                        <rect key="frame" x="20" y="155" width="335" height="518"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time spent learning?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdb-Hp-m2b">
                                                 <rect key="frame" x="0.0" y="0.0" width="159.5" height="20.5"/>
@@ -382,68 +381,57 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O79-tI-kkU">
-                                                <rect key="frame" x="0.0" y="533" width="335" height="337"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="337" id="Zgb-Fu-qlW"/>
-                                                </constraints>
-                                                <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewCell" id="SZ8-Ga-e3o" customClass="ReviewTableViewCell" customModule="lizzie_peaks" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="335" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SZ8-Ga-e3o" id="IqK-dd-pE2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjk-Ch-ytN">
-                                                                    <rect key="frame" x="24" y="11" width="36" height="21"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yo1-xf-GEv">
-                                                                    <rect key="frame" x="146" y="6" width="66" height="21"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="mjk-Ch-ytN" firstAttribute="top" secondItem="IqK-dd-pE2" secondAttribute="topMargin" constant="-20" id="Izu-zS-qbd"/>
-                                                                <constraint firstItem="yo1-xf-GEv" firstAttribute="leading" secondItem="mjk-Ch-ytN" secondAttribute="trailing" constant="86" id="MxU-Lv-Imt"/>
-                                                                <constraint firstItem="mjk-Ch-ytN" firstAttribute="centerY" secondItem="IqK-dd-pE2" secondAttribute="centerY" id="Vre-dx-DEi"/>
-                                                                <constraint firstItem="mjk-Ch-ytN" firstAttribute="leading" secondItem="IqK-dd-pE2" secondAttribute="leadingMargin" constant="8" id="Z9B-mc-1Jf"/>
-                                                                <constraint firstItem="yo1-xf-GEv" firstAttribute="top" secondItem="IqK-dd-pE2" secondAttribute="topMargin" constant="-25" id="sRB-ej-6Nj"/>
-                                                            </constraints>
-                                                        </tableViewCellContentView>
-                                                        <connections>
-                                                            <outlet property="dateReviewedLabel" destination="mjk-Ch-ytN" id="ySN-Ij-1rH"/>
-                                                            <outlet property="reviewDurationLabel" destination="yo1-xf-GEv" id="Twd-A9-14i"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                </prototypes>
-                                            </tableView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="X0B-jy-C2f" secondAttribute="trailing" id="0c3-lz-0St"/>
-                                            <constraint firstItem="O79-tI-kkU" firstAttribute="top" secondItem="Ocv-C0-Q41" secondAttribute="bottom" constant="15" id="67G-Pj-Oaq"/>
                                             <constraint firstAttribute="trailing" secondItem="Ocv-C0-Q41" secondAttribute="trailing" id="6hH-IT-6vc"/>
                                             <constraint firstItem="Ocv-C0-Q41" firstAttribute="leading" secondItem="zJ2-JH-8UQ" secondAttribute="leading" id="9KQ-vz-nMk"/>
                                             <constraint firstAttribute="trailing" secondItem="i7g-ko-u5a" secondAttribute="trailing" id="B6t-6g-Csp"/>
-                                            <constraint firstAttribute="bottom" secondItem="O79-tI-kkU" secondAttribute="bottom" id="Bu2-Ro-ksW"/>
                                             <constraint firstItem="oW6-Zl-dOG" firstAttribute="leading" secondItem="zJ2-JH-8UQ" secondAttribute="leading" id="Ei3-Iq-WJQ"/>
                                             <constraint firstItem="zG9-LW-eIe" firstAttribute="leading" secondItem="zJ2-JH-8UQ" secondAttribute="leading" id="Obv-Ep-s5e"/>
-                                            <constraint firstItem="O79-tI-kkU" firstAttribute="leading" secondItem="zJ2-JH-8UQ" secondAttribute="leading" id="URT-sa-KOw"/>
                                             <constraint firstItem="K3E-i6-XhD" firstAttribute="leading" secondItem="zJ2-JH-8UQ" secondAttribute="leading" id="VZk-a4-wR3"/>
                                             <constraint firstItem="X0B-jy-C2f" firstAttribute="leading" secondItem="zJ2-JH-8UQ" secondAttribute="leading" id="bcT-LA-HK4"/>
                                             <constraint firstAttribute="trailing" secondItem="oW6-Zl-dOG" secondAttribute="trailing" constant="100" id="ijz-oo-thc"/>
-                                            <constraint firstAttribute="trailing" secondItem="O79-tI-kkU" secondAttribute="trailing" id="mWT-8r-A5I"/>
                                             <constraint firstAttribute="trailing" secondItem="zG9-LW-eIe" secondAttribute="trailing" id="myu-mh-2rh"/>
                                             <constraint firstAttribute="trailing" secondItem="K3E-i6-XhD" secondAttribute="trailing" constant="215.5" id="qPo-LP-STQ"/>
                                             <constraint firstItem="i7g-ko-u5a" firstAttribute="leading" secondItem="zJ2-JH-8UQ" secondAttribute="leading" id="s0V-PZ-8ib"/>
                                         </constraints>
                                     </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Quh-Zo-Fcb">
+                                        <rect key="frame" x="16" y="695" width="335" height="562"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewCell" id="SkQ-YM-MHA" customClass="ReviewTableViewCell" customModule="lizzie_peaks" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="335" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SkQ-YM-MHA" id="Mdc-nS-4RG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0l-ka-Ksa">
+                                                            <rect key="frame" x="35" y="11" width="42" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HjN-fO-SVq">
+                                                            <rect key="frame" x="190" y="11" width="42" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="dateReviewedLabel" destination="D0l-ka-Ksa" id="2Ap-ZI-owQ"/>
+                                                    <outlet property="reviewDurationLabel" destination="HjN-fO-SVq" id="f8R-Wb-asi"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="bGu-fW-sgX" firstAttribute="leading" secondItem="xED-aZ-qpr" secondAttribute="leading" id="0B9-ni-LGp"/>
@@ -480,14 +468,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nXm-T0-Tch"/>
                     </view>
-                    <size key="freeformSize" width="375" height="1367"/>
+                    <size key="freeformSize" width="375" height="2367"/>
                     <connections>
                         <outlet property="mainConceptTextField" destination="Zr5-lX-0wu" id="2AT-d8-Ife"/>
                         <outlet property="newLearningsTextView" destination="Ocv-C0-Q41" id="YQr-iQ-Bbl"/>
                         <outlet property="oldSkillsTextView" destination="i7g-ko-u5a" id="F6e-XR-iLo"/>
                         <outlet property="percentNewLabel" destination="xSs-ea-EAt" id="d7M-pa-Kho"/>
                         <outlet property="percentNewSlider" destination="zG9-LW-eIe" id="ht7-fz-mGk"/>
-                        <outlet property="reviewsTableView" destination="O79-tI-kkU" id="qNj-Za-GEL"/>
+                        <outlet property="reviewsTableView" destination="Quh-Zo-Fcb" id="f4n-4n-71h"/>
                         <outlet property="scroller" destination="bFW-we-kHp" id="1Yl-KN-bpy"/>
                         <outlet property="timeLearnedLabel" destination="qXE-cZ-YbN" id="Tkc-fW-Vo7"/>
                         <outlet property="timeSpentLearningLabel" destination="vfB-4K-FSZ" id="h3Y-DJ-sjt"/>

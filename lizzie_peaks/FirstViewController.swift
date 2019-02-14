@@ -14,12 +14,9 @@ protocol learningsProtocol {
 
 class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, learningsProtocol{
 
-    @IBOutlet var skillsTable: UITableView!
     @IBOutlet weak var addNewSkillBtn: UIButton!
     
-    
-    @IBOutlet weak var skillTableView: UITableView!
-    
+    @IBOutlet weak var skillsTableView: UITableView!
     @IBOutlet weak var leaningsCntLabel: UILabel!
     // These strings will be the data for the table view cells
     
@@ -32,16 +29,17 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     let dataManager = DataManager()
     var allSkills : [SkillObj] = []
     let displayDateFormatter = DateFormatter()
+    private let generator = UIImpactFeedbackGenerator(style: .light)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addNewSkillBtn.layer.zPosition = 1;
         displayDateFormatter.dateFormat = "MMM d, h:mm a"
 
-        skillsTable.delegate = self
-        skillsTable.dataSource = self
-        skillsTable.tableFooterView = UIView()
-        skillsTable.separatorColor = UIColor.white
+        skillsTableView.delegate = self
+        skillsTableView.dataSource = self
+        skillsTableView.tableFooterView = UIView()
+        skillsTableView.separatorColor = UIColor.white
     
         let permissionsManager = PermissionsManager()
         permissionsManager.requestPermissions()
@@ -58,7 +56,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:SkillTableViewCell = self.skillsTable.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! SkillTableViewCell
+        let cell:SkillTableViewCell = self.skillsTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! SkillTableViewCell
         if allSkills.count > indexPath.row{
             let cellData = allSkills[indexPath.row]
             
@@ -75,11 +73,13 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "conceptSegue", sender: allSkills[indexPath.row])
+        generator.impactOccurred()
         print("You tapped cell number \(indexPath.row).")
     }
     
 
     @IBAction func settingsBtn(_ sender: UIButton) {
+        generator.impactOccurred()
         performSegue(withIdentifier: "settingsSegue", sender: self)
     }
     
@@ -94,7 +94,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
     
     func reloadLearningsTable(){
-        self.skillsTable.reloadData()
+        self.skillsTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
