@@ -24,6 +24,7 @@ class TimerViewController: UIViewController {
     var timeReviewed = Date()
     let dataManager = DataManager()
     var conceptViewControllerRef : UIViewController!
+    var conceptDelegate : conceptProtocol?
     private let generator = UIImpactFeedbackGenerator(style: .light)
 
     override func viewDidLoad() {
@@ -97,6 +98,7 @@ class TimerViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pop = segue.destination as? ReviewViewController {
             pop.reviewData = sender as? ReviewObj
+            pop.conceptDelegate = self.conceptDelegate
             pop.conceptViewControllerRef = self.conceptViewControllerRef
         }
     }

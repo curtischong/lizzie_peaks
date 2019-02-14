@@ -215,10 +215,12 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         if let pop = segue.destination as? TimerViewController {
             pop.conceptViewControllerRef = self
             pop.skillData = sender as? SkillObj
+            pop.conceptDelegate = self
         }
         if let pop = segue.destination as? ReviewViewController {
             pop.reviewData = sender as? ReviewObj
             pop.conceptViewControllerRef = self
+            pop.conceptDelegate = self
         }
     }
     
@@ -247,8 +249,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             let newDate = cellData.dateReviewed
             
             cell.dateReviewedLabel.text = self.displayDateFormatter.string(from: newDate)
-            cell.reviewDurationLabel.text = String(cellData.reviewDuration)
-            // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
+            cell.reviewDurationLabel.text = String(cellData.reviewDuration) + " min"
         }
         NSLog("created cell")
         return cell
