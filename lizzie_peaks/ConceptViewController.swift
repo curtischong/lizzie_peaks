@@ -10,6 +10,7 @@ import UIKit
 
 //TODO: show to date of the last review at the top and make it a button that brings you directly to the reviewViewController
 
+//TODO: in the concept protocol, have it calls schedule reviews manager and updates the next scheduled review
 protocol conceptProtocol {
     func reloadReviewTable()
 }
@@ -29,6 +30,11 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     @IBOutlet weak var reviewsTableView: UITableView!
     
     @IBOutlet weak var scroller: UIScrollView!
+    
+    
+    @IBOutlet weak var nextReviewDateLabel: UILabel!
+    @IBOutlet weak var nextReviewDurationLabel: UILabel!
+    
     private let generator = UIImpactFeedbackGenerator(style: .light)
     private var timeSpentLearningRealVal = 0
     private var percentNewRealVal = 0
@@ -120,6 +126,8 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         reviewsTableView.dataSource = self
         reviewsTableView.tableFooterView = UIView()
         reviewsTableView.separatorColor = UIColor.white
+        
+        updateNextReview()
     }
 
     @objc func saveTimeSpent(sender: UISlider) {
@@ -210,12 +218,6 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
         generator.impactOccurred()
-        /*if(skillData.scheduledReviews.count == 0){
-            NSLog("has no reviews!")
-            reviewScheduleManager.scheduleReview(skill : skillData)
-        }else{
-            NSLog("has \(skillData.scheduledReviews.count) reviews!")
-        }*/
         // Note: you want to reload the table last so all Skills are updated
         learningsDelegate?.reloadLearningsTable()
         dismiss(animated: true, completion: nil)
@@ -243,6 +245,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             ){
             NSLog("Scheduling new review for \(mainConceptTextField.text)")
             reviewScheduleManager.scheduleReview(skill : skillData)
+            updateNextReview()
         }else{
             if(verboseLogs){
                 NSLog("check failed")
@@ -270,7 +273,17 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         self.reviewsTableView.reloadData()
     }
     
-    
+    func updateNextReview(){
+        if(skillData.scheduledReviews.count > 0){
+            let curTime = Date()
+            for (index, reviewDate) in skillData.scheduledReviews.enumerated(){
+                if reviewDate > curTime{
+                    nextReviewDateLabel.text = self.displayDateFormatter.string(from: skillData.scheduledReviews[index])
+                    nextReviewDurationLabel.text = "\(skillData.scheduledReviewDurations[index] / (60*10))" + " min"
+                }
+            }
+        }
+    }
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -289,7 +302,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             let newDate = cellData.dateReviewed
             
             cell.dateReviewedLabel.text = self.displayDateFormatter.string(from: newDate)
-            cell.reviewDurationLabel.text = String(cellData.reviewDuration) + " min"
+            cell.reviewDurationLabel.text = String(cellData.reviewDuration/60) + " min"
         }
         if(verboseLogs){
             NSLog("created reviewTableViewCell")
