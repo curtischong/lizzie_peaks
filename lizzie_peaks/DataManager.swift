@@ -14,7 +14,7 @@ class DataManager{
     let context : NSManagedObjectContext!
     let skillEntity :  NSEntityDescription!
     let reviewEntity :  NSEntityDescription!
-    var settingsManager = SettingsManager()
+    let settingsManager = SettingsManager()
     var verboseLogs : Bool!
     init(){
         verboseLogs = settingsManager.verboseLogs
@@ -129,11 +129,14 @@ class DataManager{
         }
     }
     
-    func getAllEntities(entityName : String, predicate : NSPredicate?) -> [NSManagedObject]{
+    func getAllEntities(entityName : String, predicate : NSPredicate?, sortDescriptors : [NSSortDescriptor]) -> [NSManagedObject]{
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         
         if predicate != nil{
             request.predicate = predicate
+        }
+        if sortDescriptors.count > 0{
+            request.sortDescriptors = sortDescriptors
         }
         
         do{
@@ -147,7 +150,9 @@ class DataManager{
     
     func getAllSkills() -> [SkillObj]{
         // TODO: find a way to batch convert these entites
-        let entities = getAllEntities(entityName : "Skill", predicate: nil)
+        let sortDescriptor = NSSortDescriptor(key: "timeLearned", ascending: false)
+        
+        let entities = getAllEntities(entityName : "Skill", predicate: nil, sortDescriptors : [sortDescriptor])
         var allEntities : [SkillObj] = []
         for entity in entities{
             
@@ -186,7 +191,9 @@ class DataManager{
     
     func getAllReviews(timeLearned : Date) -> [ReviewObj]{
         let reviewPredicate = NSPredicate(format: "timeLearned = %@", argumentArray: [timeLearned])
-        let entities = getAllEntities(entityName : "Review", predicate: reviewPredicate)
+        let sortDescriptor = NSSortDescriptor(key: "dateReviewed", ascending: false)
+        
+        let entities = getAllEntities(entityName : "Review", predicate: reviewPredicate, sortDescriptors : [sortDescriptor])
         var allEntities : [ReviewObj] = []
         for entity in entities{
             allEntities.append(ReviewObj(concept : entity.value(forKey: "concept") as! String,

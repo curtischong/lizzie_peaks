@@ -154,8 +154,8 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
+        generator.impactOccurred()
         if(oldSkillsTextView.isFirstResponder || newLearningsTextView.isFirstResponder){
-            generator.impactOccurred()
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 if self.view.frame.origin.y == 0 {
                     self.view.frame.origin.y -= (keyboardSize.height) // 30 is the height of the toolbar
@@ -248,7 +248,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             updateNextReview()
         }else{
             if(verboseLogs){
-                NSLog("check failed")
+                NSLog("skill complete check failed")
             }
         }
     }
@@ -288,7 +288,6 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         allReviews = dataManager.getAllReviews(timeLearned : skillData.timeLearned)
-        allReviews = allReviews.reversed() // TODO: refactor this reverse in the coredata command
         return allReviews.count
     }
     
@@ -296,6 +295,9 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:ReviewTableViewCell = self.reviewsTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ReviewTableViewCell
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         if allReviews.count > indexPath.row{
             let cellData = allReviews[indexPath.row]
             
@@ -303,6 +305,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             
             cell.dateReviewedLabel.text = self.displayDateFormatter.string(from: newDate)
             cell.reviewDurationLabel.text = String(cellData.reviewDuration/60) + " min"
+            
         }
         if(verboseLogs){
             NSLog("created reviewTableViewCell")

@@ -27,12 +27,15 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     // Don't forget to enter this in IB also
     let cellReuseIdentifier = "skillCell"
     let dataManager = DataManager()
+    let settingsManager = SettingsManager()
+    var verboseLogs : Bool!
     var allSkills : [SkillObj] = []
     let displayDateFormatter = DateFormatter()
     private let generator = UIImpactFeedbackGenerator(style: .light)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        verboseLogs = settingsManager.verboseLogs
         addNewSkillBtn.layer.zPosition = 1;
         displayDateFormatter.dateFormat = "MMM d, h:mm a"
 
@@ -48,7 +51,9 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         allSkills = dataManager.getAllSkills()
-        allSkills = allSkills.reversed() // TODO: refactor this reverse in the coredata command
+        if (verboseLogs){
+            NSLog("Found \(allSkills.count) skills")
+        }
         leaningsCntLabel.text = String(allSkills.count)
         return allSkills.count
     }
@@ -57,6 +62,9 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:SkillTableViewCell = self.skillsTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! SkillTableViewCell
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         if allSkills.count > indexPath.row{
             let cellData = allSkills[indexPath.row]
             
@@ -64,6 +72,9 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
             
             cell.mainConceptLabel.text = (cellData.concept)
             cell.dateLearnedLabel.text = self.displayDateFormatter.string(from: newDate)
+            if(cellData.scheduledReviews.count == 0){
+                cell.contentView.backgroundColor = UIColor(red:1.00, green:0.52, blue:0.52, alpha:1.0)
+            }
             // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
         }
         
@@ -74,7 +85,9 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         generator.impactOccurred()
         performSegue(withIdentifier: "conceptSegue", sender: allSkills[indexPath.row])
-        print("You tapped cell number \(indexPath.row).")
+        if(verboseLogs){
+            print("You tapped cell number \(indexPath.row).")
+        }
     }
     
 
@@ -93,6 +106,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
     
     func reloadLearningsTable(){
+        allSkills = dataManager.getAllSkills()
         self.skillsTableView.reloadData()
     }
     

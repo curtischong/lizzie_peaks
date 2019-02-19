@@ -20,10 +20,12 @@ class SettingsManager{
     }
     
     func getSavedSettings(){
+        var shouldSaveDefault = false
         if let defaultReview = defaults.string(forKey: "defaultReview") {
             self.defaultReview = defaultReview
         }else{
-            print("Couldn't retrieve defaultReview from storage.")
+            print("Couldn't retrieve defaultReview from storage. Setting default settings")
+            shouldSaveDefault = true
         }
         
         if let briefReviews = defaults.string(forKey: "briefReviews") {
@@ -33,7 +35,11 @@ class SettingsManager{
                 self.briefReviews = false
             }
         }else{
-            print("Couldn't retrieve briefReviews from storage.")
+            print("Couldn't retrieve briefReviews from storage. Setting default settings")
+            shouldSaveDefault = true
+        }
+        if(shouldSaveDefault){
+            saveSettings()
         }
     }
     
