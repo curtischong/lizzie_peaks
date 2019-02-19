@@ -11,6 +11,7 @@ class SettingsManager{
     var defaults : UserDefaults!
     var defaultReview : String
     var briefReviews: Bool
+    var verboseLogs = false
     init(){
         defaultReview = "Simple"
         defaults = UserDefaults.standard

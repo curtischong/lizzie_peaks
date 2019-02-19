@@ -14,7 +14,10 @@ class DataManager{
     let context : NSManagedObjectContext!
     let skillEntity :  NSEntityDescription!
     let reviewEntity :  NSEntityDescription!
+    var settingsManager = SettingsManager()
+    var verboseLogs : Bool!
     init(){
+        verboseLogs = settingsManager.verboseLogs
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         skillEntity = NSEntityDescription.entity(forEntityName: "Skill", in: context)
         reviewEntity = NSEntityDescription.entity(forEntityName: "Review", in: context)
@@ -39,8 +42,9 @@ class DataManager{
             curSkill.setValue(scheduledReviewDurations, forKey: "scheduledReviewDurations")
             curSkill.setValue(reviews, forKey: "reviews")
             curSkill.setValue(reviewDurations, forKey: "reviewDurations")
-            
-            NSLog("Successfully converted skills to coredata entities")
+            if(verboseLogs){
+                NSLog("Successfully converted skills to coredata entities")
+            }
         } catch let error {
             NSLog("Couldn't convert scheduled reviews to binary: \(error)")
         }
@@ -60,7 +64,9 @@ class DataManager{
         skillToNSManagedObject(curSkill : curSkill, skill : skill)
         do {
             try context.save()
-            NSLog("Successfully saved the current Skill")
+            if(verboseLogs){
+                NSLog("Successfully saved the current Skill")
+            }
         } catch let error{
             NSLog("Couldn't save: the current Skill with  error: \(error)")
         }
@@ -71,7 +77,9 @@ class DataManager{
         reviewToNSManagedObject(curReview : curReview, review : review)
         do {
             try context.save()
-            NSLog("Successfully saved the current Review")
+            if(verboseLogs){
+                NSLog("Successfully saved the current Review")
+            }
         } catch let error{
             NSLog("Couldn't save: the current Review with  error: \(error)")
         }
