@@ -104,6 +104,7 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func backBtn(_ sender: Any) {
+        generator.impactOccurred()
         dismiss(animated: true, completion: nil)
     }
 }

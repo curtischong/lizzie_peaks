@@ -47,9 +47,14 @@ class ReviewViewController: UIViewController {
     @objc func doneButtonAction() {
         self.view.endEditing(true)
     }
+    @IBAction func deleteReviewBtn(_ sender: UIButton) {
+        generator.impactOccurred()
+        dataManager.deleteReview(dateReviewed: reviewData.dateReviewed)
+        conceptDelegate?.reloadReviewTable()
+        self.conceptViewControllerRef.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func done(_ sender: UIButton) {
-        // TODO: pass a reference to the concept view controller
         generator.impactOccurred()
         conceptDelegate?.reloadReviewTable()
        self.conceptViewControllerRef.dismiss(animated: true, completion: nil)

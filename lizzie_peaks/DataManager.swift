@@ -190,6 +190,49 @@ class DataManager{
         return allEntities
     }
     
+    func deleteSkill(timeLearned : Date){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Skill")
+        fetchRequest.predicate = NSPredicate(format: "timeLearned == %@", argumentArray: [timeLearned])
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do{
+            try context.execute(deleteRequest)
+            try context.save()
+            NSLog("Deleted skill created at: \(timeLearned)")
+        }catch let error{
+            NSLog("Couldn't delete skill created at \(timeLearned) with error: \(error)")
+        }
+    }
+    
+    
+    func deleteReview(dateReviewed : Date){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Review")
+        fetchRequest.predicate = NSPredicate(format: "dateReviewed == %@", argumentArray: [dateReviewed])
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do{
+            try context.execute(deleteRequest)
+            try context.save()
+            NSLog("Deleted review created at: \(dateReviewed)")
+        }catch let error{
+            NSLog("Couldn't delete review created at \(dateReviewed) with error: \(error)")
+        }
+    }
+    
+    func deleteReviews(timeLearned : Date){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Review")
+        fetchRequest.predicate = NSPredicate(format: "timeLearned == %@", argumentArray: [timeLearned])
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do{
+            try context.execute(deleteRequest)
+            try context.save()
+            NSLog("Deleted review created at: \(timeLearned)")
+        }catch let error{
+            NSLog("Couldn't delete review created at \(timeLearned) with error: \(error)")
+        }
+    }
+    
     func dropSkillRows(){
         // remove MarkEvent rows
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Skill")

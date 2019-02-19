@@ -76,12 +76,12 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
 
     @IBAction func backSettingsBtn(_ sender: UIButton) {
         generator.impactOccurred()
+        learningsDelegate?.reloadLearningsTable()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func purgeDatabaseBtn(_ sender: UIButton) {
         generator.impactOccurred()
         dataManager.dropAllRows()
-        learningsDelegate?.reloadLearningsTable()
     }
 }

@@ -136,6 +136,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     
     @objc func doneButtonAction() {
         //skillsUsedTextView.resignFirstResponder()
+        generator.impactOccurred()
         self.view.endEditing(true)
     }
     
@@ -210,6 +211,13 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         generator.impactOccurred()
         performSegue(withIdentifier: "timerSegue", sender: skillData)
     }
+    @IBAction func deleteSkillBtn(_ sender: Any) {
+        generator.impactOccurred()
+        dataManager.deleteReviews(timeLearned: skillData.timeLearned)
+        dataManager.deleteSkill(timeLearned: skillData.timeLearned)
+        learningsDelegate?.reloadLearningsTable()
+        dismiss(animated: true, completion: nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let pop = segue.destination as? TimerViewController {
@@ -235,7 +243,6 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         allReviews = dataManager.getAllReviews(timeLearned : skillData.timeLearned)
         allReviews = allReviews.reversed() // TODO: refactor this reverse in the coredata command
-        NSLog("Found \(allReviews.count) reviews")
         return allReviews.count
     }
     

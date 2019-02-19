@@ -72,8 +72,8 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "conceptSegue", sender: allSkills[indexPath.row])
         generator.impactOccurred()
+        performSegue(withIdentifier: "conceptSegue", sender: allSkills[indexPath.row])
         print("You tapped cell number \(indexPath.row).")
     }
     
@@ -84,10 +84,9 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func addConceptBtn(_ sender: UIButton) {
+        generator.impactOccurred()
         let timeLearned = Date()
-        
         let curSkill = SkillObj(timeLearned : timeLearned)
-        
         dataManager.insertSkill(skill: curSkill)
         
         performSegue(withIdentifier: "conceptSegue", sender: curSkill)
