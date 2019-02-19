@@ -66,13 +66,11 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         oldSkillsTextView.layer.borderWidth = 1.0
         oldSkillsTextView.layer.cornerRadius = 5
         //oldSkillsTextView.frame.size.height = 100
-        oldSkillsTextView.isScrollEnabled = false
         
         newLearningsTextView.layer.borderColor = UIColor(red:1.00, green:0.51, blue:0.28, alpha:1.0).cgColor
         newLearningsTextView.layer.borderWidth = 1.0
         newLearningsTextView.layer.cornerRadius = 5
         //newLearningsTextView.frame.size.height = 100
-        oldSkillsTextView.isScrollEnabled = false
         // Do any additional setup after loading the view.
         
         // keyboard
@@ -246,7 +244,9 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             NSLog("Scheduling new review for \(mainConceptTextField.text)")
             reviewScheduleManager.scheduleReview(skill : skillData)
         }else{
-            NSLog("check failed")
+            if(verboseLogs){
+                NSLog("check failed")
+            }
         }
     }
     
