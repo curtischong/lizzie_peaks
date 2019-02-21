@@ -11,6 +11,7 @@ import UIKit
 //TODO: show to date of the last review at the top and make it a button that brings you directly to the reviewViewController
 
 //TODO: in the concept protocol, have it calls schedule reviews manager and updates the next scheduled review
+
 protocol conceptProtocol {
     func reloadReviewTable()
 }
@@ -45,6 +46,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     let reviewScheduleManager = ReviewScheduleManager()
     let settingsManager = SettingsManager()
     let dataManager = DataManager()
+    let notificationManager = NotificationManager()
     var verboseLogs : Bool!
     var learningsDelegate : learningsProtocol?
     let displayDateFormatter = DateFormatter()
@@ -227,8 +229,9 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         generator.impactOccurred()
         performSegue(withIdentifier: "timerSegue", sender: skillData)
     }
-    @IBAction func deleteSkillBtn(_ sender: Any) {
+    @IBAction func deleteSkillBtn(_ sender: UIButton) {
         generator.impactOccurred()
+        notificationManager.removeNotifications(timeLearned: skillData.timeLearned, reviewDates : skillData.scheduledReviews)
         dataManager.deleteReviews(timeLearned: skillData.timeLearned)
         dataManager.deleteSkill(timeLearned: skillData.timeLearned)
         learningsDelegate?.reloadLearningsTable()

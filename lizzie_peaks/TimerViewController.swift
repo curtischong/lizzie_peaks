@@ -23,6 +23,7 @@ class TimerViewController: UIViewController {
     var timePassed = 0
     var timeReviewed = Date()
     let dataManager = DataManager()
+    let reviewScheduleManager = ReviewScheduleManager()
     var conceptViewControllerRef : UIViewController!
     var conceptDelegate : conceptProtocol?
     private let generator = UIImpactFeedbackGenerator(style: .light)
@@ -75,6 +76,7 @@ class TimerViewController: UIViewController {
         skillData.reviews.append(timeReviewed)
         skillData.reviewDurations.append(timePassed)
         dataManager.updateSkill(skill: skillData)
+        reviewScheduleManager.scheduleReview(skill: skillData)
         
         let reviewData = ReviewObj(
             concept : skillData.concept,

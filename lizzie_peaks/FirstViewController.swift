@@ -6,6 +6,7 @@
 //  Copyright © 2019 Curtis Chong. All rights reserved.
 //
 //TODO: if there are partially filled out skills, lizzie will send a notification telling you to finish them ever 2 hours
+//TODO: Sort the skills by red (need to be filled) then by blue (skills I need to review today)
 import UIKit
 
 protocol learningsProtocol {
@@ -65,7 +66,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
-        if allSkills.count > indexPath.row{
+        if indexPath.row < allSkills.count {
             let cellData = allSkills[indexPath.row]
             
             let newDate = cellData.timeLearned
@@ -74,6 +75,8 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
             cell.dateLearnedLabel.text = self.displayDateFormatter.string(from: newDate)
             if(cellData.scheduledReviews.count == 0){
                 cell.contentView.backgroundColor = UIColor(red:1.00, green:0.52, blue:0.52, alpha:1.0)
+            }else{
+                cell.contentView.backgroundColor = settingsManager.defaultColor
             }
             // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
         }
@@ -106,6 +109,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
     
     func reloadLearningsTable(){
+        NSLog("reloaded Table")
         allSkills = dataManager.getAllSkills()
         self.skillsTableView.reloadData()
     }
