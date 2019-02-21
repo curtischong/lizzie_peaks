@@ -13,8 +13,10 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var mainConceptLabel: UILabel!
     @IBOutlet weak var newLearningsTextView: UITextView!
     
-    var reviewData : ReviewObj!
     let dataManager = DataManager()
+    let networkManager = NetworkManager()
+    
+    var reviewData : ReviewObj!
     var conceptViewControllerRef : UIViewController!
     var conceptDelegate : conceptProtocol?
     private let generator = UIImpactFeedbackGenerator(style: .light)
@@ -47,6 +49,14 @@ class ReviewViewController: UIViewController {
     @objc func doneButtonAction() {
         self.view.endEditing(true)
     }
+    
+    func reviewFormFilled() -> Bool{
+        if(newLearningsTextView.text != ""){
+            return true
+        }
+        return false
+    }
+    
     @IBAction func deleteReviewBtn(_ sender: UIButton) {
         generator.impactOccurred()
         dataManager.deleteReview(dateReviewed: reviewData.dateReviewed)
@@ -57,7 +67,10 @@ class ReviewViewController: UIViewController {
     @IBAction func done(_ sender: UIButton) {
         generator.impactOccurred()
         conceptDelegate?.reloadReviewTable()
-       self.conceptViewControllerRef.dismiss(animated: true, completion: nil)
+        if(reviewFormFilled()){
+            networkManager.uploadReview(review: reviewData)
+        }
+        self.conceptViewControllerRef.dismiss(animated: true, completion: nil)
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {

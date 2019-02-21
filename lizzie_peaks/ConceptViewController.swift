@@ -22,17 +22,12 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     @IBOutlet weak var percentNewLabel: UILabel!
     @IBOutlet weak var timeSpentLearningSlider: UISlider!
     @IBOutlet weak var percentNewSlider: UISlider!
-    
     @IBOutlet weak var mainConceptTextField: UITextField!
     @IBOutlet weak var oldSkillsTextView: UITextView!
     @IBOutlet weak var newLearningsTextView: UITextView!
     @IBOutlet weak var timeLearnedLabel: UILabel!
-    
     @IBOutlet weak var reviewsTableView: UITableView!
-    
     @IBOutlet weak var scroller: UIScrollView!
-    
-    
     @IBOutlet weak var nextReviewDateLabel: UILabel!
     @IBOutlet weak var nextReviewDurationLabel: UILabel!
     
@@ -40,13 +35,15 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     private var timeSpentLearningRealVal = 0
     private var percentNewRealVal = 0
     
-    var timeLearned : Date?
-    let timeSpentLearningMax = Float(60.0)
-    let percentNewMax = Float(20.0)
     let reviewScheduleManager = ReviewScheduleManager()
     let settingsManager = SettingsManager()
     let dataManager = DataManager()
     let notificationManager = NotificationManager()
+    let networkManager = NetworkManager()
+    
+    var timeLearned : Date?
+    let timeSpentLearningMax = Float(60.0)
+    let percentNewMax = Float(20.0)
     var verboseLogs : Bool!
     var learningsDelegate : learningsProtocol?
     let displayDateFormatter = DateFormatter()
@@ -221,6 +218,9 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
         generator.impactOccurred()
         // Note: you want to reload the table last so all Skills are updated
+        if(skillFormFilled()){
+            networkManager.uploadSkill(skill : skillData)
+        }
         learningsDelegate?.reloadLearningsTable()
         dismiss(animated: true, completion: nil)
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
@@ -238,14 +238,20 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         dismiss(animated: true, completion: nil)
     }
     
-    func checkFormComplete(){
+    func skillFormFilled() -> Bool{
         if(skillData.scheduledReviews.count == 0 &&
             mainConceptTextField.text != "" &&
             newLearningsTextView.text != "" &&
             oldSkillsTextView.text != "" &&
             timeSpentLearningRealVal != 0 &&
-            percentNewRealVal != 0
-            ){
+            percentNewRealVal != 0){
+            return true
+        }
+        return false
+    }
+    
+    func checkFormComplete(){
+        if(skillFormFilled()){
             NSLog("Scheduling new review for \(mainConceptTextField.text)")
             reviewScheduleManager.scheduleReview(skill : skillData)
             updateNextReview()

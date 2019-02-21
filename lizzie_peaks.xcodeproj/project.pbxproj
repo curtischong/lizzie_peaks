@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0049326217ABCCAB0E1EFEEE /* Pods_lizzie_peaks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D918EA4FAAD103116A7622 /* Pods_lizzie_peaks.framework */; };
 		AA45CEB451C35CE8474CCB36 /* Pods_lizzie_peaksUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10518D7D4D862F4F762A2F1F /* Pods_lizzie_peaksUITests.framework */; };
+		E9219CF2221F2AD7002D302C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9219CF1221F2AD7002D302C /* NetworkManager.swift */; };
 		E92CF0D72203D7ED00DF3ADA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */; };
 		E92CF0D92203D7ED00DF3ADA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */; };
 		E92CF0DB2203D7ED00DF3ADA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0DA2203D7ED00DF3ADA /* SecondViewController.swift */; };
@@ -63,6 +64,7 @@
 		7960943A574D80A448089E40 /* Pods-lizzie_peaks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lizzie_peaks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lizzie_peaks/Pods-lizzie_peaks.debug.xcconfig"; sourceTree = "<group>"; };
 		C3D918EA4FAAD103116A7622 /* Pods_lizzie_peaks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lizzie_peaks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78D22A7456D35D1FB49029F /* Pods-lizzie_peaksTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lizzie_peaksTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-lizzie_peaksTests/Pods-lizzie_peaksTests.release.xcconfig"; sourceTree = "<group>"; };
+		E9219CF1221F2AD7002D302C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E92CF0D32203D7ED00DF3ADA /* lizzie_peaks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lizzie_peaks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E92CF0D62203D7ED00DF3ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E92CF0D82203D7ED00DF3ADA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				E9F5264F22052A58004F66F3 /* SkillTableViewCell.swift */,
 				E92CF11622040AF300DF3ADA /* DataManager.swift */,
 				E9F5265522056C89004F66F3 /* HttpManager.swift */,
+				E9219CF1221F2AD7002D302C /* NetworkManager.swift */,
 				E9F5265D2205F458004F66F3 /* NotificationManager.swift */,
 				E9F5265F2205F4E7004F66F3 /* PermissionsManager.swift */,
 				E9F5265B2205808E004F66F3 /* SettingsManager.swift */,
@@ -454,6 +457,7 @@
 				E92CF0D72203D7ED00DF3ADA /* AppDelegate.swift in Sources */,
 				E9CC4A292213AF6800BFDB90 /* TimerViewController.swift in Sources */,
 				E9F5265C2205808E004F66F3 /* SettingsManager.swift in Sources */,
+				E9219CF2221F2AD7002D302C /* NetworkManager.swift in Sources */,
 				E92CF0D92203D7ED00DF3ADA /* FirstViewController.swift in Sources */,
 				E9F5265222055FA0004F66F3 /* SettingsViewController.swift in Sources */,
 				E9F5265422056900004F66F3 /* ReviewViewController.swift in Sources */,
