@@ -10,7 +10,11 @@ import Foundation
 import Alamofire
 class NetworkManager{
     let SERVERIP = "http://10.8.0.2:9000"
+    let sendToServer = false
     func uploadSkill(skill : SkillObj){
+        if(!sendToServer){
+            return
+        }
         let parameters: Parameters = [
             "concept" : skill.concept,
             "newLearnings" : skill.newLearnings,
@@ -38,6 +42,9 @@ class NetworkManager{
     }
 
     func uploadReview(review : ReviewObj){
+        if(!sendToServer){
+            return
+        }
         let parameters: Parameters = [
             "concept" : review.concept,
             "dateReviewed" : review.dateReviewed,
