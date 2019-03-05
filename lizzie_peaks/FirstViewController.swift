@@ -29,8 +29,11 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     let cellReuseIdentifier = "skillCell"
     let dataManager = DataManager()
     let settingsManager = SettingsManager()
+    let reviewScheduleManager = ReviewScheduleManager()
     var verboseLogs : Bool!
     var allSkills : [SkillObj] = []
+    var scheduledTodaySkillsIdx = 999
+    var otherSkillsIdx = 999
     let displayDateFormatter = DateFormatter()
     private let generator = UIImpactFeedbackGenerator(style: .light)
     
@@ -52,6 +55,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         allSkills = dataManager.getAllSkills()
+        sortSkills()
         if (verboseLogs){
             NSLog("Found \(allSkills.count) skills")
         }
@@ -73,10 +77,13 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
             
             cell.mainConceptLabel.text = (cellData.concept)
             cell.dateLearnedLabel.text = self.displayDateFormatter.string(from: newDate)
-            if(cellData.scheduledReviews.count == 0){
-                cell.contentView.backgroundColor = UIColor(red:1.00, green:0.52, blue:0.52, alpha:1.0)
-            }else{
+            if(indexPath.row >= otherSkillsIdx){
                 cell.contentView.backgroundColor = settingsManager.defaultColor
+            }else if(indexPath.row >= scheduledTodaySkillsIdx){
+                cell.contentView.backgroundColor = UIColor(red:0.05, green:0.85, blue:0.96, alpha:1.0)
+                //UIColor(red:1.0,green:0.0,blue:0.0,alpha:1.0)
+            }else{
+                cell.contentView.backgroundColor = UIColor(red:1.00, green:0.52, blue:0.52, alpha:1.0)
             }
             // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
         }
@@ -111,7 +118,43 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     func reloadLearningsTable(){
         NSLog("reloaded Table")
         allSkills = dataManager.getAllSkills()
+        sortSkills()
         self.skillsTableView.reloadData()
+    }
+    
+    func sortSkills(){
+        // Sorts the skills for the tableView
+        // the order goes from:
+        // 1. incomplete
+        // 2. review today
+        // 3, other tasks
+        
+        var incompleteSkills : [SkillObj] = []
+        var scheduledTodaySkills : [SkillObj] = []
+        var otherSkills : [SkillObj] = []
+        for skill in allSkills{
+
+            if(skill.scheduledReviews.count == 0){
+                incompleteSkills.append(skill)
+            }else{
+                let nearestMorning = reviewScheduleManager.nearestMorning(date : skill.scheduledReviews.last!)
+                let thisMorning = Date().addingTimeInterval(TimeInterval(-60.0 * 60.0 * 24.0))
+                if(nearestMorning == thisMorning){
+                    scheduledTodaySkills.append(skill)
+                }else{
+                    otherSkills.append(skill)
+                }
+            }
+        }
+        allSkills = incompleteSkills
+        scheduledTodaySkillsIdx = allSkills.count
+        for skill in scheduledTodaySkills{
+            allSkills.append(skill)
+        }
+        otherSkillsIdx = allSkills.count
+        for skill in otherSkills{
+            allSkills.append(skill)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -313,13 +313,17 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             let newDate = cellData.dateReviewed
             
             cell.dateReviewedLabel.text = self.displayDateFormatter.string(from: newDate)
-            cell.reviewDurationLabel.text = String(cellData.reviewDuration/60) + " min"
+            cell.reviewDurationLabel.text = String(roundToTwoDecimal(num: Double(cellData.reviewDuration)/60.0)) + " min"
             
         }
         if(verboseLogs){
             NSLog("created reviewTableViewCell")
         }
         return cell
+    }
+    
+    func roundToTwoDecimal(num : Double) -> Double{
+        return Double(round(100*num)/100)
     }
     
     // method to run when table view cell is tapped

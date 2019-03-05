@@ -13,6 +13,7 @@ class NetworkManager{
     let sendToServer = false
     func uploadSkill(skill : SkillObj){
         if(!sendToServer){
+            NSLog("network turned off")
             return
         }
         let parameters: Parameters = [
@@ -43,6 +44,7 @@ class NetworkManager{
 
     func uploadReview(review : ReviewObj){
         if(!sendToServer){
+            NSLog("network turned off")
             return
         }
         let parameters: Parameters = [
