@@ -16,13 +16,11 @@ import UIKit
 class SettingsManager{
     var defaults : UserDefaults!
     var defaultReview : String
-    var briefReviews: Bool
     var verboseLogs = false
     let defaultColor = UIColor(red:0.96, green:0.77, blue:0.48, alpha:1.0)
     init(){
         defaultReview = "Simple"
         defaults = UserDefaults.standard
-        briefReviews = false
         self.getSavedSettings()
     }
     
@@ -34,17 +32,6 @@ class SettingsManager{
             print("Couldn't retrieve defaultReview from storage. Setting default settings")
             shouldSaveDefault = true
         }
-        
-        if let briefReviews = defaults.string(forKey: "briefReviews") {
-            if(briefReviews == "true"){
-                self.briefReviews = true
-            }else{
-                self.briefReviews = false
-            }
-        }else{
-            print("Couldn't retrieve briefReviews from storage. Setting default settings")
-            shouldSaveDefault = true
-        }
         if(shouldSaveDefault){
             saveSettings()
         }
@@ -52,10 +39,5 @@ class SettingsManager{
     
     func saveSettings(){
         defaults.set(defaultReview, forKey: "defaultReview")
-        if(briefReviews){
-            defaults.set("true", forKey: "briefReviews")
-        }else{
-            defaults.set("false", forKey: "briefReviews")
-        }
     }
 }

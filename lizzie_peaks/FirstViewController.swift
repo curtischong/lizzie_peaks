@@ -80,7 +80,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
             if(indexPath.row >= otherSkillsIdx){
                 cell.contentView.backgroundColor = settingsManager.defaultColor
             }else if(indexPath.row >= scheduledTodaySkillsIdx){
-                cell.contentView.backgroundColor = UIColor(red:0.05, green:0.85, blue:0.96, alpha:1.0)
+                cell.contentView.backgroundColor = UIColor(red:0.20, green:0.71, blue:0.78, alpha:1.0)
                 //UIColor(red:1.0,green:0.0,blue:0.0,alpha:1.0)
             }else{
                 cell.contentView.backgroundColor = UIColor(red:1.00, green:0.52, blue:0.52, alpha:1.0)
@@ -137,8 +137,8 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
             if(skill.scheduledReviews.count == 0){
                 incompleteSkills.append(skill)
             }else{
-                let nearestMorning = reviewScheduleManager.nearestMorning(date : skill.scheduledReviews.last!)
-                let thisMorning = Date().addingTimeInterval(TimeInterval(-60.0 * 60.0 * 24.0))
+                let nearestMorning = skill.scheduledReviews.last!
+                let thisMorning = reviewScheduleManager.nextMorning(date : Date().addingTimeInterval(TimeInterval(-60.0 * 60.0 * 24.0)))
                 if(nearestMorning == thisMorning){
                     scheduledTodaySkills.append(skill)
                 }else{

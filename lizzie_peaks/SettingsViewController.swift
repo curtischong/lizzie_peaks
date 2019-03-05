@@ -10,7 +10,6 @@ import UIKit
 
 class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource{
 
-    @IBOutlet weak var briefReviewSwitch: UISwitch!
     @IBOutlet weak var defaultReviewPicker: UIPickerView!
     
     var learningsDelegate : learningsProtocol?
@@ -18,7 +17,6 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
     let dataManager = DataManager()
     let settingsManager = SettingsManager()
     var defaultReviewCurve : Int!
-    var briefReviews = false
     private let generator = UIImpactFeedbackGenerator(style: .light)
     
     override func viewDidLoad() {
@@ -26,10 +24,8 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
 
         defaultReviewPicker.delegate = self
         defaultReviewPicker.dataSource = self
-        defaultReviewData = ["Simple", "Moderate", "ML"]
+        defaultReviewData = ["Simple", "Moderate", "ML", "Brief"]
         defaultReviewCurve = 0
-        briefReviews = settingsManager.briefReviews
-        briefReviewSwitch.setOn(briefReviews, animated: true)
         
         if(settingsManager.defaultReview == "Simple"){
             defaultReviewPicker.selectRow(0, inComponent: 0, animated: true)
@@ -37,19 +33,10 @@ class SettingsViewController: UIViewController , UIPickerViewDelegate, UIPickerV
             defaultReviewPicker.selectRow(1, inComponent: 0, animated: true)
         }else if(settingsManager.defaultReview == "ML"){
             defaultReviewPicker.selectRow(2, inComponent: 0, animated: true)
+        }else if(settingsManager.defaultReview == "Brief"){
+            defaultReviewPicker.selectRow(3, inComponent: 0, animated: true)
         }
     }
-    
-    
-
-    @IBAction func briefReviewSwitchMoved(_ sender: UISwitch) {
-        briefReviews = !briefReviews
-        print("Brief reviews: \(briefReviews)")
-        settingsManager.briefReviews = briefReviews
-        settingsManager.saveSettings()
-    }
-    
-
     
     // Number of columns of data
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
