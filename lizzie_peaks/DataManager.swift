@@ -27,8 +27,8 @@ class DataManager{
         do {
             let scheduledReviews = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviews, requiringSecureCoding: false)
             let scheduledReviewDurations = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviewDurations, requiringSecureCoding: false)
-            let reviews = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviews, requiringSecureCoding: false)
-            let reviewDurations = try NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviewDurations, requiringSecureCoding: false)
+            let reviews = try NSKeyedArchiver.archivedData(withRootObject: skill.reviews, requiringSecureCoding: false)
+            let reviewDurations = try NSKeyedArchiver.archivedData(withRootObject: skill.reviewDurations, requiringSecureCoding: false)
             // let scheduledReviews = NSKeyedArchiver.archivedData(withRootObject: )
             //let scheduledReviewDurations = NSKeyedArchiver.archivedData(withRootObject: skill.scheduledReviewDurations)
             

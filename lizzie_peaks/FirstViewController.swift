@@ -137,9 +137,23 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
             if(skill.scheduledReviews.count == 0){
                 incompleteSkills.append(skill)
             }else{
-                let nearestMorning = skill.scheduledReviews.last!
+                let scheduledMorning = skill.scheduledReviews.last!
+                
                 let thisMorning = reviewScheduleManager.nextMorning(date : Date().addingTimeInterval(TimeInterval(-60.0 * 60.0 * 24.0)))
-                if(nearestMorning == thisMorning){
+                //let thisMorning = reviewScheduleManager.nextMorning(date : Date())
+                //NSLog("\(scheduledMorning)")
+                NSLog("\(skill.reviews.count)")
+                if(skill.reviews.count > 0){
+                    let lastReview = reviewScheduleManager.nextMorning(date : skill.reviews.last!.addingTimeInterval(TimeInterval(-60.0 * 60.0 * 24.0)))
+                    //let lastReview = reviewScheduleManager.nextMorning(date : skill.reviews.last!)
+                    
+                    if(scheduledMorning == thisMorning && lastReview < scheduledMorning){
+                        scheduledTodaySkills.append(skill)
+                    }else{
+                        otherSkills.append(skill)
+                    }
+                    
+                }else if(scheduledMorning == thisMorning){
                     scheduledTodaySkills.append(skill)
                 }else{
                     otherSkills.append(skill)
