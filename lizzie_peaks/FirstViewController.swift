@@ -77,12 +77,11 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
             
             cell.mainConceptLabel.text = (cellData.concept)
             cell.dateLearnedLabel.text = self.displayDateFormatter.string(from: newDate)
-            if(indexPath.row >= otherSkillsIdx){
+            if(indexPath.row >= otherSkillsIdx){ // red
                 cell.contentView.backgroundColor = settingsManager.defaultColor
-            }else if(indexPath.row >= scheduledTodaySkillsIdx){
-                cell.contentView.backgroundColor = UIColor(red:0.20, green:0.71, blue:0.78, alpha:1.0)
-                //UIColor(red:1.0,green:0.0,blue:0.0,alpha:1.0)
-            }else{
+            }else if(indexPath.row >= scheduledTodaySkillsIdx){ // blue
+                cell.contentView.backgroundColor = UIColor(red:0.44, green:0.75, blue:0.78, alpha:1.0)
+            }else{ // normal
                 cell.contentView.backgroundColor = UIColor(red:1.00, green:0.52, blue:0.52, alpha:1.0)
             }
             // cell.mainConceptLabel.text = self.allSkills[indexPath.row]
@@ -115,6 +114,9 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
         performSegue(withIdentifier: "conceptSegue", sender: curSkill)
     }
     
+    @IBAction func reloadSkillsBtn(_ sender: UIButton) {
+        reloadLearningsTable()
+    }
     func reloadLearningsTable(){
         NSLog("reloaded Table")
         allSkills = dataManager.getAllSkills()

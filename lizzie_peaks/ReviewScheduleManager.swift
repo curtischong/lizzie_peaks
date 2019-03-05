@@ -65,7 +65,8 @@ class ReviewScheduleManager{
                 scheduledReviewDuration = 60 * 3 * 9999
             }
         }else if(settingsManager.defaultReview == "Brief"){
-            scheduledReview = skill.timeLearned.addingTimeInterval(TimeInterval(60.0))
+            // the review is today
+            scheduledReview = skill.timeLearned.addingTimeInterval(TimeInterval(-60.0 * 60.0 * 24.0))
             scheduledReviewDuration = 120
         }
 

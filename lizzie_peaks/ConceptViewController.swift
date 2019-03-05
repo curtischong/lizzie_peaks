@@ -285,10 +285,16 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     func updateNextReview(){
         if(skillData.scheduledReviews.count > 0){
             let curTime = Date()
+            let thisMorning = reviewScheduleManager.nextMorning(date: curTime)
+
             for (index, reviewDate) in skillData.scheduledReviews.enumerated(){
-                if reviewDate > curTime{
+                let reviewMorning = reviewScheduleManager.nextMorning(date: reviewDate)
+                if reviewMorning > thisMorning{
                     nextReviewDateLabel.text = self.displayDateFormatter.string(from: skillData.scheduledReviews[index])
-                    nextReviewDurationLabel.text = "\(skillData.scheduledReviewDurations[index] / (60*10))" + " min"
+                    nextReviewDurationLabel.text = "\(Double(skillData.scheduledReviewDurations[index]) / (60.0))" + " min"
+                }else if(reviewScheduleManager.nextMorning(date: reviewDate) == thisMorning){
+                    nextReviewDateLabel.text = "Today!"
+                    nextReviewDurationLabel.text = "\(Double(skillData.scheduledReviewDurations[index]) / (60.0))" + " min"
                 }
             }
         }
