@@ -10,18 +10,22 @@ import Foundation
 import Alamofire
 class NetworkManager{
     let SERVERIP = "http://10.8.0.1:9000"
-    let sendToServer = true
+    let SENDTOSERVER = true
+    
+    init(){
+        NSLog("willSendToServer: \(SENDTOSERVER)")
+    }
     
     func convertDate(date : Date) -> String{
         return String(Double(round(1000*date.timeIntervalSince1970)/1000))
     }
     
     func uploadSkill(skill : SkillObj){
-        if(!sendToServer){
+        if(!SENDTOSERVER){
             NSLog("network turned off")
             return
         }
-        
+        NSLog("sending skill to server")
         
         let parameters: Parameters = [
             "concept" : skill.concept,
@@ -46,10 +50,12 @@ class NetworkManager{
     }
     
     func uploadScheduledReview(concept: String, timeLearned: Date, reviewDate: Date, reviewDuration: Int){
-        if(!sendToServer){
+        if(!SENDTOSERVER){
             NSLog("network turned off")
             return
         }
+        NSLog("sending scheduledReview to server")
+        
         let parameters: Parameters = [
             "concept" : concept,
             "timeLearned" : convertDate(date: timeLearned),
@@ -71,16 +77,18 @@ class NetworkManager{
     }
 
     func uploadReview(review : ReviewObj){
-        if(!sendToServer){
+        if(!SENDTOSERVER){
             NSLog("network turned off")
             return
         }
+        NSLog("sending review to server")
+        
         let parameters: Parameters = [
             "concept" : review.concept,
-            "dateReviewed" : review.dateReviewed,
+            "dateReviewed" : convertDate(date: review.dateReviewed),
             "newLearnings" : review.newLearnings,
-            "reviewDuration" : review.reviewDuration,
-            "timeLearned" : review.timeLearned
+            "reviewDuration" : String(review.reviewDuration),
+            "timeLearned" : convertDate(date: review.timeLearned)
         ]
         
         //TODO: change the ip to the ip of the server

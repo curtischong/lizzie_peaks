@@ -52,10 +52,11 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     
     var skillData : SkillObj!
     var allReviews : [ReviewObj] = []
-
+    var firstTimeFillForm : Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        firstTimeFillForm = skillFormFilled()
         verboseLogs = settingsManager.verboseLogs
         scroller.contentSize = CGSize(width: scroller.contentSize.width, height: 2500)
         displayDateFormatter.dateFormat = "MMM d, h:mm a"
@@ -218,9 +219,6 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     @IBAction func backAddConceptBtn(_ sender: UIButton) {
         generator.impactOccurred()
         // Note: you want to reload the table last so all Skills are updated
-        if(skillFormFilled()){
-            networkManager.uploadSkill(skill : skillData)
-        }
         learningsDelegate?.reloadLearningsTable()
         dismiss(animated: true, completion: nil)
         //self.performSegue(withIdentifier: "unwindSegueToFirstViewController", sender: self)
@@ -245,6 +243,12 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             oldSkillsTextView.text != "" &&
             timeSpentLearningRealVal != 0 &&
             percentNewRealVal != 0){
+            
+            if(!firstTimeFillForm){
+                firstTimeFillForm = true
+                networkManager.uploadSkill(skill: skillData)
+            }
+            
             return true
         }
         return false

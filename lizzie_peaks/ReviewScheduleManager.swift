@@ -14,6 +14,7 @@ class ReviewScheduleManager{
     let notificationManager = NotificationManager()
     let dataManager = DataManager()
     let settingsManager = SettingsManager()
+    let networkManager = NetworkManager()
     init(){
         
     }
@@ -76,6 +77,10 @@ class ReviewScheduleManager{
         skill.scheduledReviewDurations.append(scheduledReviewDuration)
         
         dataManager.updateSkill(skill: skill)
+        networkManager.uploadScheduledReview(concept: skill.concept,
+                                             timeLearned: skill.timeLearned,
+                                             reviewDate: scheduledMorning,
+                                             reviewDuration: scheduledReviewDuration)
         
         let reviewTitle = "Get reviewing on \(skill.concept) Curtis!"
         let reviewBody = "Spend only \(scheduledReviewDuration/60) minutes to bring you back to 100%"
