@@ -32,6 +32,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     let reviewScheduleManager = ReviewScheduleManager()
     var verboseLogs : Bool!
     var allSkills : [SkillObj] = []
+    var lateReviewSkillsIdx = 999
     var scheduledTodaySkillsIdx = 999
     var otherSkillsIdx = 999
     let displayDateFormatter = DateFormatter()
@@ -79,6 +80,8 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
             cell.dateLearnedLabel.text = self.displayDateFormatter.string(from: newDate)
             if(indexPath.row >= otherSkillsIdx){ // red
                 cell.contentView.backgroundColor = settingsManager.defaultColor
+            }else if(indexPath.row >= lateReviewSkillsIdx){ // orange
+                cell.contentView.backgroundColor = UIColor(red: 1, green: 0.498, blue: 0.1176, alpha: 1.0)
             }else if(indexPath.row >= scheduledTodaySkillsIdx){ // blue
                 cell.contentView.backgroundColor = UIColor(red:0.44, green:0.75, blue:0.78, alpha:1.0)
             }else{ // normal
@@ -128,10 +131,12 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
         // Sorts the skills for the tableView
         // the order goes from:
         // 1. incomplete
-        // 2. review today
-        // 3, other tasks
+        // 2. late review
+        // 3. review today
+        // 4, other tasks
         
         var incompleteSkills : [SkillObj] = []
+        var lateReviewSkills : [SkillObj] = []
         var scheduledTodaySkills : [SkillObj] = []
         var otherSkills : [SkillObj] = []
         for skill in allSkills{
@@ -144,25 +149,33 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
                 let thisMorning = reviewScheduleManager.nextMorning(date : Date().addingTimeInterval(TimeInterval(-60.0 * 60.0 * 24.0)))
                 //let thisMorning = reviewScheduleManager.nextMorning(date : Date())
                 //NSLog("\(scheduledMorning)")
-                NSLog("\(skill.reviews.count)")
+                //NSLog("\(skill.reviews.count)")
                 if(skill.reviews.count > 0){
                     let lastReview = reviewScheduleManager.nextMorning(date : skill.reviews.last!.addingTimeInterval(TimeInterval(-60.0 * 60.0 * 24.0)))
                     //let lastReview = reviewScheduleManager.nextMorning(date : skill.reviews.last!)
                     
                     if(scheduledMorning == thisMorning && lastReview < scheduledMorning){
                         scheduledTodaySkills.append(skill)
+                    }else if(scheduledMorning != thisMorning && lastReview < scheduledMorning){
+                        lateReviewSkills.append(skill)
                     }else{
                         otherSkills.append(skill)
                     }
                     
                 }else if(scheduledMorning == thisMorning){
                     scheduledTodaySkills.append(skill)
+                }else if(scheduledMorning < thisMorning){
+                    lateReviewSkills.append(skill)
                 }else{
                     otherSkills.append(skill)
                 }
             }
         }
         allSkills = incompleteSkills
+        lateReviewSkillsIdx = allSkills.count
+        for skill in lateReviewSkills{
+            allSkills.append(skill)
+        }
         scheduledTodaySkillsIdx = allSkills.count
         for skill in scheduledTodaySkills{
             allSkills.append(skill)
