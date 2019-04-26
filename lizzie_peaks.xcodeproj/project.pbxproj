@@ -288,13 +288,16 @@
 				TargetAttributes = {
 					E92CF0D22203D7ED00DF3ADA = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					E92CF0E82203D7EE00DF3ADA = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = E92CF0D22203D7ED00DF3ADA;
 					};
 					E92CF0F32203D7EE00DF3ADA = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = E92CF0D22203D7ED00DF3ADA;
 					};
 				};
@@ -645,7 +648,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "curtis.lizzie-peaks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -664,7 +667,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "curtis.lizzie-peaks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -685,7 +688,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "curtis.lizzie-peaksTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lizzie_peaks.app/lizzie_peaks";
 			};
@@ -707,7 +710,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "curtis.lizzie-peaksTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lizzie_peaks.app/lizzie_peaks";
 			};
@@ -728,7 +731,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "curtis.lizzie-peaksUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = lizzie_peaks;
 			};
@@ -749,7 +752,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "curtis.lizzie-peaksUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = lizzie_peaks;
 			};
