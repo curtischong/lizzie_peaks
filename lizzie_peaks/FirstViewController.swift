@@ -54,13 +54,25 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
 
     // number of rows in table view
+    
+    func countUnloadedSkills(skills : [SkillObj]) -> Int{
+        var cnt = 0
+        for skill in skills{
+            if(!skill.uploaded){
+                cnt = cnt + 1
+            }
+        }
+        return cnt
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         allSkills = dataManager.getAllSkills()
         sortSkills()
         if (verboseLogs){
             NSLog("Found \(allSkills.count) skills")
         }
-        leaningsCntLabel.text = String(allSkills.count)
+        let numUnuploadedSkills = countUnloadedSkills(skills: allSkills)
+        leaningsCntLabel.text = String(numUnuploadedSkills)
         return allSkills.count
     }
     

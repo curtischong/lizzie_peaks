@@ -131,6 +131,21 @@ class DataManager{
         }
     }
     
+    // TODO: find a more efficient way to do this
+    func updateSkills(skills : [SkillObj]){
+        for skill in skills{
+            updateSkill(skill: skill)
+        }
+    }
+    
+    // TODO: find a more efficient way to do this
+    func updateReviews(reviews : [ReviewObj]){
+        for review in reviews{
+            updateReview(review: review)
+        }
+    }
+    
+    
     func getAllEntities(entityName : String, predicate : NSPredicate?, sortDescriptors : [NSSortDescriptor]) -> [NSManagedObject]{
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         
@@ -150,11 +165,11 @@ class DataManager{
         }
     }
     
-    func getAllSkills() -> [SkillObj]{
+    func getAllSkills(predicate : NSPredicate? = nil) -> [SkillObj]{
         // TODO: find a way to batch convert these entites
         let sortDescriptor = NSSortDescriptor(key: "timeLearned", ascending: false)
         
-        let entities = getAllEntities(entityName : "Skill", predicate: nil, sortDescriptors : [sortDescriptor])
+        let entities = getAllEntities(entityName : "Skill", predicate: predicate, sortDescriptors : [sortDescriptor])
         var allEntities : [SkillObj] = []
         for entity in entities{
             
@@ -192,11 +207,18 @@ class DataManager{
         return allEntities
     }
     
-    func getAllReviews(timeLearned : Date) -> [ReviewObj]{
-        let reviewPredicate = NSPredicate(format: "timeLearned = %@", argumentArray: [timeLearned])
+    func getAllUnuploadedSkills() -> [SkillObj]{
+        let skillPredicate = NSPredicate(format: "uploaded = false")
+        return getAllSkills(predicate: skillPredicate)
+    }
+    
+    
+    //let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
+    
+    func getAllReviews(predicate : NSPredicate? = nil) -> [ReviewObj]{
         let sortDescriptor = NSSortDescriptor(key: "timeReviewed", ascending: false)
         
-        let entities = getAllEntities(entityName : "Review", predicate: reviewPredicate, sortDescriptors : [sortDescriptor])
+        let entities = getAllEntities(entityName : "Review", predicate: predicate, sortDescriptors : [sortDescriptor])
         var allEntities : [ReviewObj] = []
         for entity in entities{
             allEntities.append(ReviewObj(concept : entity.value(forKey: "concept") as! String,
@@ -207,6 +229,16 @@ class DataManager{
                                         uploaded: entity.value(forKey: "uploaded") as! Bool))
         }
         return allEntities
+    }
+    
+    func getAllReviewsForTimeLearned(timeLearned : Date) -> [ReviewObj]{
+        let reviewPredicate = NSPredicate(format: "timeLearned = %@", argumentArray: [timeLearned])
+        return getAllReviews(predicate: reviewPredicate)
+    }
+    
+    func getAllUnuploadedReviews() -> [ReviewObj]{
+        let reviewPredicate = NSPredicate(format: "uploaded = false")
+        return getAllReviews(predicate: reviewPredicate)
     }
     
     func deleteSkill(timeLearned : Date){

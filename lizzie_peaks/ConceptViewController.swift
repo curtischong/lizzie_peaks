@@ -288,7 +288,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITextField
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        allReviews = dataManager.getAllReviews(timeLearned : skillData.timeLearned)
+        allReviews = dataManager.getAllReviewsForTimeLearned(timeLearned : skillData.timeLearned)
         return allReviews.count
     }
     
