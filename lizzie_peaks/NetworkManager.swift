@@ -85,7 +85,7 @@ class NetworkManager{
         
         let parameters: Parameters = [
             "concept" : review.concept,
-            "dateReviewed" : convertDate(date: review.dateReviewed),
+            "dateReviewed" : convertDate(date: review.timeReviewed),
             "newLearnings" : review.newLearnings,
             "reviewDuration" : String(review.reviewDuration),
             "timeLearned" : convertDate(date: review.timeLearned)

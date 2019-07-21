@@ -80,8 +80,7 @@ class TimerViewController: UIViewController {
         
         let reviewData = ReviewObj(
             concept : skillData.concept,
-            dateReviewed : timeReviewed,
-            newLearnings : "",
+            timeReviewed : timeReviewed,
             reviewDuration : timePassed,
             timeLearned : skillData.timeLearned)
         dataManager.insertReview(review : reviewData)

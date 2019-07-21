@@ -59,7 +59,7 @@ class ReviewViewController: UIViewController {
     
     @IBAction func deleteReviewBtn(_ sender: UIButton) {
         generator.impactOccurred()
-        dataManager.deleteReview(dateReviewed: reviewData.dateReviewed)
+        dataManager.deleteReview(timeReviewed: reviewData.timeReviewed)
         conceptDelegate?.reloadReviewTable()
         self.conceptViewControllerRef.dismiss(animated: true, completion: nil)
     }

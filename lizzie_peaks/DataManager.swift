@@ -42,6 +42,7 @@ class DataManager{
             curSkill.setValue(scheduledReviewDurations, forKey: "scheduledReviewDurations")
             curSkill.setValue(reviews, forKey: "reviews")
             curSkill.setValue(reviewDurations, forKey: "reviewDurations")
+            curSkill.setValue(skill.uploaded, forKey: "uploaded")
             if(verboseLogs){
                 NSLog("Successfully converted skills to coredata entities")
             }
@@ -52,10 +53,11 @@ class DataManager{
     
     func reviewToNSManagedObject(curReview : NSManagedObject, review : ReviewObj){
         curReview.setValue(review.concept, forKey: "concept")
-        curReview.setValue(review.dateReviewed, forKey: "dateReviewed")
+        curReview.setValue(review.timeReviewed, forKey: "timeReviewed")
         curReview.setValue(review.newLearnings, forKey: "newLearnings")
         curReview.setValue(review.reviewDuration, forKey: "reviewDuration")
         curReview.setValue(review.timeLearned, forKey: "timeLearned")
+        curReview.setValue(review.uploaded, forKey: "uploaded")
     }
     
     
@@ -110,8 +112,8 @@ class DataManager{
     func updateReview(review : ReviewObj){
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Review")
         
-        fetchRequest.predicate = NSPredicate(format: "dateReviewed = %@",
-                                             argumentArray: [review.dateReviewed])
+        fetchRequest.predicate = NSPredicate(format: "timeReviewed = %@",
+                                             argumentArray: [review.timeReviewed])
         do {
             let results = try context.fetch(fetchRequest) as? [NSManagedObject]
             if results?.count != 0 {
@@ -181,7 +183,8 @@ class DataManager{
                 scheduledReviews : scheduledReviews ?? [],
                 scheduledReviewDurations : scheduledReviewDurations ?? [],
                 reviews : reviews ?? [],
-                reviewDurations : reviewDurations ?? []))
+                reviewDurations : reviewDurations ?? [],
+                uploaded: entity.value(forKey: "uploaded") as! Bool))
             }catch let error{
                 NSLog("couldn't load binary from coredata: \(error)")
             }
@@ -191,16 +194,17 @@ class DataManager{
     
     func getAllReviews(timeLearned : Date) -> [ReviewObj]{
         let reviewPredicate = NSPredicate(format: "timeLearned = %@", argumentArray: [timeLearned])
-        let sortDescriptor = NSSortDescriptor(key: "dateReviewed", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "timeReviewed", ascending: false)
         
         let entities = getAllEntities(entityName : "Review", predicate: reviewPredicate, sortDescriptors : [sortDescriptor])
         var allEntities : [ReviewObj] = []
         for entity in entities{
             allEntities.append(ReviewObj(concept : entity.value(forKey: "concept") as! String,
-                                        dateReviewed : entity.value(forKey: "dateReviewed") as! Date,
+                                        timeReviewed : entity.value(forKey: "timeReviewed") as! Date,
                                         newLearnings : entity.value(forKey: "newLearnings") as! String,
                                         reviewDuration : entity.value(forKey: "reviewDuration") as! Int,
-                                        timeLearned : entity.value(forKey: "timeLearned") as! Date))
+                                        timeLearned : entity.value(forKey: "timeLearned") as! Date,
+                                        uploaded: entity.value(forKey: "uploaded") as! Bool))
         }
         return allEntities
     }
@@ -220,17 +224,17 @@ class DataManager{
     }
     
     
-    func deleteReview(dateReviewed : Date){
+    func deleteReview(timeReviewed : Date){
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Review")
-        fetchRequest.predicate = NSPredicate(format: "dateReviewed == %@", argumentArray: [dateReviewed])
+        fetchRequest.predicate = NSPredicate(format: "timeReviewed == %@", argumentArray: [timeReviewed])
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do{
             try context.execute(deleteRequest)
             try context.save()
-            NSLog("Deleted review created at: \(dateReviewed)")
+            NSLog("Deleted review created at: \(timeReviewed)")
         }catch let error{
-            NSLog("Couldn't delete review created at \(dateReviewed) with error: \(error)")
+            NSLog("Couldn't delete review created at \(timeReviewed) with error: \(error)")
         }
     }
     

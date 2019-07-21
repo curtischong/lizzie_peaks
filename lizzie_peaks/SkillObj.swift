@@ -20,6 +20,7 @@ class SkillObj{
     var scheduledReviewDurations : [Int] = []
     var reviews : [Date] = []
     var reviewDurations : [Int] = [] // would be useful when showing total time reviewed
+    var uploaded : Bool = false
     //var timesReviewed : Int = 0
     
     
@@ -32,7 +33,8 @@ class SkillObj{
          scheduledReviews : [Date],
          scheduledReviewDurations : [Int],
          reviews : [Date],
-         reviewDurations : [Int]){
+         reviewDurations : [Int],
+         uploaded : Bool){
         
         self.concept = concept
         self.newLearnings = newLearnings
@@ -44,6 +46,7 @@ class SkillObj{
         self.scheduledReviewDurations = scheduledReviewDurations
         self.reviews = reviews
         self.reviewDurations = reviewDurations
+        self.uploaded = uploaded
     }
     
     init(timeLearned : Date){

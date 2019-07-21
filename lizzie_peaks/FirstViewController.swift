@@ -118,6 +118,7 @@ class FirstViewController: UIViewController , UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func reloadSkillsBtn(_ sender: UIButton) {
+        generator.impactOccurred()
         reloadLearningsTable()
     }
     func reloadLearningsTable(){

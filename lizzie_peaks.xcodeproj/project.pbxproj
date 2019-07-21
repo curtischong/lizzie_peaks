@@ -20,6 +20,7 @@
 		E92CF0F92203D7EE00DF3ADA /* lizzie_peaksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF0F82203D7EE00DF3ADA /* lizzie_peaksUITests.swift */; };
 		E92CF10B2203DEF400DF3ADA /* ConceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF10A2203DEF400DF3ADA /* ConceptViewController.swift */; };
 		E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CF11622040AF300DF3ADA /* DataManager.swift */; };
+		E99A53E222E4E202007E5511 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A53E122E4E202007E5511 /* util.swift */; };
 		E9BFFEA52213E2F50030BCF9 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BFFEA42213E2F50030BCF9 /* ReviewTableViewCell.swift */; };
 		E9CC4A292213AF6800BFDB90 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC4A282213AF6800BFDB90 /* TimerViewController.swift */; };
 		E9D4B7A7220624ED00427AAD /* ScheduledReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D4B7A6220624ED00427AAD /* ScheduledReviewTableViewCell.swift */; };
@@ -80,6 +81,7 @@
 		E92CF0FA2203D7EE00DF3ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E92CF10A2203DEF400DF3ADA /* ConceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptViewController.swift; sourceTree = "<group>"; };
 		E92CF11622040AF300DF3ADA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		E99A53E122E4E202007E5511 /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		E9BFFEA42213E2F50030BCF9 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		E9CC4A282213AF6800BFDB90 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerViewController.swift; path = /Users/curtis/Desktop/dev/lizzie_peaks/lizzie_peaks/TimerViewController.swift; sourceTree = "<absolute>"; };
 		E9D4B7A6220624ED00427AAD /* ScheduledReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledReviewTableViewCell.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				E92CF0E42203D7EE00DF3ADA /* Info.plist */,
 				E92CF0DC2203D7ED00DF3ADA /* Main.storyboard */,
 				E92CF0DF2203D7EE00DF3ADA /* Assets.xcassets */,
+				E99A53E122E4E202007E5511 /* util.swift */,
 			);
 			path = lizzie_peaks;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				E92CF0DB2203D7ED00DF3ADA /* SecondViewController.swift in Sources */,
 				E9F5265022052A58004F66F3 /* SkillTableViewCell.swift in Sources */,
 				E9F5266B220608A2004F66F3 /* SkillObj.swift in Sources */,
+				E99A53E222E4E202007E5511 /* util.swift in Sources */,
 				E92CF11722040AF300DF3ADA /* DataManager.swift in Sources */,
 				E9F5265822056DEA004F66F3 /* ReviewScheduleManager.swift in Sources */,
 				E92CF10B2203DEF400DF3ADA /* ConceptViewController.swift in Sources */,

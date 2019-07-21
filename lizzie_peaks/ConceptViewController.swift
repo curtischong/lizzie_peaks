@@ -16,7 +16,7 @@ protocol conceptProtocol {
     func reloadReviewTable()
 }
 
-class ConceptViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, conceptProtocol{
+class ConceptViewController: UIViewController , UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate, UITableViewDataSource, conceptProtocol{
 
     @IBOutlet weak var timeSpentLearningLabel: UILabel!
     @IBOutlet weak var percentNewLabel: UILabel!
@@ -52,11 +52,9 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     
     var skillData : SkillObj!
     var allReviews : [ReviewObj] = []
-    var firstTimeFillForm : Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstTimeFillForm = skillFormFilled()
         verboseLogs = settingsManager.verboseLogs
         scroller.contentSize = CGSize(width: scroller.contentSize.width, height: 2500)
         displayDateFormatter.dateFormat = "MMM d, h:mm a"
@@ -86,19 +84,18 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         //init toolbar
         toolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
         //create left side empty space so that done button set on right side
-        let flexSpace = UIBarButtonItem(barButtonSystemItem:    .flexibleSpace, target: nil, action: nil)
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
         toolbar.setItems([flexSpace, doneBtn], animated: false)
         toolbar.sizeToFit()
         //setting toolbar as inputAccessoryView
-        self.mainConceptTextField.inputAccessoryView = toolbar
         self.oldSkillsTextView.inputAccessoryView = toolbar
         self.newLearningsTextView.inputAccessoryView = toolbar
         
-        
         //slider finished sliding
-        timeSpentLearningSlider.addTarget(self, action: #selector(self.saveTimeSpent), for: .touchUpInside)
-        percentNewSlider.addTarget(self, action: #selector(self.savePercentNew), for: .touchUpInside)
+        timeSpentLearningSlider.addTarget(self, action: #selector(self.saveConcept), for: .touchUpInside)
+        percentNewSlider.addTarget(self, action: #selector(self.saveConcept), for: .touchUpInside)
+        
         // Load skill Data
         
         mainConceptTextField.text = skillData.concept
@@ -122,6 +119,10 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             print("\(item)")
         }
         
+        mainConceptTextField.delegate = self
+        oldSkillsTextView.delegate = self
+        newLearningsTextView.delegate = self
+        
         reviewsTableView.delegate = self
         reviewsTableView.dataSource = self
         reviewsTableView.tableFooterView = UIView()
@@ -130,26 +131,14 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         updateNextReview()
     }
 
-    @objc func saveTimeSpent(sender: UISlider) {
-        if(verboseLogs){
-            NSLog("saved timeSpent!")
-        }
-        skillData.timeSpentLearning = timeSpentLearningRealVal
+    @objc func saveConcept() {
         dataManager.updateSkill(skill: skillData)
-    }
-    
-    @objc func savePercentNew(sender: UISlider) {
-        if(verboseLogs){
-            NSLog("saved percentNew!")
-        }
-        skillData.percentNew = percentNewRealVal
-        dataManager.updateSkill(skill: skillData)
+        checkFormComplete()
     }
     
     @objc func doneButtonAction() {
         //skillsUsedTextView.resignFirstResponder()
         generator.impactOccurred()
-        checkFormComplete()
         self.view.endEditing(true)
     }
     
@@ -158,7 +147,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         if(oldSkillsTextView.isFirstResponder || newLearningsTextView.isFirstResponder){
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 if self.view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -= (keyboardSize.height) // 30 is the height of the toolbar
+                    self.view.frame.origin.y -= (keyboardSize.height) // 30 is the height of the toolbar but using it introduces black bar
                 }
             }
         }
@@ -169,26 +158,21 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
             self.view.frame.origin.y = 0
         }
         if(mainConceptTextField.isFirstResponder){
-            if(verboseLogs){
-                NSLog("saved mainConcept!")
-            }
             skillData.concept = mainConceptTextField.text!
-            dataManager.updateSkill(skill: skillData)
             
         }else if(oldSkillsTextView.isFirstResponder){
-            if(verboseLogs){
-                NSLog("saved oldSkills!")
-            }
             skillData.oldSkills = oldSkillsTextView.text!
-            dataManager.updateSkill(skill: skillData)
             
         }else if(newLearningsTextView.isFirstResponder){
-            if(verboseLogs){
-                NSLog("saved newLearnings!")
-            }
             skillData.newLearnings = newLearningsTextView.text!
-            dataManager.updateSkill(skill: skillData)
         }
+        saveConcept()
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        generator.impactOccurred()
+        textField.resignFirstResponder()
+        return true
     }
     
     @IBAction func timeSpentLearningSliderMoved(_ sender: UISlider) {
@@ -198,8 +182,8 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         sender.setValue(sliderVal, animated: true)
         if(timeSpentLearningLabel.text != String(timeSpentLearningRealVal) + " min"){
             timeSpentLearningLabel.text = String(timeSpentLearningRealVal) + " min"
+            skillData.timeSpentLearning = timeSpentLearningRealVal
             generator.impactOccurred()
-            checkFormComplete()
         }
     }
     @IBAction func percentNewSliderMoved(_ sender: UISlider) {
@@ -209,8 +193,8 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         sender.setValue(sliderVal, animated: true)
         if(percentNewLabel.text != String(percentNewRealVal) + "%"){
             percentNewLabel.text = String(percentNewRealVal) + "%"
+            skillData.percentNew = percentNewRealVal
             generator.impactOccurred()
-            checkFormComplete()
         }
     }
     
@@ -237,17 +221,13 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     }
     
     func skillFormFilled() -> Bool{
-        if(skillData.scheduledReviews.count == 0 &&
-            mainConceptTextField.text != "" &&
-            newLearningsTextView.text != "" &&
-            oldSkillsTextView.text != "" &&
-            timeSpentLearningRealVal != 0 &&
-            percentNewRealVal != 0){
+        if(skillData.concept != "" &&
+            skillData.newLearnings != "" &&
+            skillData.oldSkills != "" &&
+            skillData.timeSpentLearning != 0 &&
+            skillData.percentNew != 0){
             
-            if(!firstTimeFillForm){
-                firstTimeFillForm = true
-                networkManager.uploadSkill(skill: skillData)
-            }
+            networkManager.uploadSkill(skill: skillData)
             
             return true
         }
@@ -257,8 +237,10 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
     func checkFormComplete(){
         if(skillFormFilled()){
             NSLog("Scheduling new review for \(mainConceptTextField.text)")
-            reviewScheduleManager.scheduleReview(skill : skillData)
-            updateNextReview()
+            
+            // TODO MOVE THE REVIEWSCHEDULEMANAGER TO THE CLOUD
+            //reviewScheduleManager.scheduleReview(skill : skillData)
+            //updateNextReview()
         }else{
             if(verboseLogs){
                 NSLog("skill complete check failed")
@@ -320,7 +302,7 @@ class ConceptViewController: UIViewController , UITableViewDelegate, UITableView
         if allReviews.count > indexPath.row{
             let cellData = allReviews[indexPath.row]
             
-            let newDate = cellData.dateReviewed
+            let newDate = cellData.timeReviewed
             
             cell.dateReviewedLabel.text = self.displayDateFormatter.string(from: newDate)
             cell.reviewDurationLabel.text = String(roundToTwoDecimal(num: Double(cellData.reviewDuration)/60.0)) + " min"
